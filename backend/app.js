@@ -5,6 +5,7 @@ const csurf= require("csurf");
 const helmet= require("helmet");
 const cookieParser= require("cookie-parser");
 const router = require("./routes");
+const sessionRouter = require("./routes/api/session")
 const {ValidationError} = require("sequelize");
 
 const environment = require("./config");

@@ -2,6 +2,12 @@ const {User} = require("../../db/models");
 const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
+const usersRouter = require("./users");
+const sessionRouter = require("./session");
+
+
+router.use("/users", usersRouter);
+router.use("/session", sessionRouter);
 
 router.post("/test", function(req,res){
     res.json({requestBody: req.body});
