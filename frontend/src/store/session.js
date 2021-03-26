@@ -16,15 +16,26 @@ const sessionRemove = () => {{
     return {type: SESSION_REMOVE}
 }}
 
-export const login = (user) => async (dispatch) => {
-    const {credentials, password} = user;
-    const response = await csrfFetch("/api/session", {
-        method: "POST",
-        body: JSON.stringify({ credentials, password })
-    });
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
+export function login(user) {
+    return async (dispatch) => {
+        const {credentials, password} = user;
+        const response = await csrfFetch("/api/session", {
+            method: "POST",
+            body: JSON.stringify({ credentials, password })
+        });
+        const data = await response.json();
+        dispatch(setUser(data.user));
+        return response;
+    }
+}
+
+export async function restoreUser(user) {
+    return async (dispatch) => {
+        const response = await csrfFetch("/api/session");
+        const parsed = await response.json();
+        dispatch(setUser(parsed.user));
+        return response;
+    }
 }
 
 const sessionReducer = (state=initialState, action) => {
