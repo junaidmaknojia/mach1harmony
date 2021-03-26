@@ -22,4 +22,9 @@ router.post("/", asyncHandler(async (req,res,next) => {
 
 }));
 
+router.delete("/", asyncHandler(async (req,res) => {
+    res.clearCookie("token");
+    return res.json({message: "successfully deleted"});
+}));
+
 module.exports = router;
