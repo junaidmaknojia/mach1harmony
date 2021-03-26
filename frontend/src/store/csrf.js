@@ -13,3 +13,7 @@ export async function csrfFetch(url, options = {}) {
     }
     return response;
 }
+
+export function restoreCSRF(){
+    return csrfFetch("/api/csrf/restore");
+}
