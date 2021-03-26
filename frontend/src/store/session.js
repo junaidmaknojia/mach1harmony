@@ -5,7 +5,7 @@ const SESSION_REMOVE = "session/removeUser"
 
 const initialState = {user: null};
 
-const sessionAdd = () => {{
+const sessionAdd = (user) => {{
     return {
         type: SESSION_ADD,
         payload: user
@@ -24,21 +24,21 @@ export function login(user) {
             body: JSON.stringify({ credentials, password })
         });
         const data = await response.json();
-        dispatch(setUser(data.user));
+        dispatch(sessionAdd(data.user));
         return response;
     }
 }
 
-export async function restoreUser(user) {
+export function restoreUser(user) {
     return async (dispatch) => {
         const response = await csrfFetch("/api/session");
         const parsed = await response.json();
-        dispatch(setUser(parsed.user));
+        dispatch(sessionAdd(parsed.user));
         return response;
     }
 }
 
-export async function signupUser(user) {
+export function signupUser(user) {
     return async (dispatch) => {
         const {username, email, password} = user;
         const response = await csrfFetch("api/users", {
@@ -46,9 +46,17 @@ export async function signupUser(user) {
             body: JSON.stringify({username, email, password})
         });
         const parsed = response.json();
-        dispatch(setUser(parsed.user));
+        dispatch(sessionAdd(parsed.user));
         return parsed;
     }
+}
+
+export const logout = () => async (dispatch) => {
+    const response = csrfFetch("/api/session", {
+        method: "DELETE"
+    });
+    dispatch(sessionRemove());
+    return response;
 }
 
 const sessionReducer = (state=initialState, action) => {
