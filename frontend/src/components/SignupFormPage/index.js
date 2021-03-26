@@ -1,4 +1,5 @@
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
@@ -19,7 +20,7 @@ export default function SignupFormPage() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signup({ email, username, password }))
+            return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);

@@ -1,15 +1,16 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 
-export default function Navigation({isLoaded}) {
+export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
 
     let sessionLinks;
 
-    if(sessionUser){
-        sessionLinks = (<ProfileButton user={sessionUser}/>);
+    if (sessionUser) {
+        sessionLinks = (<ProfileButton user={sessionUser} />);
     } else {
         sessionLinks = (
             <>
@@ -22,8 +23,8 @@ export default function Navigation({isLoaded}) {
     return (
         <ul>
             <li>
-               <NavLink exact to="/">Home</NavLink>
-               {isLoaded && sessionLinks}
+                <NavLink exact to="/">Home</NavLink>
+                {isLoaded && sessionLinks}
             </li>
         </ul>
     );
