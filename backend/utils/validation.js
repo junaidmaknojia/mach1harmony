@@ -1,6 +1,6 @@
 const {validationResult} = require("express")
 
-const handValidationErrors = (req, res, next) => {
+const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
 
     if(!validationErrors.isEmpty()){
@@ -15,4 +15,4 @@ const handValidationErrors = (req, res, next) => {
     next();
 }
 
-module.exports = {handValidationErrors};
+module.exports = {handleValidationErrors};
