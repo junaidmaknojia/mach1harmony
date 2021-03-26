@@ -38,6 +38,19 @@ export async function restoreUser(user) {
     }
 }
 
+export async function signupUser(user) {
+    return async (dispatch) => {
+        const {username, email, password} = user;
+        const response = await csrfFetch("api/users", {
+            method: "POST",
+            body: JSON.stringify({username, email, password})
+        });
+        const parsed = response.json();
+        dispatch(setUser(parsed.user));
+        return parsed;
+    }
+}
+
 const sessionReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){
