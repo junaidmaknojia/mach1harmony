@@ -27,4 +27,15 @@ router.delete("/", asyncHandler(async (req,res) => {
     return res.json({message: "successfully deleted"});
 }));
 
+router.get("/", asyncHandler(async (req,res) => {
+    const {user} = req;
+    if(user){
+        return res.json({
+            user: user.toSafeObject()
+        });
+    } else {
+        return res.json({});
+    }
+}));
+
 module.exports = router;
