@@ -1,10 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import React, { useState } from "react";
 import "./LoginForm.css";
 import LoginForm from "./LoginForm";
+import { Modal } from "../../context/Modal";
 
 export default function LoginFormModal() {
 
+    const [showModal, setShowModal] = useState(false);
+
+    return (
+        <>
+            <button onClick={() => setShowModal(true)}>Log In</button>
+            {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                    <LoginForm/>
+                </Modal>
+            )}
+        </>
+    );
 }

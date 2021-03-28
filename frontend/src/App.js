@@ -15,14 +15,14 @@ function App() {
   }, [dispatch]);
 
 
-  return isLoaded && (
+  return (
     <>
       <Navigation isLoaded={isLoaded}/>
       {isLoaded && (
         <Switch>
-          <Route path="/login">
+          {/* <Route path="/login">
             <LoginFormPage />
-          </Route>
+          </Route> */}
           <Route path="/signup">
             <SignupFormPage />
           </Route>
