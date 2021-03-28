@@ -14,15 +14,19 @@ export default function Navigation({ isLoaded }) {
     } else {
         sessionLinks = (
             <>
-                <NavLink className="navButton" to="/login">Log In</NavLink>
-                <NavLink className="navButton" to="/signup">Sign Up</NavLink>
+                <NavLink className="navButton" id="login" to="/login">Log In</NavLink>
+                <NavLink className="navButton" id="signup" to="/signup">Sign Up</NavLink>
             </>
         );
     }
 
     return (
         <div className="navBar">
-            <NavLink className="navButton" exact to="/">Home</NavLink>
+            <p className="siteLogo">Mach1Harmony</p>
+            <p className="navButton" id="browse" >Browse</p>
+            <input type="text" className="search">
+            </input>
+            <NavLink className="navButton" id="home" exact to="/">Home</NavLink>
             {isLoaded && sessionLinks}
         </div>
     );

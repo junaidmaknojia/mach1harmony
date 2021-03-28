@@ -1,12 +1,47 @@
+.navBar {
+    display: flex;
+    /* justify-content: space-between; */
+
+    border-bottom: black solid 2px;
+    background-color: rgb(196, 113, 18);
+    height: 40px;
+}
+
+.siteLogo {
+    font-weight: bold;
+    font-size: 20px;
+    width: 250px;
+    text-align: center;
+    align-self: center;
+    order: -3;
+}
+
+#browse {
+    order: -2;
+}
+
+.search {
+    width: 300px;
+    order: -1;
+}
+
+#home {
+    order: 0;
+}
+
+#login {
+    order: 1;
+}
+
+#signup {
+    order: 2;
+}
+
+
 .navButton {
+    width: 100px;
     border: black solid 2px;
     border-radius: 2px;
     padding: 3px;
     margin: 2px;
-}
-
-.navBar {
-    border-bottom: black solid 2px;
-    background-color: rgb(196, 113, 18);
-    height: 50px;
 }
