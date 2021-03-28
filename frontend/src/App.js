@@ -4,7 +4,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import {useDispatch} from "react-redux";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import "./homepage";
+import Homepage from "./components/Homepage";
 
 function App() {
 
@@ -23,6 +23,9 @@ function App() {
           {/* <Route path="/login">
             <LoginFormPage />
           </Route> */}
+          <Route exact path="/">
+            <Homepage/>
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
