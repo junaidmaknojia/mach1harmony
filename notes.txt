@@ -36,3 +36,9 @@ Icons
 <i class="fas fa-step-backward"></i>
 <i class="fas fa-step-forward"></i>
 <i class="fas fa-bars"></i>
+<i class="fas fa-user-friends"></i>
+<i class="fas fa-user-plus"></i>
+<i class="fas fa-user-slash"></i>
+<i class="fas fa-headphones"></i>
+<i class="far fa-check-circle"></i>
+<i class="far fa-times-circle"></i>
