@@ -20,3 +20,19 @@ The backend logout flow will be based off of the following plan:
 
 The API logout route will be hit with a request
 The API logout handler will remove the JWT cookie set by the login or signup API routes and return a JSON success message
+
+
+Icons
+
+<i class="fas fa-sliders-h"></i>
+<i class="fas fa-compact-disc"></i>
+<i class="fas fa-music"></i>
+<i class="fas fa-play"></i>
+<i class="fas fa-pause"></i>
+<i class="fas fa-sign-out-alt"></i>
+<i class="fas fa-trash"></i>
+<i class="fas fa-pencil-alt"></i>
+<i class="fas fa-user-circle"></i>
+<i class="fas fa-step-backward"></i>
+<i class="fas fa-step-forward"></i>
+<i class="fas fa-bars"></i>
