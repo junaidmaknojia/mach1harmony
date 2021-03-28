@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
 
 
-export default function LoginFormPage() {
+export default function LoginForm() {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -13,9 +13,9 @@ export default function LoginFormPage() {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) {
-        return <Redirect to="/"/>
-    }
+    // if (sessionUser) {
+    //     return <Redirect to="/"/>
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
