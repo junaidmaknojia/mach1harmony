@@ -2,29 +2,30 @@
     /* background-color: blue;
     height: 400px; */
     display: grid;
-    grid-template-columns: 50px repeat(4, 1fr) 50px;
-    grid-template-rows: 50px repeat(4, 300px);
+    grid-template-columns: 50px repeat(3, 1fr) 50px;
+    grid-template-rows: 50px repeat(4, 400px);
 }
 
 .banner {
-    grid-column: 2/6;
+    grid-column: 2/5;
     grid-row: 2/3;
     background-color: red;
 }
 
 .trending {
-    grid-column: 2/6;
+    grid-column: 2/5;
     grid-row: 3/4;
     background-color: orange;
 }
 
 .newFeatures {
-    grid-column: 2/6;
+    grid-column: 2/5;
     grid-row: 4/5;
     background-color: greenyellow;
-
 }
 
 .getStarted {
-
+    grid-column: 2/5;
+    grid-row: 5/6;
+    background-color: blue;
 }

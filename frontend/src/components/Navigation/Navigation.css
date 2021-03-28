@@ -2,7 +2,7 @@
     display: flex;
     position: fixed;
     border-bottom: black solid 2px;
-    background-color: rgba(196, 113, 18, 0.822);
+    background-color: rgba(196, 113, 18, 1);
     height: 40px;
     width: 100%;
 }
