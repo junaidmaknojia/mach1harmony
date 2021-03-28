@@ -24,7 +24,7 @@ function App() {
             <LoginFormPage />
           </Route> */}
           <Route exact path="/">
-            <Homepage/>
+            <Homepage isLoaded={isLoaded}/>
           </Route>
           <Route path="/signup">
             <SignupFormPage />
