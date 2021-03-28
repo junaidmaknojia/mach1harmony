@@ -24,8 +24,9 @@ export default function Navigation({ isLoaded }) {
         <div className="navBar">
             <p className="siteLogo">Mach1Harmony</p>
             <p className="navButton" id="browse" >Browse</p>
-            <input type="text" className="search">
-            </input>
+            <div className="search">
+                <input type="text"/>
+            </div>
             <NavLink className="navButton" id="home" exact to="/">Home</NavLink>
             {isLoaded && sessionLinks}
         </div>

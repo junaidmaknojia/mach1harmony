@@ -3,7 +3,7 @@
     /* justify-content: space-between; */
 
     border-bottom: black solid 2px;
-    background-color: rgb(196, 113, 18);
+    background-color: rgba(196, 113, 18, 0.822);
     height: 40px;
 }
 
@@ -18,10 +18,13 @@
 
 #browse {
     order: -2;
+    border-right: 1px black solid;
 }
 
 .search {
-    width: 300px;
+    text-align: center;
+    align-self: center;
+    width: 550px;
     order: -1;
 }
 
@@ -39,9 +42,12 @@
 
 
 .navButton {
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
     width: 100px;
-    border: black solid 2px;
     border-radius: 2px;
     padding: 3px;
     margin: 2px;
+    border-left: 1px solid black;
 }
