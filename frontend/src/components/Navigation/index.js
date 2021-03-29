@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
@@ -8,7 +8,6 @@ import SignupFormModal from "../SignupFormModal";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-    console.log("sessionUser-------", sessionUser);
 
     let sessionLinks;
 
