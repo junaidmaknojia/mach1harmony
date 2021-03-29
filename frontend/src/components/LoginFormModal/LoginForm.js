@@ -22,13 +22,9 @@ export default function LoginForm() {
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
-                // console.log("res---------", res);
-                const data = await res.json();
-                // const data = JSON.parse(res);
-                // console.log("data -----------", data);
+                const data = await res.json(); // had errors here earlier
                 if (data && data.errors) setErrors(data.errors);
             });
-        // had to refactor this code to not show res.json() error page
     }
 
     return (
