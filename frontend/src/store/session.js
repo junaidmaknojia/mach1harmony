@@ -18,10 +18,10 @@ const sessionRemove = () => {{
 
 export function login(user) {
     return async (dispatch) => {
-        const {credentials, password} = user;
+        const {credential, password} = user;
         const response = await csrfFetch("/api/session", {
             method: "POST",
-            body: JSON.stringify({ credentials, password })
+            body: JSON.stringify({ credential, password })
         });
         const data = await response.json();
         dispatch(sessionAdd(data.user));

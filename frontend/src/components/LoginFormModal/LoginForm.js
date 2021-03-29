@@ -22,10 +22,10 @@ export default function LoginForm() {
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
-                console.log("res---------", res);
+                // console.log("res---------", res);
                 const data = await res.json();
                 // const data = JSON.parse(res);
-                console.log("data -----------", data);
+                // console.log("data -----------", data);
                 if (data && data.errors) setErrors(data.errors);
             });
         // had to refactor this code to not show res.json() error page
@@ -54,7 +54,7 @@ export default function LoginForm() {
                     required
                 />
             </label>
-            <button onSubmit={handleSubmit} type="submit">Log In</button>
+            <button type="submit">Log In</button>
         </form>
     );
 }
