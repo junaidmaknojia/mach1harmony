@@ -3,7 +3,6 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const {check} = require("express-validator");
 const {handleValidationErrors} = require("../../utils/validation");
-
 const {setTokenCookie, restoreUser} = require("../../utils/auth");
 const {User} = require("../../db/models");
 
@@ -20,7 +19,9 @@ const validateLogin = [
 
 router.post("/", validateLogin, asyncHandler(async (req,res,next) => {
     const {credential, password} = req.body;
+    console.log(credential, password);
     const user = await User.login({credential, password});
+    console.log("user --------", user);
 
     if(!user){
         const err = new Error("Login failed");
@@ -40,7 +41,8 @@ router.delete("/", asyncHandler(async (req,res) => {
     return res.json({message: "successfully deleted"});
 }));
 
-router.get("/", asyncHandler(async (req,res) => {
+router.get("/", restoreUser, asyncHandler(async (req,res) => {
+    // res.json("test");
     const {user} = req;
     if(user){
         return res.json({
