@@ -63,6 +63,14 @@ export default function UploadSongPage() {
                     </input>
                 </div>
                 <div>
+                    <p>Song Upload</p>
+                    <input type="file" name='audioUpload'/>
+                </div>
+                <div>
+                    <p>Cover Photo Upload</p>
+                    <input type="file" name='coverPhotoUpload'/>
+                </div>
+                <div>
                     <button type="submit" onClick={onSubmit}>Submit</button>
                 </div>
             </form>
