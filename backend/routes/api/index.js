@@ -9,6 +9,34 @@ const sessionRouter = require("./session");
 router.use("/users", usersRouter);
 router.use("/session", sessionRouter);
 
+router.get("/:id(\\d+)", asyncHandler(async (req, res) => { // home page with logged in user
+    // const userId = parseInt(req.params.id, 10);
+    // const user = await User.findByPk(userId);
+
+    // const userStories = await Story.findAll({
+    //   where: { userId },
+    //   order: [["createdAt", "DESC"]]
+    // });
+
+    // const peopleYoureFollowing = await User.findAll({
+    //     include: {
+    //       model: User,
+    //       as: "otherPeople"
+    //     },
+    //     where: {id: userId}
+    // })
+
+    // // console.log(peopleYoureFollowing[0].dataValues.otherPeople);
+    // const sendPeople = peopleYoureFollowing[0].dataValues.otherPeople;
+
+    // res.render("user-stories", {
+    //   sendPeople,
+    //   otherUser: userId,
+    //   title: `${user.username}'s Stories`,
+    //   userStories
+    // });
+}));
+
 // router.post("/test", function(req,res){
 //     res.json({requestBody: req.body});
 // });
