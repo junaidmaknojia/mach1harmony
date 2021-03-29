@@ -4,10 +4,15 @@ const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
 const usersRouter = require("./users");
 const sessionRouter = require("./session");
+const songsRouter = require("./songs");
+const commentsRouter = require("./comments");
 
 
 router.use("/users", usersRouter);
 router.use("/session", sessionRouter);
+router.use("/songs", songsRouter);
+router.use("/comments", commentsRouter);
+
 
 router.get("/:id(\\d+)", asyncHandler(async (req, res) => { // home page with logged in user
     // const userId = parseInt(req.params.id, 10);
@@ -26,15 +31,6 @@ router.get("/:id(\\d+)", asyncHandler(async (req, res) => { // home page with lo
     //     where: {id: userId}
     // })
 
-    // // console.log(peopleYoureFollowing[0].dataValues.otherPeople);
-    // const sendPeople = peopleYoureFollowing[0].dataValues.otherPeople;
-
-    // res.render("user-stories", {
-    //   sendPeople,
-    //   otherUser: userId,
-    //   title: `${user.username}'s Stories`,
-    //   userStories
-    // });
 }));
 
 // router.post("/test", function(req,res){
