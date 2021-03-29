@@ -4,6 +4,7 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -16,7 +17,7 @@ export default function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <LoginFormModal/>
-                <NavLink className="navButton" id="signup" to="/signup">Sign Up</NavLink>
+                <SignupFormModal/>
             </>
         );
     }
