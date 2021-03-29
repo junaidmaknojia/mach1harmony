@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const asyncHandler = require("express-async-handler");
 
 router.post("/create", asyncHandler(async (req, res) => { // create a comment on a song
 
