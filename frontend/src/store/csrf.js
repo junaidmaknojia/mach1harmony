@@ -1,12 +1,14 @@
 import Cookies from "js-cookie";
 
 export async function csrfFetch(url, options = {}) {
-    options.headers = options.headers ? options.headers : {};
-    options.method = options.method ? options.method : "GET";
+
+    options.headers = options.headers || {};
+    options.method = options.method || "GET";
     if(options.method.toUpperCase() !== "GET"){
-        options.header["Content-Type"] = options.headers["Content-Type"] || "application/json";
+        options.headers["Content-Type"] = options.headers["Content-Type"] || "application/json";
         options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
     }
+    console.log(options);
     const response = await window.fetch(url, options);
     if(response.status >= 400){
         throw response;
