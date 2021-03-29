@@ -26,7 +26,7 @@ export default function UploadSongPage() {
         <>
             <div>
                 {errors && errors.map(error => {
-                    <p key={error} style={{color:"red", lineHeight: 0, margin: "20px"}}>{error}</p>
+                    return <p key={error} style={{color:"red", lineHeight: 0, margin: "20px"}}>{error}</p>
                 })}
             </div>
             <form type="submit" onSubmit={onSubmit}>
