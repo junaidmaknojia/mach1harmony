@@ -1,5 +1,5 @@
 const {User} = require("../../db/models");
-const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
+// const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
 const usersRouter = require("./users");
