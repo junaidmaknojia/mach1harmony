@@ -25,9 +25,11 @@ function App() {
           <Route exact path="/">
             <Homepage isLoaded={isLoaded}/>
           </Route>
-          <Route>
-            <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser}/>
-          </Route>
+          {sessionUser && (
+            <Route>
+              <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser}/>
+            </Route>
+          )}
         </Switch>
       )}
     </>

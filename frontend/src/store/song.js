@@ -1,6 +1,8 @@
+import { csrfFetch } from "./csrf";
+
 const CREATE_SONG = "song/createSong";
 
-// const initialState = {user: null};
+const initialState = {user: null};
 
 // const createSong = (info) => {
 //     return {
@@ -11,7 +13,7 @@ const CREATE_SONG = "song/createSong";
 
 export function createSong(payload) {
     return async (dispatch) => {
-        const response = await fetch("/api/songs", {
+        const response = await csrfFetch("/api/songs", {
             method: "POST",
             body: JSON.stringify(payload),
             headers: {"Content-Type": "application/JSON"}

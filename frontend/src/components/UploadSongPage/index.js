@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {createSong} from "../store/song";
+import {createSong} from "../../store/song";
 
 
 export default function UploadSongPage() {
@@ -42,7 +42,7 @@ export default function UploadSongPage() {
                     return <p key={error} style={{color:"red", lineHeight: 0, margin: "20px"}}>{error}</p>
                 })}
             </div>
-            <form type="submit" onSubmit={onSubmit}>
+            <form type="submit" onSubmit={onSubmit} enctype='multipart/form-data'>
                 <div>
                     <input
                         placeholder="Title"
