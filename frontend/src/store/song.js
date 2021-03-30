@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
-const CREATE_SONG = "song/createSong";
+export const CREATE_SONG = "song/createSong";
+export const LOAD_SONGS = "song/loadSongs";
 
 const initialState = {user: null};
 
@@ -10,6 +11,22 @@ const initialState = {user: null};
 //         payload: info
 //     }
 // }
+
+const load = (songs, userId) => ({
+    type: LOAD_SONGS,
+    songs,
+    userId
+})
+
+export const loadSongsThunk = (sessionUser) => async (dispatch) => {
+    const response = await csrfFetch(`/api/user/${sessionUser.id}`);
+    console.log(response.json());
+
+    if(response.ok){
+        const songs = await response.json();
+        dispatch(load(songs, sessionUser.id));
+    }
+}
 
 export function createSong(payload) {
     return async (dispatch) => {
@@ -30,12 +47,13 @@ export function createSong(payload) {
 const songReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){
-        // case SESSION_ADD:
-        //     newState = Object.assign({}, state);
-        //     newState.user = action.payload;
-        //     return newState
+        case LOAD_SONGS:
+            newState = Object.assign({}, state);
+            action.songs.forEach(song => {
+                newState[song.id] = song;
+            });
+            return {...state, ...newState};
         // case SESSION_REMOVE:
-        //     newState = Object.assign({}, state);
         //     newState.user = null;
         //     return newState;
         default:
