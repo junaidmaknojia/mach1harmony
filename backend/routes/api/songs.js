@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
-const express = require("express");
 const multer = require('multer');
+const {Comment, User, Song} = require("../../db");
 
 
 const songStorage = multer.diskStorage({
@@ -46,7 +46,7 @@ const songCoverUpload = multer({
             return cb(new Error('Only png, jpg and jpeg files valid'));
         }
     }
-}).single('audioUpload');
+}).single('coverPhotoUpload');
 
 router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // load song page
 
@@ -56,11 +56,20 @@ router.get("/create", asyncHandler( async (req, res) => { // load song upload pa
 
 }));
 
-router.post("/create", asyncHandler( async (req, res) => { // handle song upload
+router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => { // handle song upload
 
-    if (req.file) {
-        song.imageURL = '/songs/' + req.file.filename;
+    if(req.session.auth){
+        const {title, artist, album, year} = req.body;
+        const userId = req.session.auth.userId;
+        let song = await Song.build({title, artist, album, year, userId});
+
+        if (req.file) {
+            song.imageURL = '/songs/' + req.file.filename;
+        }
+
+
     }
+
 }));
 
 router.get("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // load song edit page
