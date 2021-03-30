@@ -22,6 +22,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING.BINARY
       },
+      profilePic: {
+        type: Sequelize.STRING,
+        defaultValue: '/home/junaid/Module5/react-project/authenticate-me/frontend/public/images/profiles/default.jpg'
+      },
+      bio: {
+        type: Sequelize.STRING(300),
+        allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

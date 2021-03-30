@@ -36,6 +36,9 @@ router.get("/create", asyncHandler( async (req,res) => { // load song upload pag
 
 router.post("/create", asyncHandler( async (req,res) => { // handle song upload
 
+    if (req.file) {
+        // story.imageURL = '/images/' + req.file.filename;
+    }
 }));
 
 router.get("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // load song edit page
