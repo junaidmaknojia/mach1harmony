@@ -48,9 +48,6 @@ const songCoverUpload = multer({
     }
 }).single('coverPhotoUpload');
 
-router.get("/", asyncHandler( async (req, res) => {
-
-}));
 
 router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // load song page
 
@@ -89,6 +86,13 @@ router.get("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // load song ed
 
 router.put("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // handle edits to song
 
+}));
+
+router.delete("/:id", asyncHandler( async (req,res) => { // delete song
+    const songId = req.params.id;
+    const song = await Song.findByPk(songId);
+    await song.destroy();
+    return res.json();
 }));
 
 module.exports = router;
