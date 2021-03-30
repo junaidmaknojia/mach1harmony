@@ -14,7 +14,7 @@ export default function UserProfile({sessionUser}) {
     }, [dispatch]);
 
     useSelector(state => console.log(state));
-    console.log(sessionUser);
+    // console.log(sessionUser);
     const songs = useSelector((state) => {
         return sessionUser.songs.map(songId => state.song[songId]);
     });

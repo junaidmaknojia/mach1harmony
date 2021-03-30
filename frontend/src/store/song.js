@@ -19,8 +19,9 @@ const load = (songs, userId) => ({
 })
 
 export const loadSongsThunk = (sessionUser) => async (dispatch) => {
-    const response = await csrfFetch(`/api/user/${sessionUser.id}`);
-    console.log(response.json());
+    // console.log(sessionUser.id);
+    const response = await csrfFetch(`/api/users/${sessionUser.id}`);
+    // console.log(await response.json());
 
     if(response.ok){
         const songs = await response.json();
@@ -50,6 +51,7 @@ const songReducer = (state=initialState, action) => {
         case LOAD_SONGS:
             newState = Object.assign({}, state);
             action.songs.forEach(song => {
+                console.log(song);
                 newState[song.id] = song;
             });
             return {...state, ...newState};
