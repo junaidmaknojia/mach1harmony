@@ -10,6 +10,8 @@ export default function UploadSongPage() {
     const [artist, setArtist] = useState("");
     const [album, setAlbum] = useState("");
     const [year, setYear] = useState("2021");
+    const [songUpload, setSongUpload] = useState("");
+    const [imageUpload, setImageUpload] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -26,7 +28,7 @@ export default function UploadSongPage() {
     async function onSubmit(e) {
         e.preventDefault();
         const payload = {
-            title, artist, album, year
+            title, artist, album, year, songUpload, imageUpload
         };
 
         let songUploadGood = await dispatch(createSong(payload));
@@ -77,11 +79,11 @@ export default function UploadSongPage() {
                 </div>
                 <div>
                     <p>Song Upload</p>
-                    <input type="file" name='audioUpload'/>
+                    <input type="file" name='audioUpload' onChange={e => setSongUpload(e.target.files[0])}/>
                 </div>
                 <div>
                     <p>Cover Photo Upload</p>
-                    <input type="file" name='coverPhotoUpload'/>
+                    <input type="file" name='coverPhotoUpload' onChange={e => setImageUpload(e.target.files[0])}/>
                 </div>
                 <div>
                     <button type="submit" onClick={onSubmit}>Submit</button>
