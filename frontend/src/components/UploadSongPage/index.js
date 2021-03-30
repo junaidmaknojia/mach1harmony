@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createSong} from "../store/song";
 
 
 export default function UploadSongPage() {
@@ -8,8 +11,10 @@ export default function UploadSongPage() {
     const [album, setAlbum] = useState("");
     const [year, setYear] = useState("2021");
     const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
-   useEffect(() => {
+    useEffect(() => {
        const errorsList = [];
        if(!title) errorsList.push("Song must have a title");
        if(title.length > 0 && title.length < 3) errorsList.push("Song title must be at least 3 characters");
@@ -18,8 +23,16 @@ export default function UploadSongPage() {
        setErrors(errorsList);
     }, [title, artist, album, year]);
 
-    function onSubmit(e) {
+    async function onSubmit(e) {
         e.preventDefault();
+        const payload = {
+            title, artist, album, year
+        };
+
+        let songUploadGood = await dispatch(createSong(payload));
+        if(songUploadGood) {
+            history.push(`/songs/${songUploadGood.id}`);
+        }
     }
 
     return (
