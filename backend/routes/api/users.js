@@ -36,17 +36,15 @@ router.post("/", validateSignup, asyncHandler(async (req,res) => {
 }));
 
 
-router.get("/:id(\\d+)", asyncHandler(async (req,res) => {
-    console.log("made it in router call");
-    const userId = parseInt(id, 10);
+router.get("/:id", asyncHandler(async (req,res) => {
 
-    const songs = Song.findAll({
+    const userId = req.params.id;
+
+    const songs = await Song.findAll({
         where: {
             userId
         }
     });
-
-    console.log(res.json(songs));
 
     return res.json({songs});
 }));
