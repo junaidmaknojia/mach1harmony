@@ -27,7 +27,7 @@ function App() {
           </Route>
           {sessionUser && (
             <Route>
-              <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser}/>
+              <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser} isLoaded={isLoaded}/>
             </Route>
           )}
         </Switch>
