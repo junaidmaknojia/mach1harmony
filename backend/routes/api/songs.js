@@ -63,11 +63,16 @@ router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => 
         const userId = req.session.auth.userId;
         let song = await Song.build({title, artist, album, year, userId});
 
-        if (req.file) {
-            song.imageURL = '/songs/' + req.file.filename;
+        const songFile = req.files["audioUpload"];
+        const songPhoto = req.files["coverPhotoUpload"];
+        if(songPhoto) song.coverPhoto = '/songs/' + req.files["coverPhotoUpload"].filename;
+        if (songFile){
+            song.filePath = '/songs/' + req.files["audioUpload"].filename;
+        } else {
+
         }
-
-
+        await song.save();
+        return res;
     }
 
 }));
