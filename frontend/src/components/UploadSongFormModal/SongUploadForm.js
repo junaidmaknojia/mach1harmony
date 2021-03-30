@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {createSong} from "../../store/song";
 
 
-export default function UploadSongPage() {
+export default function SongUploadForm() {
 
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");

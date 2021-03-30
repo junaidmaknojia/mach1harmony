@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
 import "./UserProfile.css";
-import UploadSongPage from "../UploadSongPage";
+import SongUploadFormModal from "../UploadSongFormModal";
 
 export default function UserProfile({sessionUser}) {
     // console.log(sessionUser);
@@ -10,7 +10,7 @@ export default function UserProfile({sessionUser}) {
         <>
             <div className="coverBanner"></div>
             <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
-                <UploadSongPage/>
+                <SongUploadFormModal/>
             </Route>
             {/* <Link to="">Playlists</Link>
             <Link to="">Albums</Link> */}
