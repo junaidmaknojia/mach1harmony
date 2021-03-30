@@ -58,9 +58,9 @@ router.get("/create", asyncHandler( async (req, res) => { // load song upload pa
 
 router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => { // handle song upload
 
-    // console.log(req);
     // if(req.session){
-        console.log("-----------", req.files);
+        // console.log("---- req is ", req);
+        console.log("-----------", req.file);
         const songFile = req.files["audioUpload"];
         const songPhoto = req.files["coverPhotoUpload"];
 
