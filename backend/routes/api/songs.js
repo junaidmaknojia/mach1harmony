@@ -48,13 +48,14 @@ const songCoverUpload = multer({
     }
 }).single('coverPhotoUpload');
 
+router.get("/", asyncHandler( async (req, res) => {
+
+}));
+
 router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // load song page
 
 }));
 
-router.get("/create", asyncHandler( async (req, res) => { // load song upload page
-
-}));
 
 router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => { // handle song upload
 

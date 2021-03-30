@@ -1,7 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Song } = require('../../db/models');
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
@@ -36,7 +36,20 @@ router.post("/", validateSignup, asyncHandler(async (req,res) => {
 }));
 
 
+router.get("/:id(\\d+)", asyncHandler(async (req,res) => {
+    console.log("made it in router call");
+    const userId = parseInt(id, 10);
 
+    const songs = Song.findAll({
+        where: {
+            userId
+        }
+    });
+
+    console.log(res.json(songs));
+
+    return res.json({songs});
+}));
 
 
 module.exports = router;
