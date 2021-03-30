@@ -80,12 +80,18 @@ router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => 
 // }
 ));
 
-router.get("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // load song edit page
+router.put("/:id(\\d+)", asyncHandler( async (req, res) => { // handle edits to song
+    const songId = req.params.id;
+    const {title, artist, album, year} = req.body;
+    // const userId = req.session.auth.userId;
+    let song = await Song.findByPk(songId);
+    song.title = title;
+    song.artist = artist;
+    song.album = album;
+    song.year = year;
 
-}));
-
-router.put("/edit/:id(\\d+)", asyncHandler( async (req,res) => { // handle edits to song
-
+    await song.save();
+    return res;
 }));
 
 router.delete("/:id", asyncHandler( async (req,res) => { // delete song
