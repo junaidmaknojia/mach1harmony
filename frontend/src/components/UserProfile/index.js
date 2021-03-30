@@ -1,37 +1,47 @@
 import React, { useEffect } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useHistory } from "react-router-dom";
 import "./UserProfile.css";
 import SongUploadFormModal from "../UploadSongFormModal";
 import { useDispatch, useSelector } from "react-redux";
-import { loadSongsThunk } from "../../store/song";
+import { loadSongsThunk, deleteSong } from "../../store/song";
 
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(loadSongsThunk(sessionUser))
     }, [dispatch]);
 
-    // useSelector(state => console.log(state));
     const foundSongs = useSelector((state) => Object.values(state.song));
+    // console.log(foundSongs);
 
-    console.log(foundSongs);
+    async function handleDelete(e){
+        const gotDeleted = await dispatch(deleteSong(e.target.value));
+        if(gotDeleted){
+            history.push(`/${sessionUser.id}`);
+        }
+    }
 
     return (
         <>
             <div className="coverBanner"></div>
             <div className="songsList">
-                <h2>Songs You've Uploaded</h2>
+                <h1>Songs You've Uploaded</h1>
                 {isLoaded && foundSongs.map(song => {
                     if(song){
                         return (
                             <>
-                                <p>{song.title}</p>
-                                <p>{song.artist}</p>
-                                <audio
-                                    controls
-                                    src={song.filePath}>
-                                </audio>
+                                <div>
+                                    <img src={song.coverPhoto} height="100" width="100"/>
+                                    <h3>{song.title}</h3>
+                                    <p>{song.artist}</p>
+                                    <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
+                                    {/* <audio
+                                        controls
+                                        src="">
+                                    </audio> */}
+                                </div>
                             </>
                         );
                     }
