@@ -6,19 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../store/song";
 
 export default function UserProfile({sessionUser}) {
-    // console.log(sessionUser);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadSongsThunk(sessionUser))
     }, [dispatch]);
 
-    useSelector(state => console.log(state));
-    // console.log(sessionUser);
-    const songs = useSelector((state) => {
-        return sessionUser.songs.map(songId => state.song[songId]);
-    });
+    // useSelector(state => console.log(state));
+    const songs = useSelector((state) => Object.values(state.song));
 
+    console.log(songs);
 
     return (
         <>
