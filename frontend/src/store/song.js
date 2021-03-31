@@ -18,14 +18,14 @@ const load = (songs, userId) => ({
     userId
 })
 
-export const loadSongsThunk = (sessionUser) => async (dispatch) => {
+export const loadSongsThunk = (userId) => async (dispatch) => {
     // console.log(sessionUser.id);
-    const response = await csrfFetch(`/api/users/${sessionUser.id}`);
+    const response = await csrfFetch(`/api/users/${userId}`);
     // console.log(await response.json());
 
     if(response.ok){
         const songs = await response.json();
-        dispatch(load(songs, sessionUser.id));
+        dispatch(load(songs, userId));
     }
 }
 

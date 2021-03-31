@@ -1,14 +1,26 @@
 import "./SongPage.css";
 import {useDispatch, useSelector} from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { loadComments, addComment, loadLikes } from "../../store/songData";
+import { useParams } from "react-router";
+import { loadSongsThunk } from "../../store/song";
 
-export default async function SongPage() {
+export default function SongPage() {
+
+    const {userId, songId} = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loadSongsThunk(userId))
+    }, [dispatch]);
 
     const sessionUser = useSelector(state => state.session.user);
+    const foundSongs = useSelector((state) => Object.values(state.song));
+    const mainSong = foundSongs.filter(song => {
+        if(song) return song.id.toString() === songId // have to do this to avoid checking id of null in state.songs
+    });
 
     const [comment, setComment] = useState("");
-    const dispatch = useDispatch();
 
     async function commentSubmit(e){
         e.preventDefault();
@@ -17,15 +29,15 @@ export default async function SongPage() {
     }
 
     // const comments = await dispatch(loadComments(song.id));
-    console.log(comments);
+    // console.log(comments);
 
     // const likes = await dispatch(loadLikes(song.id));
 
     return (
         <>
             <div className="songBanner">
-                <h1>{song.title}</h1>
-                <h2>{song.artist}</h2>
+                {/* <h1>{song.title}</h1>
+                <h2>{song.artist}</h2> */}
             </div>
 
             <h3>Comments</h3>

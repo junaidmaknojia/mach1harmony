@@ -13,7 +13,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(loadSongsThunk(sessionUser))
+        dispatch(loadSongsThunk(sessionUser.id))
     }, [dispatch]);
 
     const foundSongs = useSelector((state) => Object.values(state.song));
