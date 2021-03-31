@@ -50,4 +50,22 @@ router.get("/:id", asyncHandler(async (req,res) => {
 }));
 
 
+router.get("/followers/:id", asyncHandler(async (req,res) => {
+
+    // const userId = req.params.id;
+    // const myFollowers = await User.findByPk(userId, {
+    //     include: [{
+    //         model: "otherPeople",
+    //         where: {
+    //             followerId: userId
+    //         }
+    //     }]
+    // });
+
+}));
+
+// router.patch("/:id", async (req,res) => {
+//     // await Follow.create({})
+// })
+
 module.exports = router;

@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
 const multer = require('multer');
-const {Comment, User, Song} = require("../../db/models");
+const {Comment, User, Song, Like} = require("../../db/models");
 
 
 const songStorage = multer.diskStorage({
@@ -52,6 +52,18 @@ const songCoverUpload = multer({
 router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // load song page
 
 }));
+
+router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // get likes
+    // const songId = req.params.id;
+
+    // const likes = await Like.findAll({
+    //     where: {
+    //         songId
+    //     }
+    // });
+
+}));
+
 
 
 router.post("/", songCoverUpload, songUpload, asyncHandler( async (req, res) => { // handle song upload
