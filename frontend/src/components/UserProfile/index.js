@@ -32,19 +32,16 @@ export default function UserProfile({sessionUser, isLoaded}) {
                 {isLoaded && foundSongs.map(song => {
                     if(song){
                         return (
-                            <>
-                                <div>
-                                    <img src={song.coverPhoto} height="100" width="100"/>
-                                    <h3>{song.title}</h3>
-                                    <p>{song.artist}</p>
-                                    <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
-                                    <EditSongFormModal songId={song.id}/>
-                                    {/* <audio
-                                        controls
-                                        src="">
-                                    </audio> */}
-                                </div>
-                            </>
+                            <div>
+                                <img src={song.coverPhoto} height="100" width="100"/>
+                                <h3>{song.title}</h3>
+                                <p>{song.artist}</p>
+                                <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
+                                <EditSongFormModal songId={song.id}/>
+                                <audio controls>
+                                    <source src="../../../songs/Interstellar - Main Theme - Hans Zimmer.mp3" type="audio/mpeg" />
+                                </audio>
+                            </div>
                         );
                     }
                 })}

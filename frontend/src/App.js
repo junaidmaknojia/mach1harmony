@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import UserProfile from "./components/UserProfile";
+import Playbar from "./components/Playbar";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
           )}
         </Switch>
       )}
+      <Playbar />
     </>
   );
 }

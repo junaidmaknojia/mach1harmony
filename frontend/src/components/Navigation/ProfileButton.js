@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from '../../store/session';
+import {Route} from "react-router-dom";
+import "./Navigation.css";
 
 
 export default function ProfileButton({ user }) {
@@ -36,16 +38,19 @@ export default function ProfileButton({ user }) {
         <>
             <button onClick={openMenu}>
                 <i className="fas fa-compact-disc"></i>
+                {showMenu && (
+                    <ul className="profile-dropdown">
+                        <li>
+                            <a href={`/${user.id}`}>{user.username}</a>
+                            {/* <Route path={`/${user.id}`}/> */}
+                        </li>
+                        <li>{user.email}</li>
+                        <li>
+                            <button onClick={logout}>Log Out</button>
+                        </li>
+                    </ul>
+                )}
             </button>
-            {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
-            )}
         </>
     );
 }
