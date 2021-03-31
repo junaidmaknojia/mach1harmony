@@ -5,6 +5,7 @@ import SongUploadFormModal from "../UploadSongFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk, deleteSong } from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
+import SongPage from "../SongPage";
 
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
@@ -34,7 +35,12 @@ export default function UserProfile({sessionUser, isLoaded}) {
                         return (
                             <div>
                                 <img src={song.coverPhoto} height="100" width="100"/>
-                                <h3>{song.title}</h3>
+                                <h2>
+                                    {song.title}
+                                    <Route path={`/${song.userId}/${song.id}`}>
+                                        <SongPage/>
+                                    </Route>
+                                </h2>
                                 <p>{song.artist}</p>
                                 <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
                                 <EditSongFormModal songId={song.id}/>
