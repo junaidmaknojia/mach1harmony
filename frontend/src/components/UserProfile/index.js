@@ -4,6 +4,7 @@ import "./UserProfile.css";
 import SongUploadFormModal from "../UploadSongFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk, deleteSong } from "../../store/song";
+import EditSongFormModal from "../EditSongFormModal";
 
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
     async function handleDelete(e){
         const gotDeleted = await dispatch(deleteSong(e.target.value));
         if(gotDeleted){
-            history.push(`/${sessionUser.id}`);
+            history.push(`/${sessionUser.id}`); // reload the page?
         }
     }
 
@@ -37,6 +38,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
                                     <h3>{song.title}</h3>
                                     <p>{song.artist}</p>
                                     <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
+                                    <EditSongFormModal songId={song.id}/>
                                     {/* <audio
                                         controls
                                         src="">

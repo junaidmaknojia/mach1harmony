@@ -40,6 +40,23 @@ export function createSong(payload) {
         if(response.ok){
             const song = await response.json();
             // dispatch(createSong(song));
+            console.log(song);
+            return song;
+        }
+    }
+}
+
+export function updateSong(payload, songId){
+    return async (dispatch) => {
+        const response = await csrfFetch(`api/songs/${songId}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: {"Content-Type": "application/JSON"}
+        });
+
+        if(response.ok){
+            const song = await response.json();
+            // dispatch(createSong(song));
             return song;
         }
     }
