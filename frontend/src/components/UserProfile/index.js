@@ -35,12 +35,13 @@ export default function UserProfile({sessionUser, isLoaded}) {
                         return (
                             <div>
                                 <img src={song.coverPhoto} height="100" width="100"/>
-                                <h2>
+                                <Link to={`/${song.userId}/${song.id}`}>
                                     {song.title}
-                                    <Route path={`/${song.userId}/${song.id}`}>
-                                        <SongPage/>
-                                    </Route>
-                                </h2>
+                                </Link>
+
+                                {/* <Route path={`/${song.userId}/${song.id}`}>
+                                    <SongPage/>
+                                </Route> */}
                                 <p>{song.artist}</p>
                                 <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
                                 <EditSongFormModal songId={song.id}/>
@@ -55,8 +56,6 @@ export default function UserProfile({sessionUser, isLoaded}) {
             {/* <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
                 <SongUploadFormModal/>
             </Route> */}
-            {/* <Link to="">Playlists</Link>
-            <Link to="">Albums</Link> */}
         </>
     );
 }

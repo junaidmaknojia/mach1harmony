@@ -44,7 +44,7 @@ export default function SongUploadForm() {
                     return <p key={error} style={{color:"red", lineHeight: 0, margin: "20px"}}>{error}</p>
                 })}
             </div>
-            <form type="submit" onSubmit={onSubmit} enctype='multipart/form-data'>
+            <form onSubmit={onSubmit} enctype='multipart/form-data'>
                 <div>
                     <input
                         placeholder="Title"
@@ -86,7 +86,7 @@ export default function SongUploadForm() {
                     <input type="file" name='coverPhotoUpload' onChange={e => setImageUpload(e.target.files[0])}/>
                 </div>
                 <div>
-                    <button type="submit" onClick={onSubmit}>Submit</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
         </>
