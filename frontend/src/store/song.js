@@ -31,10 +31,21 @@ export const loadSongsThunk = (userId) => async (dispatch) => {
 
 export function createSong(payload) {
     return async (dispatch) => {
+        const {title, artist, album, year, songUpload, imageUpload} = payload;
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("artist", artist);
+        formData.append("album", album);
+        formData.append("year", year);
+
+        if (songUpload) {
+            formData.append("song", songUpload);
+        }
+
         const response = await csrfFetch("/api/songs", {
             method: "POST",
-            body: JSON.stringify(payload),
-            headers: {"Content-Type": "application/JSON"}
+            headers: {"Content-Type": "multipart/form-data"},
+            body: formData
         });
 
         if(response.ok){

@@ -22,6 +22,7 @@ export default function SongUploadForm() {
        if(title.length > 0 && title.length < 3) errorsList.push("Song title must be at least 3 characters");
        if(!artist) errorsList.push("Song must have an artist");
        if(artist.length > 0 && artist.length < 3) errorsList.push("Song artist must be at least 3 characters");
+       if(!songUpload) errorsList.push("Must have an mp3 track to upload");
        setErrors(errorsList);
     }, [title, artist, album, year]);
 
@@ -31,9 +32,9 @@ export default function SongUploadForm() {
             title, artist, album, year, songUpload, imageUpload
         };
 
-        let songUploadGood = await dispatch(createSong(payload));
-        if(songUploadGood) {
-            history.push(`/songs/${songUploadGood.id}`);
+        let songCreateGood = await dispatch(createSong(payload));
+        if(songCreateGood) {
+            history.push(`/songs/${songCreateGood.id}`);
         }
     }
 

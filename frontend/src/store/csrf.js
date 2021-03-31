@@ -5,7 +5,11 @@ export async function csrfFetch(url, options = {}) {
     options.headers = options.headers || {};
     options.method = options.method || "GET";
     if(options.method.toUpperCase() !== "GET"){
-        options.headers["Content-Type"] = options.headers["Content-Type"] || "application/json";
+        if(options.headers["Content-Type"] === "multipart/form-data"){
+            delete options.headers["Content-Type"];
+        }else {
+            options.headers["Content-Type"] = options.headers["Content-Type"] || "application/json";
+        }
         options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
     }
     const response = await window.fetch(url, options);
