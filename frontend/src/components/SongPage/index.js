@@ -1,6 +1,7 @@
 import "./SongPage.css";
 import {useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
+import { addComment, loadComments,  } from "../../store/comment";
 
 export default function SongPage({song}) {
 
@@ -11,9 +12,11 @@ export default function SongPage({song}) {
 
     async function commentSubmit(e){
         e.preventDefault();
-        let commentGood = await dispatch(addComment(comment, sessionUser.id))
+        const payload = {comment, userId: sessionUser.id, songId: song.id}
+        let commentGood = await dispatch(addComment(payload));
     }
 
+    const comments = await dispatch(loadComments(song.id));
 
     return (
         <>
@@ -28,6 +31,7 @@ export default function SongPage({song}) {
                     type="textarea"
                     placeholder="Add your comment..."
                     value={comment}
+                    onChange={e=>setComment(e.target.value)}
                 />
                 <button type="submit">Comment</button>
             </form>
