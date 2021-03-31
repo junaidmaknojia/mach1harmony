@@ -20,7 +20,7 @@ export const loadComments = (songId) => async (dispatch) => {
     }
 }
 
-export function addComment(payload) {
+export function addComment(payload, songId) {
     return async (dispatch) => {
         const response = await csrfFetch(`/api/comments/${songId}`, {
             method: "POST",
@@ -34,7 +34,17 @@ export function addComment(payload) {
     }
 }
 
-export default function commentReducer(state=initialState, action) {
+export function loadLikes(songId) {
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/songs/likes/${songId}`);
+
+        if(response.ok){
+            return await response.json();
+        }
+    }
+}
+
+export default function songDataReducer(state=initialState, action) {
     let newState = {};
     switch(action.type){
         // case LOAD_SONGS:

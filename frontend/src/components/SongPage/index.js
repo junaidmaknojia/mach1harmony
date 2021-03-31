@@ -1,9 +1,9 @@
 import "./SongPage.css";
 import {useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
-import { addComment, loadComments,  } from "../../store/comment";
+import { loadComments, addComment, loadLikes } from "../../store/songData";
 
-export default function SongPage({song}) {
+export default async function SongPage() {
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -12,11 +12,14 @@ export default function SongPage({song}) {
 
     async function commentSubmit(e){
         e.preventDefault();
-        const payload = {comment, userId: sessionUser.id, songId: song.id}
-        let commentGood = await dispatch(addComment(payload));
+        // const payload = {comment, userId: sessionUser.id, songId: song.id}
+        // let commentGood = await dispatch(addComment(payload, song.id));
     }
 
-    const comments = await dispatch(loadComments(song.id));
+    // const comments = await dispatch(loadComments(song.id));
+    console.log(comments);
+
+    // const likes = await dispatch(loadLikes(song.id));
 
     return (
         <>

@@ -6,17 +6,19 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import UserProfile from "./components/UserProfile";
 import Playbar from "./components/Playbar";
+import SongPage from "./components/SongPage";
+
 
 function App() {
 
+  const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  const sessionUser = useSelector(state => state.session.user);
-
+  //Routes can only go in the App where it is switched
 
   return (
     <>
@@ -25,6 +27,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Homepage isLoaded={isLoaded}/>
+          </Route>
+          <Route path="/:userId/:songId">
+              <SongPage/>
           </Route>
           {sessionUser && (
             <Route>
