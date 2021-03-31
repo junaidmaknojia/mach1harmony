@@ -7,6 +7,7 @@ const cookieParser= require("cookie-parser");
 const router = require("./routes");
 const sessionRouter = require("./routes/api/session")
 const {ValidationError} = require("sequelize");
+const bodyParser = require("body-parser");
 
 const environment = require("./config");
 const isProduction = environment === "production";
@@ -16,7 +17,8 @@ const app = express();
 //middlewares
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(express.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 if(!isProduction){
     app.use(cors()); // if in development mode, use cors
