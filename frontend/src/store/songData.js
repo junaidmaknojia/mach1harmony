@@ -34,6 +34,29 @@ export function addComment(payload, songId) {
     }
 }
 
+export function editComment(payload, commentId) {
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/comments/${commentId}`, {
+            method: "PUT",
+            body: JSON.stringify(payload),
+            headers: {"Content-Type": "application/JSON"}
+        });
+
+        if(response.ok) {
+            return await response.json();
+        }
+    }
+}
+
+export function deleteComment(commentId){
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/comments/${commentId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/JSON"}
+        });
+    }
+}
+
 export function loadLikes(songId) {
     return async (dispatch) => {
         const response = await csrfFetch(`/api/songs/likes/${songId}`);
