@@ -30,11 +30,20 @@ router.get("/:id", asyncHandler(async (req, res) => { // get all the comments on
 }));
 
 router.delete("/:id(\\d+)", asyncHandler(async (req, res) => { // delete a comment on a song
+    const commentId = req.params.id;
+    const comment = await Comment.findByPk(commentId);
+    await comment.destroy(commentId);
+    return res;
 
 }));
 
 router.put("/:id(\\d+)", asyncHandler(async (req, res) => { // edit a comment on a song
+    const {text} = req.body;
+    const commentId = req.params.id;
+    const comment = await Comment.findByPk(commentId);
+    comment.text = text;
 
+    return res.json({comment});
 }));
 
 
