@@ -34,7 +34,7 @@ router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // get likes
 }));
 
 
-router.post("/:id", singleMulterUpload("song"), asyncHandler( async (req, res) => { // handle song upload
+router.post("/:id", singleMulterUpload("song"), singleMulterUpload("image"), asyncHandler( async (req, res) => { // handle song upload
 
     const userId = req.params.id;
     // if(req.session){
@@ -42,12 +42,15 @@ router.post("/:id", singleMulterUpload("song"), asyncHandler( async (req, res) =
         // console.log("-----------", req.file);
         // const songFile = req.files["audioUpload"];
         // const songPhoto = req.files["coverPhotoUpload"];
+        console.log("req.file -----", req.file);
+        console.log("req.files ---", req.files);
 
         const songURL = await singlePublicFileUpload(req.file);
+        const imageURL = await singlePublicFileUpload(req.file);
 
         const {title, artist, album, year} = req.body;
         // const userId = req.session.auth.userId;
-        let song = await Song.build({title, artist, album, year, userId, filePath: songURL});
+        let song = await Song.build({title, artist, album, year, userId, filePath: songURL, coverPhoto: imageURL});
 
         // if(songPhoto) song.coverPhoto = '/songs/' + req.files["coverPhotoUpload"].filename;
         // if (songFile){
