@@ -31,7 +31,7 @@ export const loadSongsThunk = (userId) => async (dispatch) => {
 
 export function createSong(payload) {
     return async (dispatch) => {
-        const {title, artist, album, year, songUpload, imageUpload} = payload;
+        const {title, artist, album, year, songUpload, imageUpload, userId} = payload;
         const formData = new FormData();
         formData.append("title", title);
         formData.append("artist", artist);
@@ -42,7 +42,7 @@ export function createSong(payload) {
             formData.append("song", songUpload);
         }
 
-        const response = await csrfFetch("/api/songs", {
+        const response = await csrfFetch(`/api/songs/${userId}`, {
             method: "POST",
             headers: {"Content-Type": "multipart/form-data"},
             body: formData

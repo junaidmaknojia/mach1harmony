@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createSong} from "../../store/song";
 
 
 export default function SongUploadForm() {
+
+    const sessionUser = useSelector(state => state.session.user);
 
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
@@ -29,7 +31,7 @@ export default function SongUploadForm() {
     async function onSubmit(e) {
         e.preventDefault();
         const payload = {
-            title, artist, album, year, songUpload, imageUpload
+            title, artist, album, year, songUpload, imageUpload, userId: sessionUser.id
         };
 
         let songCreateGood = await dispatch(createSong(payload));

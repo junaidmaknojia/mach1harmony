@@ -16,9 +16,9 @@ export default function SongPage() {
 
     const sessionUser = useSelector(state => state.session.user);
     const foundSongs = useSelector((state) => Object.values(state.song));
-    const mainSong = foundSongs.filter(song => {
-        if(song) return song.id.toString() === songId // have to do this to avoid checking id of null in state.songs
-    });
+    const song = foundSongs.filter(s => {
+        if(s) return s.id.toString() === songId // have to do this to avoid checking id of null in state.songs
+    })[0];
 
     const [comment, setComment] = useState("");
 
@@ -28,16 +28,20 @@ export default function SongPage() {
         // let commentGood = await dispatch(addComment(payload, song.id));
     }
 
-    // const comments = await dispatch(loadComments(song.id));
-    // console.log(comments);
+    useEffect(async () => {
+        const comments = await dispatch(loadComments(song.id));
+        console.log(comments);
+    }, []);
 
     // const likes = await dispatch(loadLikes(song.id));
 
     return (
         <>
             <div className="songBanner">
-                {/* <h1>{song.title}</h1>
-                <h2>{song.artist}</h2> */}
+            </div>
+            <div>
+                <h1>{song.title}</h1>
+                <h2>{song.artist}</h2>
             </div>
 
             <h3>Comments</h3>

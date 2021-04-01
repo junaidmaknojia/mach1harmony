@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk, deleteSong } from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
 import SongPage from "../SongPage";
-import audioFile from "./interstellar.mp3";
+// import audioFile from "./interstellar.mp3";
 
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
@@ -42,9 +42,9 @@ export default function UserProfile({sessionUser, isLoaded}) {
                                 <p>{song.artist}</p>
                                 <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
                                 <EditSongFormModal songId={song.id}/>
-                                <audio controls>
+                                {/* <audio controls>
                                     <source src="./interstellar.mp3" type="audio/mpeg" />
-                                </audio>
+                                </audio> */}
                             </div>
                         );
                     }
