@@ -45,7 +45,7 @@ export function loadLikes(songId) {
 }
 
 export default function songDataReducer(state=initialState, action) {
-    let newState = {};
+    // let newState = {};
     switch(action.type){
         // case LOAD_SONGS:
         //     // newState = Object.assign({}, state);

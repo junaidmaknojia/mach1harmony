@@ -110,7 +110,6 @@ const songReducer = (state=initialState, action) => {
         case SET_STATE_SONG:
             newState = Object.assign({}, state);
             newState["currSong"] = action.song;
-            console.log(newState);
             return {...state, ...newState};
         default:
             return state;

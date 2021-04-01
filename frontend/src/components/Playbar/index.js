@@ -1,16 +1,20 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Playbar.css";
 
 export default function Playbar(){
 
-const currSong = useSelector(state => state.song.currSong);
+
+    const addedSong = useSelector(state => state.song.currSong);
+    const [newSong, setNewSong] = useState((addedSong || {}));
+
 
     return (
         <div className="barContainer">
-            {currSong && (
+            {addedSong && (
                <>
-                    <audio controls>
-                        <source src={currSong.filePath} type="audio/mpeg" autoplay/>
+                    <audio controls autoPlay={true}>
+                        <source src={addedSong.filePath} type="audio/mpeg" />
                     </audio>
                </>
             )}
