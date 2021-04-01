@@ -5,10 +5,10 @@ const { Comment, User } = require('../../db/models');
 
 router.post("/:id", asyncHandler(async (req, res) => { // create a comment on a song
     const songOnComment = req.params.id;
-    const { comment, userId, songId } = req.body;
+    const { text, userId, songId } = req.body;
 
-    const createdComment = await Comment.create({ text: comment, userId, songId });
-    return res.json({ createdComment });
+    const createdComment = await Comment.create({ text, userId, songId });
+    return res.json(createdComment);
 
 }));
 
