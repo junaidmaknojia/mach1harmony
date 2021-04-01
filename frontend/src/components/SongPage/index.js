@@ -19,19 +19,15 @@ export default function SongPage({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const foundSongs = useSelector((state) => Object.values(state.song));
     const comments = useSelector((state) => state.songData.songComments);
-    console.log(foundSongs);
-    console.log(foundSong);
 
     useEffect(async () => {
         dispatch(loadSongsThunk(userId));
-        console.log(foundSongs);
     }, [dispatch]);
 
 
     useEffect(() => {
         if(foundSongs.length){
             const hopefullyNewSong = (foundSongs.filter(s => {
-                // if(s) console.log(s.id.toString() === songId);
                 if(s) return s.id.toString() === songId // have to do this to avoid checking id of null in state.songs
             })[0]);
             setFoundSong(hopefullyNewSong);
@@ -40,26 +36,24 @@ export default function SongPage({ isLoaded }) {
 
     useEffect(() => {
         if(foundSong){
-            console.log(foundSong);
             dispatch(loadComments(foundSong.id));
         }
     }, [dispatch, foundSong]);
 
-
     async function commentSubmit(e){
         e.preventDefault();
-        // const payload = {text:commentInput, userId: sessionUser.id, songId: song.id}
-        // let commentGood = await dispatch(addComment(payload, song.id));
-        // if(commentGood) history.push(`/${sessionUser.id}`); // reload the page?
+        const payload = {text: commentInput, userId: sessionUser.id, songId: foundSong.id}
+        let commentGood = await dispatch(addComment(payload, foundSong.id));
+        // if(commentGood) history.push(`/${foundSong.userId}/${songId}`); // reload the page?
     }
 
     async function editSubmit(e){
         e.preventDefault();
         const commentId = e.target.value;
-        // const payload = {text: newComment , userId: sessionUser.id, songId: song.id}
-        // let commentGood = await dispatch(editComment(payload, commentId));
+        const payload = {text: newComment , userId: sessionUser.id, songId: foundSong.id}
+        let commentGood = await dispatch(editComment(payload, commentId));
 
-        // if(commentGood) setEditingComment(false);
+        if(commentGood) setEditingComment(false);
 
     }
 
@@ -84,8 +78,8 @@ export default function SongPage({ isLoaded }) {
         <>
             <div className="songBanner">
             </div>
-            {/* <h1>{song.title}</h1>
-            <h2>{song.artist}</h2> */}
+            {/* <h1>{foundSong.title}</h1>
+            <h2>{foundSong.artist}</h2> */}
             <button onClick={handleLike}>Like!</button>
             <h3>Comments</h3>
             <form onSubmit={commentSubmit}>
@@ -94,7 +88,7 @@ export default function SongPage({ isLoaded }) {
                     placeholder="Add your comment..."
                     value={commentInput}
                     onChange={e=>setCommentInput(e.target.value)}
-                    />
+                />
                 <button type="submit">Comment</button>
             </form>
 
@@ -105,17 +99,17 @@ export default function SongPage({ isLoaded }) {
                             <div key={comment.id}>
                                 <p>{`Comment made at: ${comment.updatedAt}`}</p>
                                 <p>{comment.User.username}</p>
-                                {edittingComment ? <p>{comment.text}</p> : (
+                                {edittingComment ? (
                                     <form value={comment.id} onSubmit={editSubmit}>
                                         <input
                                             type="textarea"
                                             value={comment.text}
                                             onChange={e=>setNewComment(e.target.value)}
                                             />
-                                        <button type="submit">Edit</button>
+                                        <button type="submit">Update</button>
                                         <button onClick={() => setEditingComment(false)}>Cancel</button>
                                     </form>
-                                )}
+                                ) : <p>{comment.text}</p>}
                                 {(sessionUser.id === comment.userId) && (
                                     <>
                                         <button onClick={() => setEditingComment(true)}>Edit</button>

@@ -1,11 +1,17 @@
 import { csrfFetch } from "./csrf";
 
 export const SONG_COMMENTS = "song/comments";
+export const NEW_COMMENT = "song/newComment";
 
 const allComments = (comments) => ({
         type: SONG_COMMENTS,
         comments
 });
+
+const updateComments = (comment) => ({
+    type: NEW_COMMENT,
+    comment
+})
 
 const initialState = {user: null};
 
@@ -29,7 +35,10 @@ export function addComment(payload, songId) {
         });
 
         if(response.ok) {
-            return await response.json();
+            const newComment = await response.json();
+            // dispatch(updateComments(newComment));
+            // const comments = await response.json();
+            dispatch(loadComments(songId));
         }
     }
 }
@@ -86,9 +95,11 @@ export default function songDataReducer(state=initialState, action) {
             newState = Object.assign({}, state);
             newState["songComments"] = action.comments;
             return {...state, ...newState};
-        // // case SESSION_REMOVE:
-        // //     newState.user = null;
-        // //     return newState;
+        case NEW_COMMENT:
+            newState = Object.assign({}, state);
+            console.log(newState["songComments"]);
+            newState["songComments"].push(action.comment);
+            return {...state, ...newState};
         default:
             return state;
     }
