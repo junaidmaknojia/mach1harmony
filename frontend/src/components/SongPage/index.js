@@ -12,7 +12,7 @@ export default function SongPage({ isLoaded }) {
     const dispatch = useDispatch();
 
     const [commentInput, setCommentInput] = useState("");
-    const [edittingComment, setEditingComment] = useState(false);
+    const [editCommentNumber, setEditCommentNumber] = useState(0);
     const [newComment, setNewComment] = useState("");
     const [foundSong, setFoundSong] = useState("");
 
@@ -53,7 +53,7 @@ export default function SongPage({ isLoaded }) {
         const payload = {text: newComment , userId: sessionUser.id, songId: foundSong.id}
         let commentGood = await dispatch(editComment(payload, commentId));
 
-        if(commentGood) setEditingComment(false);
+        if(commentGood) setEditCommentNumber(false);
 
     }
 
@@ -99,20 +99,20 @@ export default function SongPage({ isLoaded }) {
                             <div key={comment.id}>
                                 <p>{`Comment made at: ${comment.updatedAt}`}</p>
                                 <p>{comment.User.username}</p>
-                                {edittingComment ? (
+                                {editCommentNumber === comment.id ? (
                                     <form value={comment.id} onSubmit={editSubmit}>
                                         <input
                                             type="textarea"
                                             value={comment.text}
                                             onChange={e=>setNewComment(e.target.value)}
-                                            />
+                                        />
                                         <button type="submit">Update</button>
-                                        <button onClick={() => setEditingComment(false)}>Cancel</button>
+                                        <button onClick={() => setEditCommentNumber(0)}>Cancel</button>
                                     </form>
                                 ) : <p>{comment.text}</p>}
                                 {(sessionUser.id === comment.userId) && (
                                     <>
-                                        <button onClick={() => setEditingComment(true)}>Edit</button>
+                                        <button onClick={() => setEditCommentNumber(comment.id)}>Edit</button>
                                         <button value={comment.id} onClick={handleDelete}>Delete</button>
                                     </>
                                 )}
