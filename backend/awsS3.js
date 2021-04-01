@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const REACT_PROJECT = "aws-s3-pern-demo";
+const REACT_PROJECT = "react-project";
 
 const multer = require("multer");
 

@@ -8,7 +8,7 @@ module.exports = {
       album:"Interstellar",
       year:"2014",
       numListens:43,
-      filePath: "frontend/public/songs/Interstellar - Main Theme - Hans Zimmer.mp3",
+      filePath: "https://react-project.s3.us-east-2.amazonaws.com/Interstellar+-+Main+Theme+-+Hans+Zimmer.mp3",
       userId: 1,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -18,7 +18,7 @@ module.exports = {
       album:"Pandemic",
       year:"2020",
       numListens:56,
-      filePath: "frontend/public/songs/yt1s.com - Dua Lipa  Levitating Official Lyrics Video.mp3",
+      filePath: "https://react-project.s3.us-east-2.amazonaws.com/yt1s.com+-+Dua+Lipa++Levitating+Official+Lyrics+Video.mp3",
       userId: 1,
       createdAt: new Date(),
       updatedAt: new Date()

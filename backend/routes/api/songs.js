@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
 const multer = require('multer');
-const { singlePublicFileUpload, singleMulterUpload } = require("../../../awsS3");
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 const {Comment, User, Song, Like} = require("../../db/models");
 
 // const songStorage = multer.diskStorage({
@@ -66,8 +66,9 @@ router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // get likes
 
 
 
-router.post("/", singleMulterUpload("song"), asyncHandler( async (req, res) => { // handle song upload
+router.post("/:id", singleMulterUpload("song"), asyncHandler( async (req, res) => { // handle song upload
 
+    const userId = req.params.id;
     // if(req.session){
         // console.log("---- req is ", req);
         // console.log("-----------", req.file);
@@ -77,8 +78,8 @@ router.post("/", singleMulterUpload("song"), asyncHandler( async (req, res) => {
         const songURL = await singlePublicFileUpload(req.file);
 
         const {title, artist, album, year} = req.body;
-        const userId = req.session.auth.userId;
-        let song = await Song.build({title, artist, album, year, userId});
+        // const userId = req.session.auth.userId;
+        let song = await Song.build({title, artist, album, year, userId, filePath: songURL});
 
         // if(songPhoto) song.coverPhoto = '/songs/' + req.files["coverPhotoUpload"].filename;
         // if (songFile){
@@ -87,7 +88,8 @@ router.post("/", singleMulterUpload("song"), asyncHandler( async (req, res) => {
 
         // }
         await song.save();
-        return res;
+        return res.json();
+        //test
     }
 
 // }
