@@ -1,12 +1,11 @@
 import { csrfFetch } from "./csrf";
 
-// export const CREATE_SONG = "song/createSong";
+export const SONG_COMMENTS = "song/comments";
 
-// const load = (songs, userId) => ({
-    //     type: LOAD_SONGS,
-    //     songs,
-    //     userId
-    // })
+const allComments = (comments) => ({
+        type: SONG_COMMENTS,
+        comments
+});
 
 const initialState = {user: null};
 
@@ -16,6 +15,7 @@ export const loadComments = (songId) => async (dispatch) => {
 
     if(response.ok){
         const comments = await response.json();
+        dispatch(allComments(comments));
         return comments;
     }
 }
@@ -57,25 +57,35 @@ export function deleteComment(commentId){
     }
 }
 
-export function loadLikes(songId) {
-    return async (dispatch) => {
-        const response = await csrfFetch(`/api/songs/likes/${songId}`);
+// export function loadLikes(songId) {
+//     return async (dispatch) => {
+//         const response = await csrfFetch(`/api/songs/likes/${songId}`);
 
-        if(response.ok){
-            return await response.json();
-        }
-    }
-}
+//         if(response.ok){
+//             return await response.json();
+//         }
+//     }
+// }
+// export function userLike(songId) {
+//     return async (dispatch) => {
+//         const response = await csrfFetch(`/api/likes/${songId}`, {
+//             method: "PATCH",
+//             headers: {"Content-Type": "application/JSON"}
+//         });
+
+//         // if(response.ok){
+//         //     return await response.json();
+//         // }
+//     }
+// }
 
 export default function songDataReducer(state=initialState, action) {
-    // let newState = {};
+    let newState = {};
     switch(action.type){
-        // case LOAD_SONGS:
-        //     // newState = Object.assign({}, state);
-        //     // action.songs.songs.forEach(song => {
-        //     //     newState[song.id] = song;
-        //     // });
-        //     return {...state, ...newState};
+        case SONG_COMMENTS:
+            newState = Object.assign({}, state);
+            newState["songComments"] = action.comments;
+            return {...state, ...newState};
         // // case SESSION_REMOVE:
         // //     newState.user = null;
         // //     return newState;

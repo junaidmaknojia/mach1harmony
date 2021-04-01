@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/">
             <Homepage isLoaded={isLoaded}/>
           </Route>
-          <Route path="/:userId/:songId">
+          <Route path="/:userId/:songId" isLoaded={isLoaded}>
               <SongPage/>
           </Route>
           {sessionUser && (
