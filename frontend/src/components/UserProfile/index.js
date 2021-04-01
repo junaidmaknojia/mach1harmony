@@ -42,9 +42,9 @@ export default function UserProfile({sessionUser, isLoaded}) {
                                 <p>{song.artist}</p>
                                 <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
                                 <EditSongFormModal songId={song.id}/>
-                                {/* <audio controls>
-                                    <source src="./interstellar.mp3" type="audio/mpeg" />
-                                </audio> */}
+                                <audio controls>
+                                    <source src={song.filePath} type="audio/mpeg" />
+                                </audio>
                             </div>
                         );
                     }
