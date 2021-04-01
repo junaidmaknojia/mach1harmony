@@ -44,16 +44,17 @@ export default function SongPage({ isLoaded }) {
         e.preventDefault();
         const payload = {text: commentInput, userId: sessionUser.id, songId: foundSong.id}
         let commentGood = await dispatch(addComment(payload, foundSong.id));
+        setCommentInput("");
         // if(commentGood) history.push(`/${foundSong.userId}/${songId}`); // reload the page?
     }
 
     async function editSubmit(e){
         e.preventDefault();
-        const commentId = e.target.value;
+        const commentId = parseInt(e.target[1].value, 10); // refactor to get the e.target.value
         const payload = {text: newComment , userId: sessionUser.id, songId: foundSong.id}
         let commentGood = await dispatch(editComment(payload, commentId));
 
-        if(commentGood) setEditCommentNumber(false);
+        // if(commentGood) setEditCommentNumber(0);
 
     }
 
@@ -103,16 +104,22 @@ export default function SongPage({ isLoaded }) {
                                     <form value={comment.id} onSubmit={editSubmit}>
                                         <input
                                             type="textarea"
-                                            value={comment.text}
+                                            value={newComment}
                                             onChange={e=>setNewComment(e.target.value)}
                                         />
-                                        <button type="submit">Update</button>
+                                        <button type="submit" value={comment.id}>Update</button>
                                         <button onClick={() => setEditCommentNumber(0)}>Cancel</button>
                                     </form>
                                 ) : <p>{comment.text}</p>}
                                 {(sessionUser.id === comment.userId) && (
                                     <>
-                                        <button onClick={() => setEditCommentNumber(comment.id)}>Edit</button>
+                                        <button
+                                            onClick={() => {
+                                                setNewComment(comment.text);
+                                                setEditCommentNumber(comment.id)}
+                                            }
+                                            hidden={editCommentNumber}
+                                        >Edit</button>
                                         <button value={comment.id} onClick={handleDelete}>Delete</button>
                                     </>
                                 )}

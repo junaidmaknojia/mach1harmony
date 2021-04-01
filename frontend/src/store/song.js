@@ -51,6 +51,9 @@ export function createSong(payload) {
         if (songUpload) {
             formData.append("song", songUpload);
         }
+        if(imageUpload){
+            formData.append("image", imageUpload);
+        }
 
         const response = await csrfFetch(`/api/songs/${userId}`, {
             method: "POST",
