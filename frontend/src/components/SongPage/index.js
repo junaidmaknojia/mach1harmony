@@ -11,8 +11,8 @@ export default function SongPage() {
     const dispatch = useDispatch();
 
     const [commentInput, setCommentInput] = useState("");
-    let [comments, setComments] = useState([]);
-    let [song, setSong] = useState({});
+    // let [comments, setComments] = useState([]);
+    // let [song, setSong] = useState({});
 
 
     useEffect(() => {
@@ -37,11 +37,11 @@ export default function SongPage() {
         const foundSong = foundSongs.filter(s => {
             if(s) return s.id.toString() === songId // have to do this to avoid checking id of null in state.songs
         })[0];
-        comments = await dispatch(loadComments(foundSong.id));
-        console.log(comments);
-        setSong(foundSong);
-        setComments(comments);
-        console.log(song);
+        const comments = await dispatch(loadComments(foundSong.id));
+        localStorage.setItem("song", foundSong);
+        localStorage.setItem("comments", comments);
+        // setSong(foundSong);
+        // setComments(comments);
     }, []);
 
 
@@ -52,8 +52,8 @@ export default function SongPage() {
         <>
             <div className="songBanner">
             </div>
-            <h1>{song.title}</h1>
-            <h2>{song.artist}</h2>
+            {/* <h1>{song.title}</h1>
+            <h2>{song.artist}</h2> */}
             <h3>Comments</h3>
             <form onSubmit={commentSubmit}>
                 <input
@@ -61,11 +61,11 @@ export default function SongPage() {
                     placeholder="Add your comment..."
                     value={commentInput}
                     onChange={e=>setCommentInput(e.target.value)}
-                />
+                    />
                 <button type="submit">Comment</button>
             </form>
 
-            {comments.map(comment => {
+            {/* {comments.map(comment => {
                 return (
                     <div key={comment.id}>
                         <p>{comment.User.username}</p>
@@ -73,7 +73,7 @@ export default function SongPage() {
                         <p>{`Comment made at: ${comment.updatedAt}`}</p>
                     </div>
                 )
-            })}
+            })} */}
         </>
     );
 }

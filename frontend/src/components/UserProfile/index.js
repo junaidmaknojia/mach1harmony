@@ -3,10 +3,9 @@ import { Link, Route, useHistory } from "react-router-dom";
 import "./UserProfile.css";
 import SongUploadFormModal from "../UploadSongFormModal";
 import { useDispatch, useSelector } from "react-redux";
-import { loadSongsThunk, deleteSong } from "../../store/song";
+import { loadSongsThunk, deleteSong, sendSong } from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
 import SongPage from "../SongPage";
-// import audioFile from "./interstellar.mp3";
 
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
@@ -26,6 +25,11 @@ export default function UserProfile({sessionUser, isLoaded}) {
         }
     }
 
+    async function playSong(song) {
+        console.log(song);
+        await dispatch(sendSong(song));
+    }
+
     return (
         <>
             <div className="coverBanner"></div>
@@ -35,7 +39,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
                     if(song){
                         return (
                             <div>
-                                <img src={song.coverPhoto} height="100" width="100"/>
+                                <img src={song.coverPhoto} height="100" width="100" value={song.filePath} onClick={()=>playSong(song)}/>
                                 <Link to={`/${song.userId}/${song.id}`}>
                                     {song.title}
                                 </Link>
@@ -50,6 +54,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
                     }
                 })}
             </div>
+
             {/* <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
                 <SongUploadFormModal/>
             </Route> */}
