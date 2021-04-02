@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import "./UserProfile.css";
-import SongUploadFormModal from "../UploadSongFormModal";
+import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk, deleteSong, sendSong } from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
-// import { updateFollow } from "../../store/user";
+import { updateFollow } from "../../store/user";
 
-export default function UserProfile({sessionUser, isLoaded}) {
+export default function UserPage({isLoaded, sessionUser}) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const {userId} = useParams();
+    const {userId} = useParams();
 
-    // const [following, setFollowing] = useState(false); // double check this
+    const [following, setFollowing] = useState(false); // double check this
 
     useEffect(() => {
         dispatch(loadSongsThunk(userId))
@@ -27,7 +26,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
     async function handleDelete(e){
         const gotDeleted = await dispatch(deleteSong(e.target.value));
         if(gotDeleted){
-            history.push(`/${sessionUser.id}`); // reload the page?
+            history.push(`/${userId}`); // reload the page?
         }
     }
 
@@ -36,17 +35,17 @@ export default function UserProfile({sessionUser, isLoaded}) {
         // add to numListens
     }
 
-    // async function handleFollow(){
-    //     const isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
-    //     setFollowing(isFollowing);
-    // }
+    async function handleFollow(){
+        const isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
+        setFollowing(isFollowing);
+    }
 
     return (
         <>
             <div className="coverBanner"></div>
-            {/* <button onClick={handleFollow}>{
+            <button onClick={handleFollow}>{
                 following ? "Unfollow" : "Follow"
-            }</button> */}
+            }</button>
             <div className="songsList">
                 <h1>Songs You've Uploaded</h1>
                 {isLoaded && foundSongs.map(song => {

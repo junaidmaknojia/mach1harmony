@@ -7,7 +7,7 @@ import Homepage from "./components/Homepage";
 import UserProfile from "./components/UserProfile";
 import Playbar from "./components/Playbar";
 import SongPage from "./components/SongPage";
-
+import UserPage from "./components/UserPage";
 
 function App() {
 
@@ -36,6 +36,9 @@ function App() {
               <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser} isLoaded={isLoaded}/>
             </Route>
           )}
+          <Route path="/:userId" isLoaded={isLoaded} sessionUser={sessionUser}>
+              <UserPage/>
+          </Route>
         </Switch>
       )}
       <Playbar />
