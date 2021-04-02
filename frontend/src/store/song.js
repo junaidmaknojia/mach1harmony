@@ -49,10 +49,10 @@ export function createSong(payload) {
         formData.append("year", year);
 
         if (songUpload) {
-            formData.append("song", songUpload);
+            formData.append("files", songUpload);
         }
         if(imageUpload){
-            formData.append("image", imageUpload);
+            formData.append("files", imageUpload);
         }
 
         const response = await csrfFetch(`/api/songs/${userId}`, {
@@ -72,10 +72,25 @@ export function createSong(payload) {
 
 export function updateSong(payload, songId){
     return async (dispatch) => {
+        const {title, artist, album, year, songUpload, imageUpload, userId} = payload;
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("artist", artist);
+        formData.append("album", album);
+        formData.append("year", year);
+        formData.append("userId", userId);
+
+        if (songUpload) {
+            formData.append("files", songUpload);
+        }
+        if(imageUpload){
+            formData.append("files", imageUpload);
+        }
+
         const response = await csrfFetch(`api/songs/${songId}`, {
             method: "PUT",
-            body: JSON.stringify(payload),
-            headers: {"Content-Type": "application/JSON"}
+            headers: {"Content-Type": "multipart/form-data"},
+            body: formData
         });
 
         if(response.ok){

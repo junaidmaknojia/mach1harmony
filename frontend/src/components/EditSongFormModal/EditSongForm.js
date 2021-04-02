@@ -38,7 +38,7 @@ export default function EditSongForm({songId}) {
     async function onSubmit(e) {
         e.preventDefault();
         const payload = {
-            title, artist, album, year, songUpload, imageUpload
+            title, artist, album, year, songUpload, imageUpload, userId: sessionUser.id
         };
 
         let songUploadGood = await dispatch(updateSong(payload, songId));
