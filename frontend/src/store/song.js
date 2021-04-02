@@ -64,7 +64,6 @@ export function createSong(payload) {
         if(response.ok){
             const song = await response.json();
             // dispatch(createSong(song));
-            console.log(song);
             return song;
         }
     }
