@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { loadSongsThunk, deleteSong, sendSong } from "../../store/song";
-import EditSongFormModal from "../EditSongFormModal";
+import { loadSongsThunk } from "../../store/song";
 import { updateFollow } from "../../store/user";
+import { sendSong } from "../../store/playbar";
 
 export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();

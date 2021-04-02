@@ -6,7 +6,7 @@ export default function Playbar(){
 
     const audioRef = useRef()
 
-    const addedSong = useSelector(state => state.song.currSong);
+    const addedSong = useSelector(state => state.playBar.currSong);
 
     useEffect(() => {
         if(audioRef.current){

@@ -3,8 +3,9 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import "./UserProfile.css";
 import SongUploadFormModal from "../UploadSongFormModal";
 import { useDispatch, useSelector } from "react-redux";
-import { loadSongsThunk, deleteSong, sendSong } from "../../store/song";
+import { loadSongsThunk, deleteSong} from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
+import { sendSong } from "../../store/playbar";
 // import { updateFollow } from "../../store/user";
 
 export default function UserProfile({sessionUser, isLoaded}) {
