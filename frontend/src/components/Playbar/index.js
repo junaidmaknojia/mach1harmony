@@ -19,11 +19,11 @@ export default function Playbar(){
     return (
         <div className="barContainer">
             {addedSong && (
-               <>
-                    <audio controls ref={audioRef}>
-                        <source src={addedSong.filePath} type="audio/mpeg" />
-                    </audio>
-               </>
+
+                <audio controls ref={audioRef} className="audioControls">
+                    <source src={addedSong.filePath} type="audio/mpeg" />
+                </audio>
+
             )}
         </div>
     );

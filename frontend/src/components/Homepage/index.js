@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import "./Homepage.css";
 import { getFollowInfo } from "../../store/user";
-import UserPage from "../UserPage";
 import { Link } from "react-router-dom";
 
 export default function Homepage({isLoaded}) {
@@ -13,7 +12,7 @@ export default function Homepage({isLoaded}) {
     const peopleYoureFollowing = useSelector(state => state.user.following);
 
     useEffect(()=> {
-        dispatch(getFollowInfo(sessionUser.id));
+        dispatch(getFollowInfo(sessionUser?.id));
     }, [dispatch]);
 
     let following = (sessionUser) ? "following" : "";

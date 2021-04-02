@@ -9,4 +9,19 @@
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     box-shadow: 0px 0px 8px black;
+    justify-content: center;
+}
+
+.audioControls {
+    width: 350px;
+    background-color: green;
+}
+
+audio {
+    width: 350px;
+    background-color: red;
+}
+source {
+    width: 350px;
+    background-color: red;
 }
