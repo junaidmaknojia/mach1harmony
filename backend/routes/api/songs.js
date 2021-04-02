@@ -82,7 +82,7 @@ router.put("/:id(\\d+)", multipleMulterUpload("files"), asyncHandler( async (req
     });
 
     await song.save();
-    return res(song);
+    return res.json(song);
 }));
 
 router.delete("/:id", asyncHandler( async (req,res) => { // delete song
