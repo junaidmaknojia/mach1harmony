@@ -62,8 +62,9 @@ export default function SongPage({ isLoaded }) {
     }
 
     async function handleDelete(e){
-        // const commentId = e.target.value;
-        // let deleteGood = await dispatch(deleteComment(commentId));
+        const commentId = e.target.value;
+        console.log(commentId);
+        let deleteGood = await dispatch(deleteComment(commentId, songId));
     }
 
     async function handleLike(e){

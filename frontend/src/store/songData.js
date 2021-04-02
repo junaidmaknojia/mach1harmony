@@ -59,12 +59,17 @@ export function editComment(payload, commentId) {
     }
 }
 
-export function deleteComment(commentId){
+export function deleteComment(commentId, songId){
     return async (dispatch) => {
         const response = await csrfFetch(`/api/comments/${commentId}`, {
             method: "DELETE",
             headers: {"Content-Type": "application/JSON"}
         });
+
+        if(response.ok) {
+            dispatch(loadComments(songId));
+            // return await response.json();
+        }
     }
 }
 
