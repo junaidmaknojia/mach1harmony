@@ -29,11 +29,30 @@ export function updateFollow(userId, followerId) {
 }
 
 // export function getFollowStatus(userId) {
-//     return async (dispatch) => {
+    //     return async (dispatch) => {
 
-//     }
-// }
+        //     }
+        // }
 
+export function updateProfile(payload) {
+    return async (dispatch) => {
+        const {bio, profileUpload, userId} = payload;
+        const formData = new FormData();
+        formData.append("bio", bio);
+        if (profileUpload) {
+            formData.append("profilePic", profileUpload);
+        }
+        const response = await csrfFetch(`/api/users/${userId}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "multipart/form-data"},
+            body: formData
+        });
+
+        if(response.ok){
+
+        }
+    }
+}
 
 const userReducer = (state=initialState, action) => {
     let newState = {};

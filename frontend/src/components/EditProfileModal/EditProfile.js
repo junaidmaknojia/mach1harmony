@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import { updateProfile } from "../../store/user";
 
 
 export default function EditProfile() {
@@ -16,7 +17,7 @@ export default function EditProfile() {
             bio, profileUpload, userId: sessionUser.id
         };
 
-        // let songUploadGood = await dispatch(updateSong(payload, songId));
+        let songUploadGood = await dispatch(updateProfile(payload));
         // if(songUploadGood) {
         //     // history.push(`/songs/${songUploadGood.id}`);
         //     console.log("edit done");
