@@ -14,10 +14,16 @@ export default function UserPage({isLoaded}) {
 
     const foundSongs = useSelector((state) => Object.values(state.song));
     const sessionUser = useSelector(state => state.session.user);
-    const [following, setFollowing] = useState(false); //Array.some
+    // const followers = useSelector(state => state.user.followers);
+    const [following, setFollowing] = useState(false);
+    // followers.some(follower => follower.id === sessionUser?.id);
 
     useEffect(() => {
         dispatch(loadSongsThunk(userId))
+    }, [dispatch]);
+
+    useEffect(()=> {
+        dispatch(getFollowInfo(userId));
     }, [dispatch]);
 
     async function playSong(song) {
@@ -38,6 +44,7 @@ export default function UserPage({isLoaded}) {
     return (
         <>
             <div className="coverBanner"></div>
+            {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
             {sessionUser && (
                 <button onClick={handleFollow}>{
                     following ? "Unfollow" : "Follow"

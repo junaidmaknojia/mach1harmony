@@ -44,12 +44,6 @@ export function updateFollow(userId, followerId) {
     }
 }
 
-// export function getFollowStatus(userId) {
-    //     return async (dispatch) => {
-
-        //     }
-        // }
-
 export function updateProfile(payload) {
     return async (dispatch) => {
         const {bio, profileUpload, userId} = payload;
@@ -78,10 +72,6 @@ const userReducer = (state=initialState, action) => {
             newState["following"] = action.following;
             newState["followers"] = action.followers;
             return {...state, ...newState};
-        // case SET_STATE_SONG:
-        //     newState = Object.assign({}, state);
-        //     newState["currSong"] = action.song;
-        //     return {...state, ...newState};
         default:
             return state;
     }
