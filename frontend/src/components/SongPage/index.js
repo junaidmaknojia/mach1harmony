@@ -1,7 +1,7 @@
 import "./SongPage.css";
 import {useDispatch, useSelector} from "react-redux";
 import { useState, useEffect } from "react";
-import { loadComments, addComment, loadLikes, deleteComment, editComment } from "../../store/songData";
+import { loadComments, addComment, loadLikes, deleteComment, editComment, updateUserLike } from "../../store/songData";
 import { useHistory, useParams } from "react-router";
 import { loadSongsThunk } from "../../store/song";
 
@@ -19,7 +19,7 @@ export default function SongPage({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const foundSongs = useSelector((state) => Object.values(state.song));
     const comments = useSelector((state) => state.songData.songComments);
-    // const likes = useSelector(state => state.songData.songLikes);
+    const likes = useSelector(state => state.songData.songLikes);
 
     useEffect(async () => {
         dispatch(loadSongsThunk(userId));
@@ -38,6 +38,12 @@ export default function SongPage({ isLoaded }) {
     useEffect(() => {
         if(foundSong){
             dispatch(loadComments(foundSong.id));
+        }
+    }, [dispatch, foundSong]);
+
+    useEffect(() => {
+        if(foundSong){
+            dispatch(loadLikes(foundSong.id));
         }
     }, [dispatch, foundSong]);
 
@@ -66,21 +72,29 @@ export default function SongPage({ isLoaded }) {
     }
 
     async function handleLike(e){
-        const likes = await dispatch(loadLikes(foundSong.id));
-
-        const alreadyLiked = likes.find(like => like.userId === sessionUser.id);
-
-        await dispatch(updateLike(foundSong.id, sessionUser.id, (alreadyLiked) ? false: true));
+        // const likes = await dispatch(loadLikes(foundSong.id));
+        // const alreadyLiked = likes.find(like => like.userId === sessionUser.id);
+        await dispatch(updateUserLike(foundSong.id, sessionUser.id));
     }
 
     return (
         <>
             <div className="songBanner">
             </div>
-            {/* <h1>{foundSong.title}</h1>
-            <h2>{foundSong.artist}</h2> */}
-            <p>{`${likes.length} people like this song!`}</p>
-            <button onClick={handleLike}>Like!</button>
+            {foundSong && (
+                <>
+                    <h1>{foundSong.title}</h1>
+                    <h2>{foundSong.artist}</h2>
+                </>
+            )}
+            {likes && likes.length>0 && (
+                <>
+                    <p>{`${likes.length} people like this song!`}</p>
+                    <button onClick={handleLike}>{
+                        likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
+                    }</button>
+                </>
+            )}
             <h3>Comments</h3>
             <form onSubmit={commentSubmit}>
                 <input

@@ -9,10 +9,10 @@ const allComments = (comments) => ({
     comments
 });
 
-// const loadLikes = (songLikes) => ({
-//     type: LOAD_LIKES,
-//     songLikes
-// })
+const updateLikes = (songLikes) => ({
+    type: LOAD_LIKES,
+    songLikes
+})
 
 // const updateComments = (comment) => ({
 //     type: NEW_COMMENT,
@@ -79,32 +79,31 @@ export function deleteComment(commentId, songId){
     }
 }
 
-export function updateLike(songId, userId, userLikesSong) {
+export function updateUserLike(songId, userId) {
     return async (dispatch) => {
         const response = await csrfFetch(`/api/songs/likes/${songId}`, {
             method: "PATCH",
-            body: JSON.stringify({userId, userLikesSong}),
+            body: JSON.stringify({userId}),
             headers: {"Content-Type": "application/JSON"}
         });
 
         if(response.ok){
-            return await response.json();
+            const likes = await response.json();
+            dispatch(updateLikes(likes));
         }
     }
 }
 
-// export function userLike(songId) {
-//     return async (dispatch) => {
-//         const response = await csrfFetch(`/api/likes/${songId}`, {
-//             method: "PATCH",
-//             headers: {"Content-Type": "application/JSON"}
-//         });
+export function loadLikes(songId) {
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/songs/likes/${songId}`);
 
-//         // if(response.ok){
-//         //     return await response.json();
-//         // }
-//     }
-// }
+        if(response.ok){
+            const likes = await response.json();
+            dispatch(updateLikes(likes));
+        }
+    }
+}
 
 export default function songDataReducer(state=initialState, action) {
     let newState = {};
@@ -117,6 +116,10 @@ export default function songDataReducer(state=initialState, action) {
             newState = Object.assign({}, state);
             console.log(newState["songComments"]);
             newState["songComments"].push(action.comment);
+            return {...state, ...newState};
+        case LOAD_LIKES:
+            newState = Object.assign({}, state);
+            newState["songLikes"] = action.songLikes;
             return {...state, ...newState};
         default:
             return state;
