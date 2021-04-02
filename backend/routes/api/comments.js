@@ -29,10 +29,10 @@ router.get("/:id", asyncHandler(async (req, res) => { // get all the comments on
 
 }));
 
-router.delete("/:id(\\d+)", asyncHandler(async (req, res) => { // delete a comment on a song
+router.delete("/:id", asyncHandler(async (req, res) => { // delete a comment on a song
     const commentId = req.params.id;
     const comment = await Comment.findByPk(commentId);
-    await comment.destroy(commentId);
+    // const deletedComment = comment.destroy();
     return res;
 
 }));
@@ -42,6 +42,8 @@ router.put("/:id(\\d+)", asyncHandler(async (req, res) => { // edit a comment on
     const commentId = req.params.id;
     const comment = await Comment.findByPk(commentId);
     comment.text = text;
+
+    await comment.save();
 
     return res.json({comment});
 }));
