@@ -32,8 +32,8 @@ router.get("/:id", asyncHandler(async (req, res) => { // get all the comments on
 router.delete("/:id", asyncHandler(async (req, res) => { // delete a comment on a song
     const commentId = req.params.id;
     const comment = await Comment.findByPk(commentId);
-    // const deletedComment = comment.destroy();
-    return res;
+    const deletedComment = await comment.destroy();
+    return res.json({message: "Delete good"});
 
 }));
 
