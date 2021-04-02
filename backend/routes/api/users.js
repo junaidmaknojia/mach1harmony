@@ -1,10 +1,11 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Song } = require('../../db/models');
+const { User, Song, Follow } = require('../../db/models');
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
+const { Op } = require("sequelize");
 
 const validateSignup = [
     check('email')
@@ -39,7 +40,6 @@ router.post("/", validateSignup, asyncHandler(async (req,res) => {
 router.get("/:id", asyncHandler(async (req,res) => {
 
     const userId = req.params.id;
-
     const songs = await Song.findAll({
         where: {
             userId
@@ -50,9 +50,8 @@ router.get("/:id", asyncHandler(async (req,res) => {
 }));
 
 
-router.get("/followers/:id", asyncHandler(async (req,res) => {
-
-    // const userId = req.params.id;
+router.get("/follow/:id", asyncHandler(async (req, res) => {
+    const userId = req.params.id;
     // const myFollowers = await User.findByPk(userId, {
     //     include: [{
     //         model: "otherPeople",
@@ -64,8 +63,26 @@ router.get("/followers/:id", asyncHandler(async (req,res) => {
 
 }));
 
-// router.patch("/:id", async (req,res) => {
-//     // await Follow.create({})
-// })
+router.patch("/follow/:id", async (req,res) => {
+    const userId = req.params.id;
+    const {followerId} = req.body;
+
+    console.log(req.session);
+    let isFollowing = false;
+
+    const foundFriend = await Follow.findOne({
+        where: {
+            [Op.and]: [{ followerId }, { userId }]
+        }
+    })
+
+    if(foundFriend) {
+        await foundFriend.destroy();
+    } else {
+        await Follow.create({userId, followerId});
+        isFollowing = true;
+    }
+    res.json({ isFollowing });
+})
 
 module.exports = router;
