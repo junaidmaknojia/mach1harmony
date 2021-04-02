@@ -28,12 +28,11 @@ export default function UserPage({isLoaded}) {
 
     async function handleFollow(){
         let isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
-        console.log(isFollowing);
         setFollowing(isFollowing);
     }
 
-    if(!sessionUser) history.push(`/`);
-    else if(sessionUser.id === Number(userId)){
+    // if(!sessionUser) history.push(`/`);
+    if(sessionUser?.id === Number(userId)){
         return <UserProfile sessionUser={sessionUser} isLoaded={isLoaded}/>
     }
 

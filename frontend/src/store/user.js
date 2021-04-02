@@ -1,16 +1,28 @@
 import { csrfFetch } from "./csrf";
 
-// export const CREATE_SONG = "song/createSong";
+export const FOLLOWING_PEOPLE = "user/following";
 
 const initialState = {user: null};
 
-// const createSong = (info) => {
-//     return {
-//         type: CREATE_SONG,
-//         payload: info
-//     }
-// }
+const updatePeopleFollowing = (peopleFollowing) => {
+    return {
+        type: FOLLOWING_PEOPLE,
+        peopleFollowing
+    }
+}
 
+export function getPeopleIFollow(followerId) {
+    return async (dispatch) => {
+        // followerId is me, which users am I the follower for?
+        const response = await csrfFetch(`api/users/follow/${followerId}`);
+
+        if(response.ok){
+            const following = await response.json();
+            dispatch(updatePeopleFollowing(following));
+            // return following;
+        }
+    }
+}
 
 export function updateFollow(userId, followerId) {
     return async (dispatch) => {
@@ -23,6 +35,8 @@ export function updateFollow(userId, followerId) {
         });
 
         if(response.ok){
+            const following = await response.json();
+            dispatch(updatePeopleFollowing(following) );
             return response.json(); // true or false based on
         }
     }
@@ -49,7 +63,7 @@ export function updateProfile(payload) {
         });
 
         if(response.ok){
-
+            return await response.json();
         }
     }
 }
@@ -57,12 +71,10 @@ export function updateProfile(payload) {
 const userReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){
-        // case LOAD_SONGS:
-        //     newState = Object.assign({}, state);
-        //     action.songs.songs.forEach(song => {
-        //         newState[song.id] = song;
-        //     });
-        //     return {...state, ...newState};
+        case FOLLOWING_PEOPLE:
+            newState = Object.assign({}, state);
+            newState["following"] = action.peopleFollowing;
+            return {...state, ...newState};
         // case SET_STATE_SONG:
         //     newState = Object.assign({}, state);
         //     newState["currSong"] = action.song;

@@ -29,13 +29,13 @@ export default function SongUploadForm({setShowModal}) {
 
     async function onSubmit(e) {
         e.preventDefault();
-        setShowModal(false);
         const payload = {
             title, artist, album, year, songUpload, imageUpload, userId: sessionUser.id
         };
 
         let songCreateGood = await dispatch(createSong(payload));
         if(songCreateGood) {
+            setShowModal(false);
             history.push(`/${sessionUser.id}/${songCreateGood.id}`);
         }
     }

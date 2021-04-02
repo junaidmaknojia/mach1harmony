@@ -43,7 +43,6 @@ export default function ProfileButton({ user }) {
                     <ul className="profile-dropdown">
                         <li>
                             <NavLink to={`/${user.id}`}>{user.username}</NavLink>
-                            {/* <Route path={`/${user.id}`}/> */}
                         </li>
                         {/* <li>
                             <EditProfileModal/>

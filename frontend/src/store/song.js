@@ -120,11 +120,11 @@ const songReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){
         case LOAD_SONGS:
-            newState = Object.assign({}, state);
+            // newState = Object.assign({}, state);
             action.songs.songs.forEach(song => {
                 newState[song.id] = song;
             });
-            return {...state, ...newState};
+            return newState;
         // case SET_STATE_SONG:
         //     newState = Object.assign({}, state);
         //     newState["currSong"] = action.song;

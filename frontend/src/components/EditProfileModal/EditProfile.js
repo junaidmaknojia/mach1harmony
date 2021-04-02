@@ -17,12 +17,11 @@ export default function EditProfile({setShowModal}) {
             bio, profileUpload, userId: sessionUser.id
         };
 
-        let songUploadGood = await dispatch(updateProfile(payload));
-        // if(songUploadGood) {
-        //     // history.push(`/songs/${songUploadGood.id}`);
-        //     console.log("edit done");
-        // }
-        setShowModal(false);
+        const updateGood = await dispatch(updateProfile(payload));
+        if(updateGood) {
+            // history.push(`/songs/${songUploadGood.id}`);
+            setShowModal(false);
+        }
     }
 
     return (
