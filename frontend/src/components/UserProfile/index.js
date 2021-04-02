@@ -26,8 +26,8 @@ export default function UserProfile({sessionUser, isLoaded}) {
     }
 
     async function playSong(song) {
-        console.log(song);
         await dispatch(sendSong(song));
+        // add to numListens
     }
 
     return (

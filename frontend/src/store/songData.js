@@ -45,6 +45,7 @@ export function addComment(payload, songId) {
 
 export function editComment(payload, commentId) {
     return async (dispatch) => {
+        const {songId} = payload;
         const response = await csrfFetch(`/api/comments/${commentId}`, {
             method: "PUT",
             body: JSON.stringify(payload),
@@ -52,6 +53,7 @@ export function editComment(payload, commentId) {
         });
 
         if(response.ok) {
+            dispatch(loadComments(songId));
             return await response.json();
         }
     }

@@ -53,6 +53,9 @@ export default function SongPage({ isLoaded }) {
         const commentId = parseInt(e.target[1].value, 10); // refactor to get the e.target.value
         const payload = {text: newComment , userId: sessionUser.id, songId: foundSong.id}
         let commentGood = await dispatch(editComment(payload, commentId));
+        if(commentGood){
+            setEditCommentNumber(0);
+        }
 
         // if(commentGood) setEditCommentNumber(0);
 
