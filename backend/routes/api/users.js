@@ -3,6 +3,7 @@ const asyncHandler = require("express-async-handler");
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Song, Follow } = require('../../db/models');
 const { check } = require("express-validator");
+const { singlePublicFileUpload, singleMulterUpload} = require("../../awsS3");
 const { handleValidationErrors } = require("../../utils/validation");
 const router = express.Router();
 const { Op } = require("sequelize");
@@ -37,7 +38,7 @@ router.post("/", validateSignup, asyncHandler(async (req,res) => {
 }));
 
 
-router.get("/:id", asyncHandler(async (req,res) => {
+router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
 
     const userId = req.params.id;
     const songs = await Song.findAll({
@@ -48,6 +49,23 @@ router.get("/:id", asyncHandler(async (req,res) => {
 
     return res.json({songs});
 }));
+
+router.patch("/:id", singleMulterUpload("profilePic"), asyncHandler(async (req,res) => { // update profile info
+
+    const userId = req.params.id;
+    const profilePic = await singlePublicFileUpload(req.file);
+    const {bio} = req.body;
+
+    const user = await User.findByPk(userId);
+    user.bio = bio;
+    if(profilePic) user.profilePic = profilePic;
+
+    await user.save();
+    return res.json();
+
+}));
+
+
 
 
 router.get("/follow/:id", asyncHandler(async (req, res) => {
@@ -67,7 +85,6 @@ router.patch("/follow/:id", async (req,res) => {
     const userId = req.params.id;
     const {followerId} = req.body;
 
-    console.log(req.session);
     let isFollowing = false;
 
     const foundFriend = await Follow.findOne({
@@ -82,7 +99,7 @@ router.patch("/follow/:id", async (req,res) => {
         await Follow.create({userId, followerId});
         isFollowing = true;
     }
-    res.json({ isFollowing });
+    res.json( isFollowing );
 })
 
 module.exports = router;

@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
-const multer = require('multer');
 const { singlePublicFileUpload, singleMulterUpload, multipleMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
 const { Comment, User, Song, Like } = require("../../db/models");
 const { Op } = require("sequelize");
