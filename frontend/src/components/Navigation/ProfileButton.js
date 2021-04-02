@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from '../../store/session';
-import {Route, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import "./Navigation.css";
+import EditProfileModal from "../EditProfileModal";
 
 
 export default function ProfileButton({ user }) {
@@ -44,6 +45,9 @@ export default function ProfileButton({ user }) {
                             <NavLink to={`/${user.id}`}>{user.username}</NavLink>
                             {/* <Route path={`/${user.id}`}/> */}
                         </li>
+                        {/* <li>
+                            <EditProfileModal/>
+                        </li> */}
                         <li>{user.email}</li>
                         <li>
                             <button onClick={logout}>Log Out</button>
