@@ -31,14 +31,14 @@ function App() {
           <Route path="/:userId/:songId" isLoaded={isLoaded}>
               <SongPage/>
           </Route>
+          <Route path="/:userId" isLoaded={isLoaded}>
+              <UserPage/>
+          </Route>
           {sessionUser && (
             <Route>
               <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser} isLoaded={isLoaded}/>
             </Route>
           )}
-          <Route path="/:userId" isLoaded={isLoaded} sessionUser={sessionUser}>
-              <UserPage/>
-          </Route>
         </Switch>
       )}
       <Playbar />

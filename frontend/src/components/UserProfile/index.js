@@ -15,7 +15,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
     // const [following, setFollowing] = useState(false); // double check this
 
     useEffect(() => {
-        dispatch(loadSongsThunk(userId))
+        dispatch(loadSongsThunk(sessionUser.id))
     }, [dispatch]);
 
     // useEffect(() => {

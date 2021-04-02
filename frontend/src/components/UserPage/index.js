@@ -6,29 +6,19 @@ import { loadSongsThunk, deleteSong, sendSong } from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
 import { updateFollow } from "../../store/user";
 
-export default function UserPage({isLoaded, sessionUser}) {
+export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const {userId} = useParams();
 
-    const [following, setFollowing] = useState(false); // double check this
+
+    const foundSongs = useSelector((state) => Object.values(state.song));
+    const sessionUser = useSelector(state => state.session.user);
+    const [following, setFollowing] = useState(false); // not loading accurately, but responds accurately
 
     useEffect(() => {
         dispatch(loadSongsThunk(userId))
     }, [dispatch]);
-
-    // useEffect(() => {
-    //     dispatch(loadComments(foundSong.id));
-    // }, [dispatch, following]);
-
-    const foundSongs = useSelector((state) => Object.values(state.song));
-
-    async function handleDelete(e){
-        const gotDeleted = await dispatch(deleteSong(e.target.value));
-        if(gotDeleted){
-            history.push(`/${userId}`); // reload the page?
-        }
-    }
 
     async function playSong(song) {
         await dispatch(sendSong(song));
@@ -36,7 +26,8 @@ export default function UserPage({isLoaded, sessionUser}) {
     }
 
     async function handleFollow(){
-        const isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
+        let isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
+        console.log(isFollowing);
         setFollowing(isFollowing);
     }
 
@@ -47,8 +38,8 @@ export default function UserPage({isLoaded, sessionUser}) {
                 following ? "Unfollow" : "Follow"
             }</button>
             <div className="songsList">
-                <h1>Songs You've Uploaded</h1>
-                {isLoaded && foundSongs.map(song => {
+                <h1>User's Songs</h1>
+                {foundSongs && foundSongs.map(song => {
                     if(song){
                         return (
                             <div>
@@ -57,8 +48,6 @@ export default function UserPage({isLoaded, sessionUser}) {
                                     {song.title}
                                 </Link>
                                 <p>{song.artist}</p>
-                                <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
-                                <EditSongFormModal songId={song.id}/>
                             </div>
                         );
                     }
