@@ -53,13 +53,15 @@ router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
 router.patch("/:id", singleMulterUpload("profilePic"), asyncHandler(async (req,res) => { // update profile info
 
     const userId = req.params.id;
-    const profilePic = await singlePublicFileUpload(req.file);
+    const user = await User.findByPk(userId);
+    if(req.file){
+        const profilePic = await singlePublicFileUpload(req.file);
+        user.profilePic = profilePic;
+    }
+
     const {bio} = req.body;
 
-    const user = await User.findByPk(userId);
     user.bio = bio;
-    if(profilePic) user.profilePic = profilePic;
-
     await user.save();
     return res.json();
 
