@@ -8,6 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       {unique: true, fields: ["followerId", "userId"]}
     ]
   });
-  Follow.associate = function(models) {};
+  Follow.associate = function(models) {
+    Follow.belongsTo(models.User, {foreignKey: "followerId"});
+  };
   return Follow;
 };

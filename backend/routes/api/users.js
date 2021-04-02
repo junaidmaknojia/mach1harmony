@@ -72,19 +72,32 @@ router.patch("/:id", singleMulterUpload("profilePic"), asyncHandler(async (req,r
 
 router.get("/follow/:id", asyncHandler(async (req, res) => {
     const userId = req.params.id;
+    // const peopleImFollowing = await User.findByPk(userId, {
+    //     include: [{
+    //         model: Follow,
+    //         where: {
+    //             followerId: userId
+    //         }
+    //     }]
+    // });
+
     const peopleImFollowing = await User.findByPk(userId, {
         include: [{
-            model: "otherPeople",
-            where: {
-                followerId: userId
-            }
+            model: User,
+            as: "otherPeople",
+            // where: {
+            //     followerId: userId
+            // }
         }]
     });
 
-    const peopleFollowingMe = await User.findByPk(userId, {
+    const peopleFollowingMe = await User.findAll({
         include: [{
-            model: "otherPeople",
-            where: {userId}
+            model: Follow,
+            where: {userId},
+            include: [{
+                model: User
+            }]
         }]
     });
 
