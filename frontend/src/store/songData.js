@@ -2,16 +2,22 @@ import { csrfFetch } from "./csrf";
 
 export const SONG_COMMENTS = "song/comments";
 export const NEW_COMMENT = "song/newComment";
+export const LOAD_LIKES = "song/likes/loadLikes";
 
 const allComments = (comments) => ({
-        type: SONG_COMMENTS,
-        comments
+    type: SONG_COMMENTS,
+    comments
 });
 
-const updateComments = (comment) => ({
-    type: NEW_COMMENT,
-    comment
-})
+// const loadLikes = (songLikes) => ({
+//     type: LOAD_LIKES,
+//     songLikes
+// })
+
+// const updateComments = (comment) => ({
+//     type: NEW_COMMENT,
+//     comment
+// })
 
 const initialState = {user: null};
 
@@ -35,7 +41,7 @@ export function addComment(payload, songId) {
         });
 
         if(response.ok) {
-            const newComment = await response.json();
+            await response.json();
             // dispatch(updateComments(newComment));
             // const comments = await response.json();
             dispatch(loadComments(songId));
@@ -73,15 +79,20 @@ export function deleteComment(commentId, songId){
     }
 }
 
-// export function loadLikes(songId) {
-//     return async (dispatch) => {
-//         const response = await csrfFetch(`/api/songs/likes/${songId}`);
+export function updateLike(songId, userId, userLikesSong) {
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/songs/likes/${songId}`, {
+            method: "PATCH",
+            body: JSON.stringify({userId, userLikesSong}),
+            headers: {"Content-Type": "application/JSON"}
+        });
 
-//         if(response.ok){
-//             return await response.json();
-//         }
-//     }
-// }
+        if(response.ok){
+            return await response.json();
+        }
+    }
+}
+
 // export function userLike(songId) {
 //     return async (dispatch) => {
 //         const response = await csrfFetch(`/api/likes/${songId}`, {

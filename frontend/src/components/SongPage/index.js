@@ -19,6 +19,7 @@ export default function SongPage({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const foundSongs = useSelector((state) => Object.values(state.song));
     const comments = useSelector((state) => state.songData.songComments);
+    // const likes = useSelector(state => state.songData.songLikes);
 
     useEffect(async () => {
         dispatch(loadSongsThunk(userId));
@@ -56,9 +57,6 @@ export default function SongPage({ isLoaded }) {
         if(commentGood){
             setEditCommentNumber(0);
         }
-
-        // if(commentGood) setEditCommentNumber(0);
-
     }
 
     async function handleDelete(e){
@@ -68,15 +66,11 @@ export default function SongPage({ isLoaded }) {
     }
 
     async function handleLike(e){
-        // const likes = await dispatch(loadLikes(song.id));
+        const likes = await dispatch(loadLikes(foundSong.id));
 
-        // const alreadyLiked = likes.find(like => like.userId === sessionUser.id);
+        const alreadyLiked = likes.find(like => like.userId === sessionUser.id);
 
-        // if(alreadyLiked){
-        //     await dispatch(removeLike(song.id));
-        // }else{
-        //     await dispatch(addLike(song.id));
-        // }
+        await dispatch(updateLike(foundSong.id, sessionUser.id, (alreadyLiked) ? false: true));
     }
 
     return (
@@ -85,6 +79,7 @@ export default function SongPage({ isLoaded }) {
             </div>
             {/* <h1>{foundSong.title}</h1>
             <h2>{foundSong.artist}</h2> */}
+            <p>{`${likes.length} people like this song!`}</p>
             <button onClick={handleLike}>Like!</button>
             <h3>Comments</h3>
             <form onSubmit={commentSubmit}>
