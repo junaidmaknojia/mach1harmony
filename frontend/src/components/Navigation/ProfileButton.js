@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory, useParams} from "react-router-dom";
 import "./Navigation.css";
 import EditProfileModal from "../EditProfileModal";
 
@@ -9,6 +9,10 @@ import EditProfileModal from "../EditProfileModal";
 export default function ProfileButton({ user }) {
     // console.log(user);
 
+    const sessionUser = useSelector(state => state.session.user);
+
+    const {userId} = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
 
@@ -30,7 +34,10 @@ export default function ProfileButton({ user }) {
 
     const logout = (e) => {
         e.preventDefault();
+        console.log(userId); // userId is undefined
+        // const check = userId === sessionUser.id;
         dispatch(sessionActions.logout());
+        // if(check) history.push("/");
     };
 
 

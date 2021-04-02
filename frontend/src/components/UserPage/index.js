@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../store/song";
-import { updateFollow } from "../../store/user";
+import { getFollowInfo, updateFollow } from "../../store/user";
 import { sendSong } from "../../store/playbar";
 import UserProfile from "../UserProfile";
 
 export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();
-    const history = useHistory();
     const {userId} = useParams();
 
 
@@ -27,11 +26,11 @@ export default function UserPage({isLoaded}) {
     }
 
     async function handleFollow(){
-        let isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
+        const isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
         setFollowing(isFollowing);
+        await dispatch(getFollowInfo(userId));
     }
 
-    // if(!sessionUser) history.push(`/`);
     if(sessionUser?.id === Number(userId)){
         return <UserProfile sessionUser={sessionUser} isLoaded={isLoaded}/>
     }
@@ -39,9 +38,11 @@ export default function UserPage({isLoaded}) {
     return (
         <>
             <div className="coverBanner"></div>
-            <button onClick={handleFollow}>{
-                following ? "Unfollow" : "Follow"
-            }</button>
+            {sessionUser && (
+                <button onClick={handleFollow}>{
+                    following ? "Unfollow" : "Follow"
+                }</button>
+            )}
             <div className="songsList">
                 <h1>User's Songs</h1>
                 {foundSongs && foundSongs.map(song => {

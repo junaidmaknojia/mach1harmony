@@ -1,24 +1,27 @@
 import { csrfFetch } from "./csrf";
 
-export const FOLLOWING_PEOPLE = "user/following";
+export const FOLLOW_DATA = "user/follow";
 
 const initialState = {user: null};
 
-const updatePeopleFollowing = (peopleFollowing) => {
+const updatePeopleFollowing = (followers, following) => {
     return {
-        type: FOLLOWING_PEOPLE,
-        peopleFollowing
+        type: FOLLOW_DATA,
+        followers,
+        following
     }
 }
 
-export function getPeopleIFollow(followerId) {
+export function getFollowInfo(followerId) {
     return async (dispatch) => {
-        // followerId is me, which users am I the follower for?
+        // followerId is Bob, which users is Bob following?
         const response = await csrfFetch(`api/users/follow/${followerId}`);
 
         if(response.ok){
-            const following = await response.json();
-            dispatch(updatePeopleFollowing(following));
+            const followInfo = await response.json();
+            console.log(followInfo);
+            // const {followers, following} = followInfo;
+            // dispatch(updatePeopleFollowing(followers, following));
             // return following;
         }
     }
@@ -35,9 +38,8 @@ export function updateFollow(userId, followerId) {
         });
 
         if(response.ok){
-            const following = await response.json();
-            dispatch(updatePeopleFollowing(following) );
-            return response.json(); // true or false based on
+            const isFollowing = await response.json();
+            return isFollowing; // true or false
         }
     }
 }
@@ -71,9 +73,10 @@ export function updateProfile(payload) {
 const userReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){
-        case FOLLOWING_PEOPLE:
+        case FOLLOW_DATA:
             newState = Object.assign({}, state);
-            newState["following"] = action.peopleFollowing;
+            newState["following"] = action.following;
+            newState["followers"] = action.followers;
             return {...state, ...newState};
         // case SET_STATE_SONG:
         //     newState = Object.assign({}, state);
