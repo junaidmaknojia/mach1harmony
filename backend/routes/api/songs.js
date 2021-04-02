@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
 const multer = require('multer');
-const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
+const { singlePublicFileUpload, singleMulterUpload, multipleMulterUpload, multiplePublicFileUpload } = require("../../awsS3");
 const {Comment, User, Song, Like} = require("../../db/models");
 
 // const songCoverUpload = multer({
@@ -34,50 +34,55 @@ router.get("/:id(\\d+)", asyncHandler( async (req, res) => { // get likes
 }));
 
 
-router.post("/:id", singleMulterUpload("song"), singleMulterUpload("image"), asyncHandler( async (req, res) => { // handle song upload
+router.post("/:id", multipleMulterUpload("files"), asyncHandler( async (req, res) => { // handle song upload
 
     const userId = req.params.id;
     // if(req.session){
-        // console.log("---- req is ", req);
-        // console.log("-----------", req.file);
-        // const songFile = req.files["audioUpload"];
-        // const songPhoto = req.files["coverPhotoUpload"];
-        console.log("req.file -----", req.file);
-        console.log("req.files ---", req.files);
 
-        const songURL = await singlePublicFileUpload(req.file);
-        const imageURL = await singlePublicFileUpload(req.file);
+        const urls = await multiplePublicFileUpload(req.files);
+        console.log(urls);
 
         const {title, artist, album, year} = req.body;
         // const userId = req.session.auth.userId;
-        let song = await Song.build({title, artist, album, year, userId, filePath: songURL, coverPhoto: imageURL});
+        let song = await Song.build({title, artist, album, year, userId});
 
-        // if(songPhoto) song.coverPhoto = '/songs/' + req.files["coverPhotoUpload"].filename;
-        // if (songFile){
-        //     song.filePath = '/songs/' + req.files["audioUpload"].filename;
-        // } else {
-
-        // }
+        if(urls.length === 1){
+            song.filePath = urls[0] // only song added
+        }else if(urls.length === 2){
+            song.filePath = urls[0] // both added
+            song.coverPhoto = urls[1]
+        }
+        //validate file types and multiple ones error before saving
         await song.save();
         return res.json();
-        //test
     }
 
 // }
 ));
 
-router.put("/:id(\\d+)", asyncHandler( async (req, res) => { // handle edits to song
+router.put("/:id(\\d+)", multipleMulterUpload("files"), asyncHandler( async (req, res) => { // handle edits to song
     const songId = req.params.id;
     const {title, artist, album, year} = req.body;
-    // const userId = req.session.auth.userId;
+
+    const urls = await multiplePublicFileUpload(req.files);
+
+
     let song = await Song.findByPk(songId);
     song.title = title;
     song.artist = artist;
     song.album = album;
     song.year = year;
 
+    urls.forEach(file => {
+        if(file.substring(file.length-3) === "mp3"){
+            song.filePath = file;
+        }else if(file.substring(file.length-3) === "jpg"){
+            song.coverPhoto = file;
+        }
+    });
+
     await song.save();
-    return res;
+    return res(song);
 }));
 
 router.delete("/:id", asyncHandler( async (req,res) => { // delete song
