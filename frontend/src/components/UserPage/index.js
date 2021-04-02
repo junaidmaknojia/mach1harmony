@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../store/song";
 import { updateFollow } from "../../store/user";
 import { sendSong } from "../../store/playbar";
+import UserProfile from "../UserProfile";
 
 export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function UserPage({isLoaded}) {
 
     const foundSongs = useSelector((state) => Object.values(state.song));
     const sessionUser = useSelector(state => state.session.user);
-    const [following, setFollowing] = useState(false); // not loading accurately, but responds accurately
+    const [following, setFollowing] = useState(false); //Array.some
 
     useEffect(() => {
         dispatch(loadSongsThunk(userId))
@@ -29,6 +30,11 @@ export default function UserPage({isLoaded}) {
         let isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
         console.log(isFollowing);
         setFollowing(isFollowing);
+    }
+
+    if(!sessionUser) history.push(`/`);
+    else if(sessionUser.id === Number(userId)){
+        return <UserProfile sessionUser={sessionUser} isLoaded={isLoaded}/>
     }
 
     return (

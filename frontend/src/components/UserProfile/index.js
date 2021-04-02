@@ -11,17 +11,10 @@ import { sendSong } from "../../store/playbar";
 export default function UserProfile({sessionUser, isLoaded}) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const {userId} = useParams();
-
-    // const [following, setFollowing] = useState(false); // double check this
 
     useEffect(() => {
         dispatch(loadSongsThunk(sessionUser.id))
     }, [dispatch]);
-
-    // useEffect(() => {
-    //     dispatch(loadComments(foundSong.id));
-    // }, [dispatch, following]);
 
     const foundSongs = useSelector((state) => Object.values(state.song));
 
@@ -37,17 +30,9 @@ export default function UserProfile({sessionUser, isLoaded}) {
         // add to numListens
     }
 
-    // async function handleFollow(){
-    //     const isFollowing = await dispatch(updateFollow(userId, sessionUser.id));
-    //     setFollowing(isFollowing);
-    // }
-
     return (
         <>
             <div className="coverBanner"></div>
-            {/* <button onClick={handleFollow}>{
-                following ? "Unfollow" : "Follow"
-            }</button> */}
             <div className="songsList">
                 <h1>Songs You've Uploaded</h1>
                 {isLoaded && foundSongs.map(song => {

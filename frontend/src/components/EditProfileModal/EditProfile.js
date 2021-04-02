@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { updateProfile } from "../../store/user";
 
 
-export default function EditProfile() {
+export default function EditProfile({setShowModal}) {
 
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -22,6 +22,7 @@ export default function EditProfile() {
         //     // history.push(`/songs/${songUploadGood.id}`);
         //     console.log("edit done");
         // }
+        setShowModal(false);
     }
 
     return (

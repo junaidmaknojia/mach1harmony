@@ -90,9 +90,11 @@ export default function SongPage({ isLoaded }) {
             {likes && likes.length>0 && (
                 <>
                     <p>{`${likes.length} people like this song!`}</p>
-                    <button onClick={handleLike}>{
-                        likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
-                    }</button>
+                    {sessionUser && (
+                        <button onClick={handleLike}>{
+                            likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
+                        }</button>
+                    )}
                 </>
             )}
             <h3>Comments</h3>

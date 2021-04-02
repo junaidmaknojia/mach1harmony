@@ -12,7 +12,7 @@ export default function EditProfileModal() {
             <button onClick={() => setShowModal(true)}>Edit Profile</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <EditProfile/>
+                    <EditProfile setShowModal={setShowModal}/>
                 </Modal>
             )}
         </>

@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {createSong} from "../../store/song";
 
 
-export default function SongUploadForm() {
+export default function SongUploadForm({setShowModal}) {
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -29,6 +29,7 @@ export default function SongUploadForm() {
 
     async function onSubmit(e) {
         e.preventDefault();
+        setShowModal(false);
         const payload = {
             title, artist, album, year, songUpload, imageUpload, userId: sessionUser.id
         };

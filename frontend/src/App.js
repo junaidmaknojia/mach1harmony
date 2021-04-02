@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -11,9 +11,12 @@ import UserPage from "./components/UserPage";
 
 function App() {
 
+  // const {userId} = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  // console.log(userId);
+  console.log("sessionUser", sessionUser);
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -31,14 +34,9 @@ function App() {
           <Route path="/:userId/:songId" isLoaded={isLoaded}>
               <SongPage/>
           </Route>
-          <Route path="/:userId" isLoaded={isLoaded}>
-              <UserPage/>
+          <Route path="/:userId">
+              <UserPage isLoaded={isLoaded}/>
           </Route>
-          {sessionUser && (
-            <Route>
-              <UserProfile path={`/${sessionUser.id}`} sessionUser={sessionUser} isLoaded={isLoaded}/>
-            </Route>
-          )}
         </Switch>
       )}
       <Playbar />

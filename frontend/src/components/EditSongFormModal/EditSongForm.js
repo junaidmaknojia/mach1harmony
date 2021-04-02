@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateSong, loadSongsThunk} from "../../store/song";
 
 
-export default function EditSongForm({songId}) {
+export default function EditSongForm({songId, setShowModal}) {
 
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -46,6 +46,7 @@ export default function EditSongForm({songId}) {
             // history.push(`/songs/${songUploadGood.id}`);
             console.log("edit done");
         }
+        setShowModal(false);
     }
 
     return (
