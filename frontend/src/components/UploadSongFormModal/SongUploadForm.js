@@ -33,10 +33,10 @@ export default function SongUploadForm({setShowModal}) {
             title, artist, album, year, songUpload, imageUpload, userId: sessionUser.id
         };
 
-        let songCreateGood = await dispatch(createSong(payload));
-        if(songCreateGood) {
+        let createdSong = await dispatch(createSong(payload));
+        if(createdSong) {
             setShowModal(false);
-            history.push(`/${sessionUser.id}/${songCreateGood.id}`);
+            history.push(`/${sessionUser.id}/${createdSong.id}`);
         }
     }
 

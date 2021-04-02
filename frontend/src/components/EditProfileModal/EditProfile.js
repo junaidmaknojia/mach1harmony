@@ -9,7 +9,7 @@ export default function EditProfile({setShowModal}) {
     const dispatch = useDispatch();
 
     const [bio, setBio] = useState("");
-    const [profileUpload, setProfileUpload] = useState("");
+    const [profileUpload, setProfileUpload] = useState(sessionUser.bio);
 
     async function onSubmit(e) {
         e.preventDefault();

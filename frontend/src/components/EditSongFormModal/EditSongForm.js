@@ -43,10 +43,9 @@ export default function EditSongForm({songId, setShowModal}) {
 
         let songUploadGood = await dispatch(updateSong(payload, songId));
         if(songUploadGood) {
-            // history.push(`/songs/${songUploadGood.id}`);
-            console.log("edit done");
+            history.push(`/songs/${songId}`);
+            setShowModal(false);
         }
-        setShowModal(false);
     }
 
     return (
