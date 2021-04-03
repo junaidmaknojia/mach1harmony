@@ -1,1 +1,31 @@
 /* TODO Add site wide styles */
+
+.textarea {
+    height: 70px;
+    width: 400px;
+    margin: 10px;
+}
+
+.lineText {
+    width: 300px;
+    border: none;
+    margin: 10px;
+    padding: 5px;
+}
+
+.appText {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.appSubmitButton {
+    background-color: rgb(243, 146, 111);
+    border-radius: 3px;
+}
+
+.appFileUpload {
+    margin: 10px;
+}
+
+.appSubmitButton:hover {
+    background-color: rgb(255, 87, 25);
+}

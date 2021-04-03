@@ -19,8 +19,12 @@
 }
 
 #modal-content {
-    position: absolute;
-    background-color:white;
-    top: 100px;
-    left: 30%;
+    position: fixed;
+    background-color: whitesmoke;
+    top: calc(50% - 150px);
+    left: calc(50% - 300px);
+    border: 2px solid orangered;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
 }

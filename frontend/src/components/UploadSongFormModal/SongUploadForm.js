@@ -50,6 +50,7 @@ export default function SongUploadForm({setShowModal}) {
             <form onSubmit={onSubmit} enctype='multipart/form-data'>
                 <div>
                     <input
+                        className="lineText"
                         placeholder="Title"
                         value={title}
                         onChange={e=>setTitle(e.target.value)}
@@ -58,6 +59,7 @@ export default function SongUploadForm({setShowModal}) {
                 </div>
                 <div>
                     <input
+                        className="lineText"
                         placeholder="Artist"
                         value={artist}
                         onChange={e => setArtist(e.target.value)}
@@ -66,6 +68,7 @@ export default function SongUploadForm({setShowModal}) {
                 </div>
                 <div>
                     <input
+                        className="lineText"
                         placeholder="Album"
                         value={album}
                         onChange={e=>setAlbum(e.target.value)}
@@ -74,6 +77,7 @@ export default function SongUploadForm({setShowModal}) {
                 </div>
                 <div>
                     <input
+                        className="lineText"
                         placeholder="Year"
                         value={year}
                         onChange={e=>setYear(e.target.value)}
@@ -81,15 +85,16 @@ export default function SongUploadForm({setShowModal}) {
                     </input>
                 </div>
                 <div>
-                    <p>Song Upload</p>
+                    <p>Upload Song (.mp3)</p>
+
                     <input type="file" name='audioUpload' onChange={e => setSongUpload(e.target.files[0])}/>
                 </div>
                 <div>
-                    <p>Cover Photo Upload</p>
+                    <p>Upload Album Cover (.jpg)</p>
                     <input type="file" name='coverPhotoUpload' onChange={e => setImageUpload(e.target.files[0])}/>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="appSubmitButton">Submit</button>
                 </div>
             </form>
         </>

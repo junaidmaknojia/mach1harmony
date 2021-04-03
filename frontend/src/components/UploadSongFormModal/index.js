@@ -8,7 +8,7 @@ export default function SongUploadFormModal() {
 
     return (
       <>
-        <button onClick={() => setShowModal(true)}>Upload New Song!</button>
+        <button className="appSubmitButton" onClick={() => setShowModal(true)}>Upload</button>
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <SongUploadForm setShowModal={setShowModal}/>

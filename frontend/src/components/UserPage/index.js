@@ -14,16 +14,16 @@ export default function UserPage({isLoaded}) {
 
     const foundSongs = useSelector((state) => Object.values(state.song));
     const sessionUser = useSelector(state => state.session.user);
-    // const followers = useSelector(state => state.user.followers);
-    const [following, setFollowing] = useState(false);
-    // followers.some(follower => follower.id === sessionUser?.id);
+    const followers = useSelector(state => state.user.followers);
+    const [following, setFollowing] = useState(false); // figure this out
 
     useEffect(() => {
         dispatch(loadSongsThunk(userId))
     }, [dispatch]);
 
-    useEffect(()=> {
-        dispatch(getFollowInfo(userId));
+    useEffect(async ()=> {
+        await dispatch(getFollowInfo(userId));
+        setFollowing(followers?.some(follower => follower.id === sessionUser?.id)); // figure this out
     }, [dispatch]);
 
     async function playSong(song) {
