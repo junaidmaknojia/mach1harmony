@@ -23,7 +23,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       numListens: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       filePath: {
         allowNull: false,
@@ -34,7 +35,8 @@ module.exports = {
         defaultValue: "https://player.listenlive.co/templates/StandardPlayerV4/webroot/img/default-cover-art.png"
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       genreId: {
         type: Sequelize.INTEGER
