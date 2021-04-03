@@ -16,7 +16,9 @@ export default function Homepage({isLoaded}) {
         dispatch(getFollowInfo(sessionUser?.id));
     }, [dispatch]);
 
-    let following = (sessionUser) ? "following" : "";
+    // useEffect(() => {}, [dispatch, peopleYoureFollowing]);
+
+    let following = (sessionUser && peopleYoureFollowing) ? "following" : "";
 
     return (
         <div className="homepage">
@@ -28,10 +30,10 @@ export default function Homepage({isLoaded}) {
                 <div className="followingDiv">
                     <p>People You're Following</p>
                     {peopleYoureFollowing && peopleYoureFollowing.map(user => {
-                        <div>
+                        return (<div>
                             <img src={user.coverPhoto}/>
                             <Link to={`/${user.id}`}>{user.username}</Link>
-                        </div>
+                        </div>)
                         })
                     }
                 </div>
