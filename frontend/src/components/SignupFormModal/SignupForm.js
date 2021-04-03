@@ -34,43 +34,46 @@ export default function SignupForm() {
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <label>
-                Email
+            <div>
                 <input
+                    placeholder="Email"
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Username
+            </div>
+
+            <div>
                 <input
+                    placeholder="Username"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Password
+            </div>
+
+            <div>
                 <input
+                    placeholder="Password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Confirm Password
+            </div>
+
+            <div>
                 <input
+                    placeholder="Confirm Password"
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Sign Up</button>
+            </div>
+            <button className="appSubmitButton" type="submit">Sign Up</button>
         </form>
     );
 }

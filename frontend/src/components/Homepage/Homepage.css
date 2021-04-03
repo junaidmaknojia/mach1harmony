@@ -2,12 +2,19 @@
     /* background-color: blue;
     height: 400px; */
     display: grid;
-    grid-template-columns: 50px repeat(3, 1fr) 50px;
-    grid-template-rows: 50px repeat(4, 400px);
+    grid-template-columns: 50px repeat(2, 1fr) 200px 50px;
+    grid-template-rows: 50px repeat(4, 400px) 50px;
 }
 
 .following {
     grid-column: 2/4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.eachFollowing {
+    margin: 20px;
 }
 
 .banner {

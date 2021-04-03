@@ -30,11 +30,12 @@ export default function Homepage({isLoaded}) {
                 <div className="followingDiv">
                     <p>People You're Following</p>
                     {peopleYoureFollowing && peopleYoureFollowing.map(user => {
-                        return (<div>
-                            <img src={user.coverPhoto}/>
-                            <Link to={`/${user.id}`}>{user.username}</Link>
-                        </div>)
-                        })
+                        return (
+                            <div className="eachFollowing">
+                                <img src={user.coverPhoto}/>
+                                <Link to={`/${user.id}`}>{user.username}</Link>
+                            </div>
+                        )})
                     }
                 </div>
             )}
