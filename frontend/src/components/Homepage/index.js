@@ -10,6 +10,7 @@ export default function Homepage({isLoaded}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const peopleYoureFollowing = useSelector(state => state.user.following);
+    console.log(peopleYoureFollowing);
 
     useEffect(()=> {
         dispatch(getFollowInfo(sessionUser?.id));

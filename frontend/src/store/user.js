@@ -14,15 +14,16 @@ const updatePeopleFollowing = (followers, following) => {
 
 export function getFollowInfo(followerId) {
     return async (dispatch) => {
-        // followerId is Bob, which users is Bob following?
+        // followerId is Bob, which users is Bob following and getting followed by?
         const response = await csrfFetch(`api/users/follow/${followerId}`);
 
         if(response.ok){
             const followInfo = await response.json();
-            console.log(followInfo);
-            // const {followers, following} = followInfo;
-            // dispatch(updatePeopleFollowing(followers, following));
-            // return following;
+            const {peopleImFollowing, peopleFollowingMe} = followInfo;
+            const followers = peopleFollowingMe[0]?.Follows.map(f => f.User);
+            const following = peopleImFollowing?.otherPeople;
+            dispatch(updatePeopleFollowing(followers, following));
+            return following;
         }
     }
 }
