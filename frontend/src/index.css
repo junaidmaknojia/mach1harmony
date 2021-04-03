@@ -1,5 +1,9 @@
 /* TODO Add site wide styles */
 
+.appOrange {
+    background-color: rgb(243, 146, 111);
+}
+
 .textarea {
     height: 70px;
     width: 400px;

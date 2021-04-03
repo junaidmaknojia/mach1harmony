@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
 import {NavLink, useHistory, useParams} from "react-router-dom";
 import "./Navigation.css";
-// import EditProfileModal from "../EditProfileModal";
+import EditProfileModal from "../EditProfileModal";
 
 
 export default function ProfileButton({ user }) {
@@ -44,23 +44,27 @@ export default function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
-                <i className="fas fa-compact-disc"></i>
+            <div className="profile-button" onClick={openMenu}>
+                <i class="fas fa-user-circle" > {`  ${user.username}`}</i>
+                {/* <p>{user.username}</p> */}
                 {showMenu && (
-                    <ul className="profile-dropdown">
-                        <li>
-                            <NavLink to={`/${user.id}`}>{user.username}</NavLink>
-                        </li>
-                        {/* <li>
+                    <div className="profile-dropdown">
+                        <div>
+                            <NavLink to={`/${user.id}`}>Profile</NavLink>
+                        </div>
+                        <div>
                             <EditProfileModal/>
-                        </li> */}
-                        <li>{user.email}</li>
-                        <li>
-                            <button onClick={logout}>Log Out</button>
-                        </li>
-                    </ul>
+                        </div>
+                        <div>{user.email}</div>
+                        <div>
+                            <button onClick={logout}>
+                                <i class="fas fa-sign-out-alt"></i>
+                                Log Out
+                            </button>
+                        </div>
+                    </div>
                 )}
-            </button>
+            </div>
         </>
     );
 }
