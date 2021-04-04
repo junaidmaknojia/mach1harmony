@@ -12,6 +12,17 @@ const updatePeopleFollowing = (followers, following) => {
     }
 }
 
+export function getUserInfo(userId){
+    return async (dispatch) => {
+        const response = await csrfFetch(`api/users/info/${userId}`);
+
+        if(response.ok) {
+            const user = await response.json();
+            return user;
+        }
+    }
+}
+
 export function getFollowInfo(followerId) {
     return async (dispatch) => {
         // followerId is Bob, which users is Bob following and getting followed by?
