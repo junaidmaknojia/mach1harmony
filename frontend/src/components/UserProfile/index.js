@@ -20,9 +20,11 @@ export default function UserProfile({sessionUser, isLoaded}) {
     // sessionUser = useSelector(state => state.session.user);
 
     async function handleDelete(e){
-        const gotDeleted = await dispatch(deleteSong(e.target.value));
-        if(gotDeleted){
-            history.push(`/${sessionUser.id}`); // reload the page?
+        if(window.confirm("Are you sure you want to delete your song?")){
+            const gotDeleted = await dispatch(deleteSong(e.target.value));
+            if(gotDeleted){
+                history.push(`/${sessionUser.id}`); // reload the page?
+            }
         }
     }
 

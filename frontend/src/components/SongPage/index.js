@@ -3,7 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import { loadComments, addComment, loadLikes, deleteComment, editComment, updateUserLike } from "../../store/songData";
 import { useHistory, useParams } from "react-router";
+import {Link} from "react-router-dom";
 import { loadSongsThunk } from "../../store/song";
+
 
 export default function SongPage({ isLoaded }) {
 
@@ -122,7 +124,7 @@ export default function SongPage({ isLoaded }) {
                             return (
                                 <div key={comment.id} className="commentDiv">
                                     <img src={comment.User.profilePic} style={{width: 50}} className="userPic"/>
-                                    <p>{comment.User.username}</p>
+                                    <div style={{marginTop: 10}}><Link to={`/${comment.User.id}`}>{comment.User.username}</Link></div>
                                     <p>{formatDate(comment.updatedAt)}</p>
                                     {editCommentNumber === comment.id ? (
                                         <form value={comment.id} onSubmit={editSubmit}>

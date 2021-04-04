@@ -25,3 +25,9 @@ source {
     width: 350px;
     background-color: red;
 }
+
+.playPause {
+    width: 40px;
+    height: auto;
+    bottom: 5px;
+}
