@@ -1,5 +1,9 @@
 /* TODO Add site wide styles */
 
+body {
+    background-color: rgb(202, 225, 255);
+}
+
 .appOrange {
     background-color: rgb(243, 146, 111);
 }

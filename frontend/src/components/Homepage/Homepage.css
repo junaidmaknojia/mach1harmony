@@ -7,14 +7,10 @@
 }
 
 .following {
-    grid-column: 2/4;
+    grid-column: 2/3;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-}
-
-.eachFollowing {
-    margin: 20px;
 }
 
 .banner {
@@ -70,9 +66,20 @@
 }
 
 .eachFollowing {
-    margin-left: 60px;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    margin: 40px 40px;
+
 }
 
 .homeUser {
-    margin: 10px;
+    margin: 20px;
+    text-align: center;
+}
+
+.homeSong {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
 }

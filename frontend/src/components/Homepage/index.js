@@ -67,7 +67,7 @@ export default function Homepage({isLoaded}) {
                     loadUsers.map(user => {
                         return (
                             <div className="homeUser">
-                                <img src={user.profilePic} style={{width: 80}}/>
+                                <img src={user.profilePic} style={{width: 150, borderRadius: 75}}/>
                                 <div>
                                     <Link to={`/${user.id}`}>{user.username}</Link>
                                 </div>
