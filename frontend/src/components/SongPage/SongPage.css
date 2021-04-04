@@ -1,5 +1,50 @@
+.songPage {
+    display: grid;
+    grid-template-columns: 50px repeat(4, 1fr) 50px;
+    grid-template-rows: 70px 300px 2000px 60px;
+    /* text-align: center; */
+}
+
 .songBanner {
-    height: 400px;
+    grid-column: 2 / span 4;
+    grid-row: 2/3;
+    height: 300px;
     background-color: rgb(255, 123, 0);
     margin-bottom: 20px;
+}
+
+.commentsList {
+    grid-column: 2/6;
+    grid-row: 3/4;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.commentDiv {
+    margin-top: 20px;
+    border-bottom:rgb(255, 123, 0) solid 1px;
+    width: 500px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.commentBox {
+    height: 75px;
+    width: 420px;
+    padding: 5px 7px;
+    font-size: 16px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.userPic {
+    border-radius: 25px;
+}
+
+.commentText {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.commentDiv > *:not(.commentText) {
+    font-style: italic;
 }

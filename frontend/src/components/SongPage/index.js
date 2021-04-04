@@ -77,72 +77,81 @@ export default function SongPage({ isLoaded }) {
         await dispatch(updateUserLike(foundSong.id, sessionUser.id));
     }
 
-    return (
-        <>
-            <div className="songBanner">
-            </div>
-            {foundSong && (
-                <>
-                    <h1>{foundSong.title}</h1>
-                    <h2>{foundSong.artist}</h2>
-                </>
-            )}
-            {likes && likes.length>0 && (
-                <>
-                    <p>{`${likes.length} people like this song!`}</p>
-                    {sessionUser && (
-                        <button onClick={handleLike}>{
-                            likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
-                        }</button>
-                    )}
-                </>
-            )}
-            <h3>Comments</h3>
-            <form onSubmit={commentSubmit}>
-                <input
-                    type="textarea"
-                    placeholder="Add your comment..."
-                    value={commentInput}
-                    onChange={e=>setCommentInput(e.target.value)}
-                />
-                <button type="submit">Comment</button>
-            </form>
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
 
-            {comments && comments.length > 0 && (
-                <>
-                    {comments.map(comment => {
-                        return (
-                            <div key={comment.id}>
-                                <p>{`Comment made at: ${comment.updatedAt}`}</p>
-                                <p>{comment.User.username}</p>
-                                {editCommentNumber === comment.id ? (
-                                    <form value={comment.id} onSubmit={editSubmit}>
-                                        <input
-                                            type="textarea"
-                                            value={newComment}
-                                            onChange={e=>setNewComment(e.target.value)}
-                                        />
-                                        <button type="submit" value={comment.id}>Update</button>
-                                        <button onClick={() => setEditCommentNumber(0)}>Cancel</button>
-                                    </form>
-                                ) : <p>{comment.text}</p>}
-                                {(sessionUser.id === comment.userId) && (
-                                    <>
-                                        <button
-                                            onClick={() => {
-                                                setNewComment(comment.text);
-                                                setEditCommentNumber(comment.id)}
-                                            }
-                                            hidden={editCommentNumber}
-                                        >Edit</button>
-                                        <button value={comment.id} onClick={handleDelete}>Delete</button>
-                                    </>
-                                )}
-                            </div>
-                        )
-                    })}
-                </>
-            )}
-        </>
+    return (
+        <div className="songPage">
+            <div className="songBanner">
+                {foundSong && (
+                    <>
+                        <h1>{foundSong.title}</h1>
+                        <h2>{foundSong.artist}</h2>
+                    </>
+                )}
+                {likes && likes.length>0 && (
+                    <>
+                        <p>{`${likes.length} people like this song!`}</p>
+                        {sessionUser && (
+                            <button onClick={handleLike}>{
+                                likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
+                            }</button>
+                        )}
+                    </>
+                )}
+            </div>
+            <div className="commentsList">
+                {/* <h2>Comments</h2> */}
+                <form onSubmit={commentSubmit}>
+                    <textarea
+                        className="commentBox"
+                        placeholder="Add your comment..."
+                        value={commentInput}
+                        onChange={e=>setCommentInput(e.target.value)}
+                    />
+                    <button type="submit" className="appSubmitButton">Comment</button>
+                </form>
+
+                {comments && comments.length > 0 && (
+                    <>
+                        {comments.map(comment => {
+                            return (
+                                <div key={comment.id} className="commentDiv">
+                                    <img src={comment.User.profilePic} style={{width: 50}} className="userPic"/>
+                                    <p>{comment.User.username}</p>
+                                    <p>{formatDate(comment.updatedAt)}</p>
+                                    {editCommentNumber === comment.id ? (
+                                        <form value={comment.id} onSubmit={editSubmit}>
+                                            <textarea
+                                                className="commentBox"
+                                                value={newComment}
+                                                onChange={e=>setNewComment(e.target.value)}
+                                            />
+                                            <button type="submit" value={comment.id}>Update</button>
+                                            <button onClick={() => setEditCommentNumber(0)}>Cancel</button>
+                                        </form>
+                                    ) : <p className="commentText">{comment.text}</p>}
+                                    {(sessionUser.id === comment.userId) && (
+                                        <>
+                                            <button
+                                                onClick={() => {
+                                                    setNewComment(comment.text);
+                                                    setEditCommentNumber(comment.id)}
+                                                }
+                                                hidden={editCommentNumber}
+                                            >Edit</button>
+                                            <button value={comment.id} onClick={handleDelete}>Delete</button>
+                                        </>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </>
+                )}
+
+            </div>
+        </div>
     );
 }
