@@ -67,14 +67,23 @@
 
 .artist {
     margin-left: 120px;
+    font-size: 15px;
+    margin-bottom: 0px;
+    color: rgb(187, 50, 0);
+
 }
 
 .album {
     margin-left: 120px;
+    font-size: 15px;
+    color: rgb(187, 50, 0);
+    font-style: italic;
 }
 
 .year {
     margin-left: 120px;
+    font-size: 15px;
+    color: rgb(187, 50, 0);
 }
 
 .appSubmitButton.delete {

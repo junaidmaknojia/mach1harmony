@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+// import "../UserProfile/UserProfile.css";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk } from "../../store/song";
@@ -55,26 +56,29 @@ export default function UserPage({isLoaded}) {
                     <img className="profilePhoto" src={user.profilePic} style={{width: 200, borderRadius: 100}}/>
                     <h1 className="username">{`@${user.username}`}</h1>
                     <h2 className="email">{user.email}</h2>
+                    {sessionUser && (
+                        <button onClick={handleFollow} className="appSubmitButton">{
+                            following ? "Unfollow" : "Follow"
+                        }</button>
+                    )}
                     <p className="bio">{user.bio}</p>
                 </div>
             )}
             {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
-            {sessionUser && (
-                <button onClick={handleFollow}>{
-                    following ? "Unfollow" : "Follow"
-                }</button>
-            )}
             <div className="songsList">
-                <h1>User's Songs</h1>
+                {user && (<h1>{`${user.username}'s Songs`}</h1>)}
+
                 {foundSongs && foundSongs.map(song => {
                     if(song){
                         return (
-                            <div>
+                            <div className="songDiv">
                                 <img src={song.coverPhoto} height="100" width="100" value={song.filePath} onClick={()=>playSong(song)}/>
-                                <Link to={`/${song.userId}/${song.id}`}>
+                                <Link to={`/${song.userId}/${song.id}`} className="title">
                                     {song.title}
                                 </Link>
-                                <p>{song.artist}</p>
+                                <p className="artist">{song.artist}</p>
+                                <p className="album">{song.album ? song.album : ""}</p>
+                                <p className="year">{song.year ? song.year : ""}</p>
                             </div>
                         );
                     }
