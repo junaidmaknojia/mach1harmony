@@ -38,6 +38,25 @@ router.post("/", validateSignup, asyncHandler(async (req,res) => {
 }));
 
 
+router.get("/info/:id", asyncHandler(async (req,res) => { // get user info
+
+    const userId = req.params.id;
+    const foundUser = await User.findByPk(userId);
+
+    return res.json(foundUser);
+}));
+
+router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
+
+    const userId = req.params.id;
+    const songs = await Song.findAll({
+        where: {
+            userId
+        }
+    });
+
+    return res.json({songs});
+}));
 router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
 
     const userId = req.params.id;
