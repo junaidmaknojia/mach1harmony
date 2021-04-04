@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Homepage.css";
 import { getFollowInfo, loadHomeSongs, loadHomeUsers } from "../../store/user";
 import { Link } from "react-router-dom";
+import { sendSong } from "../../store/playbar";
 
 export default function Homepage({isLoaded}) {
 
@@ -29,6 +30,11 @@ export default function Homepage({isLoaded}) {
         setLoadUsers(response);
     }, [dispatch]);
 
+    async function playSong(song) {
+        await dispatch(sendSong(song));
+        // add to numListens
+    }
+
     // useEffect(() => {}, [dispatch, peopleYoureFollowing]);
 
     let following = (sessionUser && peopleYoureFollowing) ? "following" : "";
@@ -46,7 +52,7 @@ export default function Homepage({isLoaded}) {
                     loadSongs.map(song => {
                         return (
                             <div className="homeSong">
-                                <img src={song.coverPhoto} style={{width: 120}}/>
+                                <img src={song.coverPhoto} style={{width: 120}} onClick={()=>playSong(song)}/>
                                 <div>
                                     <Link to={`/${song.userId}/${song.id}`}>{song.title}</Link>
                                 </div>
