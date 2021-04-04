@@ -1,4 +1,4 @@
-const {User} = require("../../db/models");
+const {User, Song} = require("../../db/models");
 // const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
 const asyncHandler = require("express-async-handler");
 const router = require("express").Router();
@@ -14,29 +14,26 @@ router.use("/songs", songsRouter);
 router.use("/comments", commentsRouter);
 
 
-router.get("/:id(\\d+)", asyncHandler(async (req, res) => { // home page with logged in user
-    // const userId = parseInt(req.params.id, 10);
-    // const user = await User.findByPk(userId);
+router.get("/songs", asyncHandler(async (req, res) => { // songs on home page
 
-    // const userStories = await Story.findAll({
-    //   where: { userId },
-    //   order: [["createdAt", "DESC"]]
-    // });
+    const songs = await Song.findAll({
+        order: [["createdAt", "DESC"]],
+        limit: 5
+    });
 
-    // const peopleYoureFollowing = await User.findAll({
-    //     include: {
-    //       model: User,
-    //       as: "otherPeople"
-    //     },
-    //     where: {id: userId}
-    // })
+    return res.json(songs);
 
 }));
 
-// router.post("/test", function(req,res){
-//     res.json({requestBody: req.body});
-// });
+router.get("/users", asyncHandler(async (req, res) => { // users on home page
 
+    const users = await User.findAll({
+        limit: 5
+    });
+
+    return res.json(users);
+
+}));
 
 //---------USER AUTHENTICATION ROUTER TESTS ------------------
 // router.get("/set-token-cookie", asyncHandler(async (req, res) => {
