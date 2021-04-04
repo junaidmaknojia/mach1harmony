@@ -1,4 +1,28 @@
-.coverBanner {
+/* .coverBanner {
     height: 300px;
     background-color: aqua;
+} */
+
+.userPage {
+    display: grid;
+    grid-template-columns: 50px repeat(4, 1fr) 50px;
+    grid-template-rows: 70px 300px 2000px 60px;
+}
+
+.coverPhotoDiv {
+    grid-column: 2 / span 4;
+    grid-row: 2/3;
+    /* width: auto;
+    height: 400px;  */
+}
+
+.coverPhoto {
+    object-fit: cover;
+    object-position: 20% 20%;
+    height: 300px;
+}
+
+.songList {
+    grid-column: 2/6;
+    grid-row: 3/4;
 }

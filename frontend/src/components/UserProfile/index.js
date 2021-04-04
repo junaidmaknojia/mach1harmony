@@ -31,8 +31,11 @@ export default function UserProfile({sessionUser, isLoaded}) {
     }
 
     return (
-        <>
-            <div className="coverBanner"></div>
+        <div className="userPage">
+            {/* <div className="coverBanner"></div> */}
+            <div className="coverPhotoDiv">
+                <img className="coverPhoto" src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
+            </div>
             <div className="songsList">
                 <h1>Songs You've Uploaded</h1>
                 {isLoaded && foundSongs.map(song => {
@@ -55,6 +58,6 @@ export default function UserProfile({sessionUser, isLoaded}) {
             {/* <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
                 <SongUploadFormModal/>
             </Route> */}
-        </>
+        </div>
     );
 }
