@@ -65,6 +65,26 @@ export function updateProfile(payload) {
     }
 }
 
+export function loadHomeSongs() {
+    return async (dispatch) => {
+        const response = await csrfFetch("/api/songs");
+
+        if(response.ok){
+            return await response.json();
+        }
+    }
+}
+
+export function loadHomeUsers() {
+    return async (dispatch) => {
+        const response = await csrfFetch("/api/users");
+
+        if(response.ok){
+            return await response.json();
+        }
+    }
+}
+
 const userReducer = (state=initialState, action) => {
     let newState = {};
     switch(action.type){

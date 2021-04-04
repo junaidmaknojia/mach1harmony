@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Homepage.css";
-import { getFollowInfo } from "../../store/user";
+import { getFollowInfo, loadHomeSongs, loadHomeUsers } from "../../store/user";
 import { Link } from "react-router-dom";
 
 export default function Homepage({isLoaded}) {
@@ -11,8 +11,22 @@ export default function Homepage({isLoaded}) {
     const sessionUser = useSelector(state => state.session.user);
     const peopleYoureFollowing = useSelector(state => state.user.following);
 
+    const [loadSongs, setLoadSongs] = useState([]);
+    const [loadUsers, setLoadUsers] = useState([]);
+
+
     useEffect(()=> {
         dispatch(getFollowInfo(sessionUser?.id));
+    }, [dispatch]);
+
+    useEffect(async ()=> {
+        const response = await dispatch(loadHomeSongs());
+        setLoadSongs(response);
+    }, [dispatch]);
+
+    useEffect(async ()=> {
+        const response = await dispatch(loadHomeUsers());
+        setLoadUsers(response);
     }, [dispatch]);
 
     // useEffect(() => {}, [dispatch, peopleYoureFollowing]);
@@ -26,8 +40,36 @@ export default function Homepage({isLoaded}) {
                 <div class="top-left">Welcome to Mach1Harmony</div>
                 <div class="bottom-right">Say hello to a new site for sharing your tracks with the world. A bit derivative of SoundCloud, but with a few more tweaks and user feedback, Mach1Harmony will soon fill the silence of the internet with its boom. Sign up to get started!</div>
             </div>
-            <div className={`trending ${following}`}></div>
-            <div className={`newFeatures ${following}`}></div>
+            <div className={`trending ${following}`}>
+                <h2>Trending</h2>
+                {loadSongs && (
+                    loadSongs.map(song => {
+                        return (
+                            <div className="homeSong">
+                                <img src={song.coverPhoto} style={{width: 120}}/>
+                                <div>
+                                    <Link to={`/${song.userId}/${song.id}`}>{song.title}</Link>
+                                </div>
+                            </div>
+                        )
+                    })
+                )}
+            </div>
+            <div className={`explore ${following}`}>
+                <h2>Explore</h2>
+                {loadUsers && (
+                    loadUsers.map(user => {
+                        return (
+                            <div className="homeUser">
+                                <img src={user.profilePic} style={{width: 80}}/>
+                                <div>
+                                    <Link to={`/${user.id}`}>{user.username}</Link>
+                                </div>
+                            </div>
+                        )
+                    })
+                )}
+            </div>
             <div className={`getStarted ${following}`}></div>
             {sessionUser && (
                 <div className="followingDiv">
