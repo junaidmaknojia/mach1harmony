@@ -11,7 +11,7 @@ export default function EditSongFormModal({songId}) {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Edit</button>
+            <button className="appSubmitButton" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditSongForm songId={songId} setShowModal={setShowModal}/>

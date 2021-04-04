@@ -6,6 +6,7 @@
     height: 40px;
     width: 100%;
     box-shadow: 2px 2px 10px rgba(95, 39, 13, 0.486);
+    z-index: 5;
 }
 
 .siteLogo {

@@ -28,6 +28,8 @@ body {
 .appSubmitButton {
     background-color: rgb(243, 146, 111);
     border-radius: 3px;
+    padding: 10px;
+    font-weight: bold;
 }
 
 .appFileUpload {

@@ -17,6 +17,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
     }, [dispatch]);
 
     const foundSongs = useSelector((state) => Object.values(state.song));
+    // sessionUser = useSelector(state => state.session.user);
 
     async function handleDelete(e){
         const gotDeleted = await dispatch(deleteSong(e.target.value));
@@ -35,19 +36,25 @@ export default function UserProfile({sessionUser, isLoaded}) {
             {/* <div className="coverBanner"></div> */}
             <div className="coverPhotoDiv">
                 <img className="coverPhoto" src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
+                <img className="profilePhoto" src={sessionUser.profilePic} style={{width: 200, borderRadius: 100}}/>
+                <h1 className="username">{`@${sessionUser.username}`}</h1>
+                <h2 className="email">{sessionUser.email}</h2>
+                <p className="bio">{sessionUser.bio}</p>
             </div>
             <div className="songsList">
                 <h1>Songs You've Uploaded</h1>
                 {isLoaded && foundSongs.map(song => {
                     if(song){
                         return (
-                            <div>
+                            <div className="songDiv">
                                 <img src={song.coverPhoto} height="100" width="100" value={song.filePath} onClick={()=>playSong(song)}/>
-                                <Link to={`/${song.userId}/${song.id}`}>
+                                <Link to={`/${song.userId}/${song.id}`} className="title">
                                     {song.title}
                                 </Link>
-                                <p>{song.artist}</p>
-                                <button type="click" value={song.id} onClick={handleDelete}>Delete</button>
+                                <p className="artist">{song.artist}</p>
+                                <p className="album">{song.album ? song.album : ""}</p>
+                                <p className="year">{song.year ? song.year : ""}</p>
+                                <button type="click" className="appSubmitButton delete" value={song.id} onClick={handleDelete}>Delete</button>
                                 <EditSongFormModal songId={song.id}/>
                             </div>
                         );
