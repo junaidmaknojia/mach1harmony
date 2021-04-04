@@ -66,8 +66,7 @@ export default function SongPage({ isLoaded }) {
     }
 
     async function handleDelete(e){
-        const commentId = e.target.value;
-        console.log(commentId);
+        const commentId = e.target.getAttribute("value");
         let deleteGood = await dispatch(deleteComment(commentId, songId));
     }
 
@@ -84,24 +83,27 @@ export default function SongPage({ isLoaded }) {
 
     return (
         <div className="songPage">
-            <div className="songBanner">
-                {foundSong && (
-                    <>
-                        <h1>{foundSong.title}</h1>
+            {foundSong && (
+                <div className="songBanner">
+                    <img src={foundSong.coverPhoto} className="songPhoto"/>
+                    <div className="songInfo">
+                        <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>
-                    </>
-                )}
-                {likes && likes.length>0 && (
-                    <>
-                        <p>{`${likes.length} people like this song!`}</p>
-                        {sessionUser && (
-                            <button onClick={handleLike}>{
-                                likes.find(like => like.userId === sessionUser.id) ? "Unlike" : "Like"
-                            }</button>
+                        <span style={{marginRight: 5}}>{foundSong.numListens}<i class="fas fa-headphones"></i></span>
+                        {likes && likes.length>0 && (
+                            <>
+                                <p>{`${likes.length} Likes`}</p>
+                                {sessionUser && (
+                                    <span onClick={handleLike} className="likeButton">{
+                                        likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>
+                                    }</span>
+                                )}
+                            </>
                         )}
-                    </>
-                )}
-            </div>
+                    </div>
+                </div>
+            )}
+
             <div className="commentsList">
                 {/* <h2>Comments</h2> */}
                 <form onSubmit={commentSubmit}>
@@ -129,21 +131,22 @@ export default function SongPage({ isLoaded }) {
                                                 value={newComment}
                                                 onChange={e=>setNewComment(e.target.value)}
                                             />
-                                            <button type="submit" value={comment.id}>Update</button>
-                                            <button onClick={() => setEditCommentNumber(0)}>Cancel</button>
+                                            <button className="appSubmitButton" type="submit" value={comment.id}>Update</button>
+                                            <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
                                         </form>
                                     ) : <p className="commentText">{comment.text}</p>}
                                     {(sessionUser.id === comment.userId) && (
-                                        <>
-                                            <button
+                                        <div style={{marginBottom: 10}}>
+                                            <p
                                                 onClick={() => {
                                                     setNewComment(comment.text);
                                                     setEditCommentNumber(comment.id)}
                                                 }
                                                 hidden={editCommentNumber}
-                                            >Edit</button>
-                                            <button value={comment.id} onClick={handleDelete}>Delete</button>
-                                        </>
+                                                style={{margin: 5, color: "orange"}}
+                                            >Edit</p>
+                                            <p style={{margin: 5, color: "orange"}} value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
+                                        </div>
                                     )}
                                 </div>
                             )

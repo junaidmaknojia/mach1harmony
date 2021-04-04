@@ -13,6 +13,21 @@
     margin-bottom: 20px;
 }
 
+.songPhoto {
+    width: 200px;
+    margin: 40px;
+}
+
+.songInfo {
+    position: absolute;
+    top: 80px;
+    margin-left: 260px;
+}
+
+.likeButton {
+    scale: 10;
+}
+
 .commentsList {
     grid-column: 2/6;
     grid-row: 3/4;
