@@ -13,7 +13,7 @@ export default function SignupFormModal() {
             <span onClick={() => setShowModal(true)}>Sign Up</span>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <SignupForm/>
+                    <SignupForm setShowModal={setShowModal}/>
                 </Modal>
             )}
         </>

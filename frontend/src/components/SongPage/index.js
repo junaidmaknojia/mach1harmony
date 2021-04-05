@@ -5,6 +5,7 @@ import { loadComments, addComment, loadLikes, deleteComment, editComment, update
 import { useHistory, useParams } from "react-router";
 import {Link} from "react-router-dom";
 import { loadSongsThunk } from "../../store/song";
+import { sendSong } from "../../store/playbar";
 
 
 export default function SongPage({ isLoaded }) {
@@ -83,11 +84,16 @@ export default function SongPage({ isLoaded }) {
         return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
+    async function playSong(song) {
+        await dispatch(sendSong(song));
+        // add to numListens
+    }
+
     return (
         <div className="songPage">
             {foundSong && (
                 <div className="songBanner">
-                    <img src={foundSong.coverPhoto} className="songPhoto"/>
+                    <img src={foundSong.coverPhoto} className="songPhoto" onClick={() => playSong(foundSong)}/>
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>

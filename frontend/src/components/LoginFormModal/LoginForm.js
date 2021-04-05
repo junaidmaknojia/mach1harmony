@@ -27,7 +27,7 @@ export default function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginForm">
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
@@ -45,7 +45,7 @@ export default function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <button type="submit">Log In</button>
+            <button type="submit" className="appSubmitButton">Log In</button>
         </form>
     );
 }

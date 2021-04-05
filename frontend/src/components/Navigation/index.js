@@ -18,7 +18,7 @@ export default function Navigation({ isLoaded }) {
             <>
                 <li className="dropdown"><ProfileButton user={sessionUser} /></li>
                 <li><SongUploadFormModal/></li>
-                {/* <li><EditProfileModal/></li> */}
+                <li><EditProfileModal/></li>
             </>
         )
     } else {

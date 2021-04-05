@@ -50,9 +50,9 @@ export default function ProfileButton({ user }) {
                     <p>
                         <NavLink to={`/${user.id}`}>Profile</NavLink>
                     </p>
-                    <p>
+                    {/* <p>
                         <EditProfileModal/>
-                    </p>
+                    </p> */}
                     <p>{user.email}</p>
                     <p onClick={logout}>
                         <i class="fas fa-sign-out-alt"></i>

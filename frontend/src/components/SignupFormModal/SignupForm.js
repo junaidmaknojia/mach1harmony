@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
-export default function SignupForm() {
+export default function SignupForm({setShowModal}) {
 
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -20,6 +20,7 @@ export default function SignupForm() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
+            setShowModal(false);
             return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
@@ -30,7 +31,7 @@ export default function SignupForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
             <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>

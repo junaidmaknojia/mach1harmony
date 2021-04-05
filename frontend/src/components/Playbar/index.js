@@ -34,7 +34,7 @@ export default function Playbar(){
         <div className="barContainer">
             {addedSong && (
                 <>
-                    <span><img style={{width: 40}} src={addedSong.coverPhoto}/></span>
+                    <span><img style={{height: 40}} src={addedSong.coverPhoto}/></span>
                     <span style={{fontSize: 20, fontWeight: "bold"}}>{addedSong.title}</span>
                     <span>{addedSong.album}</span>
                     <span style={{width: 40, border: "black"}}>

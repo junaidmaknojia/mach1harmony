@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {createSong} from "../../store/song";
+import "./UploadSongPage.css";
 
 
 export default function SongUploadForm({setShowModal}) {
