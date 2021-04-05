@@ -1,11 +1,13 @@
 ul {
     z-index: 5;
     position: fixed;
-    list-style-type: none;
+    /* list-style-type: none; */
     margin: 0;
+    margin-left: 50px;
     padding: 0;
     overflow: hidden;
     background-color: rgb(245, 111, 62);
+    box-shadow: 2px 2px 5px black;
 }
 
 li {
@@ -31,32 +33,5 @@ li:hover {
 }
 
 .search {
-    width: 300px;
-}
-
-.siteLogo {
-    font-weight: bold;
-    font-size: 20px;
-    width: 250px;
-    text-align: center;
-    align-self: center;
-    /* order: -3; */
-}
-
-.profile-dropdown {
-    margin-top: 40px;
-    background-color: rgb(119, 178, 236);
-}
-
-.profile-dropdown > div {
-    padding: 10px 0px;
-}
-
-.profile-button {
-    padding: 12px 10px;
-}
-
-.profile-button:hover{
-    cursor: context-menu;
-    background-color: rgb(177, 95, 66);
+    max-width: 300px;
 }

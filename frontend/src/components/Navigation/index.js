@@ -16,9 +16,9 @@ export default function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <li><ProfileButton user={sessionUser} /></li>
+                <li className="dropdown"><ProfileButton user={sessionUser} /></li>
                 <li><SongUploadFormModal/></li>
-                <li><EditProfileModal/></li>
+                {/* <li><EditProfileModal/></li> */}
             </>
         )
     } else {
@@ -32,12 +32,12 @@ export default function Navigation({ isLoaded }) {
 
     return (
         <ul>
-            <li className="siteLogo">Mach1Harmony</li>
+            <li className="siteLogo"><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Mach1Harmony</NavLink></li>
             <li id="browse" >Browse</li>
             <li className="search">
                 <input style={{width: 300}} type="text"/>
             </li>
-            <li><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Home</NavLink></li>
+            {/* <li><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Home</NavLink></li> */}
             {isLoaded && sessionLinks}
         </ul>
     );

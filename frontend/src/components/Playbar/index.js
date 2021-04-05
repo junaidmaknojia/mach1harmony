@@ -30,25 +30,6 @@ export default function Playbar(){
         }
     }
 
-    // <ReactSlider
-    // 			value={thermometer}
-    // 			onAfterChange={(val) => {
-    // 				setThermometer(val);
-    // 			}}
-    // 			className="thermometer-slider"
-    // 			thumbClassName="thermometer-thumb"
-    // 			trackClassName="thermometer-track"
-    // 			ariaLabel={"Thermometer"}
-    // 			orientation="vertical"
-    // 			min={0}
-    // 			max={120}
-    // 			renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    // 			renderTrack={(props, state) => <div {...props} index={state.index}></div>}
-    // 			invert
-    // 			pearling
-    // 			minDistance={1}
-    // 		/>
-
     return (
         <div className="barContainer">
             {addedSong && (

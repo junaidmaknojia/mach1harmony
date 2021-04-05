@@ -44,27 +44,22 @@ export default function ProfileButton({ user }) {
 
     return (
         <>
-            <div className="profile-button" onClick={openMenu}>
-                <i class="fas fa-user-circle" > {`  ${user.username}`}</i>
-                {/* <p>{user.username}</p> */}
-                {showMenu && (
-                    <div className="profile-dropdown">
-                        <div>
-                            <NavLink to={`/${user.id}`}>Profile</NavLink>
-                        </div>
-                        <div>
-                            <EditProfileModal/>
-                        </div>
-                        <div>{user.email}</div>
-                        <div>
-                            <button onClick={logout}>
-                                <i class="fas fa-sign-out-alt"></i>
-                                Log Out
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </div>
+            <p onClick={openMenu}><i class="fas fa-user-circle"></i>{`  ${user.username}`}</p>
+            {showMenu && (
+                <>
+                    <p>
+                        <NavLink to={`/${user.id}`}>Profile</NavLink>
+                    </p>
+                    <p>
+                        <EditProfileModal/>
+                    </p>
+                    <p>{user.email}</p>
+                    <p onClick={logout}>
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </p>
+                </>
+            )}
         </>
     );
 }
