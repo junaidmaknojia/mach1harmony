@@ -16,29 +16,31 @@ export default function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <ProfileButton user={sessionUser} />
-                <SongUploadFormModal/>
-                <EditProfileModal/>
+                <li><ProfileButton user={sessionUser} /></li>
+                <li><SongUploadFormModal/></li>
+                <li><EditProfileModal/></li>
             </>
-        );
+        )
     } else {
         sessionLinks = (
             <>
-                <LoginFormModal/>
-                <SignupFormModal/>
+                <li><LoginFormModal/></li>
+                <li><SignupFormModal/></li>
             </>
         );
     }
 
     return (
         <div className="navBar">
-            <p className="siteLogo">Mach1Harmony</p>
-            <p className="navButton" id="browse" >Browse</p>
-            <div className="search">
-                <input type="text"/>
-            </div>
-            <NavLink className="navButton" id="home" exact to="/">Home</NavLink>
-            {isLoaded && sessionLinks}
+            <ul>
+                <li className="siteLogo">Mach1Harmony</li>
+                <li className="navButton" id="browse" >Browse</li>
+                <li className="search">
+                    <input type="text"/>
+                </li>
+                <li><NavLink className="navButton" id="home" exact to="/">Home</NavLink></li>
+                {isLoaded && sessionLinks}
+            </ul>
         </div>
     );
 }

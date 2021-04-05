@@ -9,7 +9,7 @@ export default function EditProfileModal() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Edit Profile</button>
+            <span onClick={() => setShowModal(true)}>Edit Profile</span>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditProfile setShowModal={setShowModal}/>
