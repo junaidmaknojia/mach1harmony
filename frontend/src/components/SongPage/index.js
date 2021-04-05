@@ -107,16 +107,17 @@ export default function SongPage({ isLoaded }) {
             )}
 
             <div className="commentsList">
-                {/* <h2>Comments</h2> */}
-                <form onSubmit={commentSubmit}>
-                    <textarea
-                        className="commentBox"
-                        placeholder="Add your comment..."
-                        value={commentInput}
-                        onChange={e=>setCommentInput(e.target.value)}
-                    />
-                    <button type="submit" className="appSubmitButton">Comment</button>
-                </form>
+                {sessionUser && (
+                    <form onSubmit={commentSubmit}>
+                        <textarea
+                            className="commentBox"
+                            placeholder="Add your comment..."
+                            value={commentInput}
+                            onChange={e=>setCommentInput(e.target.value)}
+                            />
+                        <button type="submit" className="appSubmitButton">Comment</button>
+                    </form>
+                )}
 
                 {comments && comments.length > 0 && (
                     <>
@@ -137,7 +138,7 @@ export default function SongPage({ isLoaded }) {
                                             <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
                                         </form>
                                     ) : <p className="commentText">{comment.text}</p>}
-                                    {(sessionUser.id === comment.userId) && (
+                                    {sessionUser && (sessionUser.id === comment.userId) && (
                                         <div style={{marginBottom: 10}}>
                                             <p
                                                 onClick={() => {

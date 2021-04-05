@@ -31,16 +31,14 @@ export default function Navigation({ isLoaded }) {
     }
 
     return (
-        <div className="navBar">
-            <ul>
-                <li className="siteLogo">Mach1Harmony</li>
-                <li className="navButton" id="browse" >Browse</li>
-                <li className="search">
-                    <input type="text"/>
-                </li>
-                <li><NavLink className="navButton" id="home" exact to="/">Home</NavLink></li>
-                {isLoaded && sessionLinks}
-            </ul>
-        </div>
+        <ul>
+            <li className="siteLogo">Mach1Harmony</li>
+            <li id="browse" >Browse</li>
+            <li className="search">
+                <input style={{width: 300}} type="text"/>
+            </li>
+            <li><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Home</NavLink></li>
+            {isLoaded && sessionLinks}
+        </ul>
     );
 }
