@@ -42,39 +42,44 @@ export default function Homepage({isLoaded}) {
     return (
         <div className="homepage">
             <div className={`banner ${following}`}>
-                <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sunset"></img>
-                <div class="top-left">Welcome to Mach1Harmony</div>
-                <div class="bottom-right">Say hello to a new site for sharing your tracks with the world. A bit derivative of SoundCloud, but with a few more tweaks and user feedback, Mach1Harmony will soon fill the silence of the internet with its boom. Sign up to get started!</div>
+                {/* <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sunset"></img> */}
+                <div className="welcome">Welcome to Mach1Harmony</div>
+                <div className="welcomeInfo">Say hello to a new site for sharing your tracks with the world. A bit derivative of SoundCloud, but with a few more tweaks and user feedback, Mach1Harmony will soon fill the silence of the internet with its boom. Sign up to get started!</div>
             </div>
             <div className={`trending ${following}`}>
                 <h2>Trending</h2>
-                {loadSongs && (
-                    loadSongs.map(song => {
-                        return (
-                            <div className="homeSong">
-                                <img src={song.coverPhoto} style={{width: 120}} onClick={()=>playSong(song)}/>
-                                <div>
-                                    <Link to={`/${song.userId}/${song.id}`}>{song.title}</Link>
+                <div>
+                    {loadSongs && (
+                        loadSongs.map(song => {
+                            return (
+                                <div className="homeSong">
+                                    <img src={song.coverPhoto} style={{width: 120}} onClick={()=>playSong(song)}/>
+                                    <div>
+                                        <Link style={{textDecoration: "none", color: "white"}} to={`/${song.userId}/${song.id}`}>{song.title}</Link>
+                                    </div>
+                                    <div>{song.album}</div>
                                 </div>
-                            </div>
-                        )
-                    })
-                )}
+                            )
+                        })
+                        )}
+                </div>
             </div>
             <div className={`explore ${following}`}>
                 <h2>Explore</h2>
-                {loadUsers && (
-                    loadUsers.map(user => {
-                        return (
-                            <div className="homeUser">
-                                <img src={user.profilePic} style={{width: 150, borderRadius: 75}}/>
-                                <div>
-                                    <Link to={`/${user.id}`}>{user.username}</Link>
+                <div>
+                    {loadUsers && (
+                        loadUsers.map(user => {
+                            return (
+                                <div className="homeUser">
+                                    <img src={user.profilePic} style={{width: 150, borderRadius: 75}}/>
+                                    <div>
+                                        <Link style={{textDecoration: "none", color: "white"}} to={`/${user.id}`}>{user.username}</Link>
+                                    </div>
                                 </div>
-                            </div>
-                        )
-                    })
-                )}
+                            )
+                        })
+                        )}
+                </div>
             </div>
             <div className={`getStarted ${following}`}></div>
             {sessionUser && (
