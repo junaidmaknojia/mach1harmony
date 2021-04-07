@@ -61,7 +61,7 @@ export default function Homepage({isLoaded}) {
                                 </div>
                             )
                         })
-                        )}
+                    )}
                 </div>
             </div>
             <div className={`explore ${following}`}>
@@ -78,7 +78,7 @@ export default function Homepage({isLoaded}) {
                                 </div>
                             )
                         })
-                        )}
+                    )}
                 </div>
             </div>
             <div className={`getStarted ${following}`}></div>
