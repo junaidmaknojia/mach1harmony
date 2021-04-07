@@ -5,16 +5,16 @@ const SESSION_REMOVE = "session/removeUser"
 
 const initialState = {user: null};
 
-const sessionAdd = (user) => {{
+const sessionAdd = (user) => {
     return {
         type: SESSION_ADD,
         payload: user
     }
-}}
+}
 
-const sessionRemove = () => {{
+const sessionRemove = () => {
     return {type: SESSION_REMOVE}
-}}
+}
 
 export function login(user) {
     return async (dispatch) => {

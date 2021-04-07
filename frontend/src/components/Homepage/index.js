@@ -20,13 +20,13 @@ export default function Homepage({isLoaded}) {
         dispatch(getFollowInfo(sessionUser?.id));
     }, [dispatch]);
 
-    useEffect(async ()=> {
-        const response = await dispatch(loadHomeSongs());
+    useEffect(()=> {
+        const response = dispatch(loadHomeSongs());
         setLoadSongs(response);
     }, [dispatch]);
 
-    useEffect(async ()=> {
-        const response = await dispatch(loadHomeUsers());
+    useEffect(()=> {
+        const response = dispatch(loadHomeUsers());
         setLoadUsers(response);
     }, [dispatch]);
 
@@ -53,7 +53,7 @@ export default function Homepage({isLoaded}) {
                         loadSongs.map(song => {
                             return (
                                 <div className="homeSong">
-                                    <img src={song.coverPhoto} style={{width: 120}} onClick={()=>playSong(song)}/>
+                                    <img src={song.coverPhoto} alt={song.title} style={{width: 120}} onClick={()=>playSong(song)}/>
                                     <div>
                                         <Link style={{textDecoration: "none", color: "black"}} to={`/${song.userId}/${song.id}`}>{song.title}</Link>
                                     </div>
@@ -71,7 +71,7 @@ export default function Homepage({isLoaded}) {
                         loadUsers.map(user => {
                             return (
                                 <div className="homeUser">
-                                    <img src={user.profilePic} style={{width: 150, borderRadius: 75}}/>
+                                    <img src={user.profilePic} alt={user.username} style={{width: 150, borderRadius: 75}}/>
                                     <div>
                                         <Link style={{textDecoration: "none", color: "black"}} to={`/${user.id}`}>{user.username}</Link>
                                     </div>
@@ -88,7 +88,7 @@ export default function Homepage({isLoaded}) {
                     {peopleYoureFollowing && peopleYoureFollowing.map(user => {
                         return (
                             <div className="eachFollowing">
-                                <img src={user.profilePic} style={{width: 80}} className="userPic"/>
+                                <img src={user.profilePic} alt={user.username} style={{width: 80}} className="userPic"/>
                                 <div>
                                     <Link to={`/${user.id}`}>{user.username}</Link>
                                 </div>

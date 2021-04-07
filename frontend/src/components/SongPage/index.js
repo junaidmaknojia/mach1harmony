@@ -2,7 +2,7 @@ import "./SongPage.css";
 import {useDispatch, useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import { loadComments, addComment, loadLikes, deleteComment, editComment, updateUserLike } from "../../store/songData";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import {Link} from "react-router-dom";
 import { loadSongsThunk } from "../../store/song";
 import { sendSong } from "../../store/playbar";
@@ -11,7 +11,6 @@ import { sendSong } from "../../store/playbar";
 export default function SongPage({ isLoaded }) {
 
     const {userId, songId} = useParams();
-    const history = useHistory();
     const dispatch = useDispatch();
 
     const [commentInput, setCommentInput] = useState("");
@@ -53,7 +52,7 @@ export default function SongPage({ isLoaded }) {
     async function commentSubmit(e){
         e.preventDefault();
         const payload = {text: commentInput, userId: sessionUser.id, songId: foundSong.id}
-        let commentGood = await dispatch(addComment(payload, foundSong.id));
+        await dispatch(addComment(payload, foundSong.id));
         setCommentInput("");
         // if(commentGood) history.push(`/${foundSong.userId}/${songId}`); // reload the page?
     }
@@ -70,7 +69,7 @@ export default function SongPage({ isLoaded }) {
 
     async function handleDelete(e){
         const commentId = e.target.getAttribute("value");
-        let deleteGood = await dispatch(deleteComment(commentId, songId));
+        await dispatch(deleteComment(commentId, songId));
     }
 
     async function handleLike(e){
@@ -93,7 +92,7 @@ export default function SongPage({ isLoaded }) {
         <div className="songPage">
             {foundSong && (
                 <div className="songBanner">
-                    <img src={foundSong.coverPhoto} className="songPhoto" onClick={() => playSong(foundSong)}/>
+                    <img src={foundSong.coverPhoto} alt={foundSong.title} className="songPhoto" onClick={() => playSong(foundSong)}/>
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>
@@ -130,7 +129,7 @@ export default function SongPage({ isLoaded }) {
                         {comments.map(comment => {
                             return (
                                 <div key={comment.id} className="commentDiv">
-                                    <img src={comment.User.profilePic} style={{width: 50}} className="userPic"/>
+                                    <img src={comment.User.profilePic} alt={comment.User.username} style={{width: 50}} className="userPic"/>
                                     <div style={{marginTop: 10}}><Link to={`/${comment.User.id}`}>{comment.User.username}</Link></div>
                                     <p>{formatDate(comment.updatedAt)}</p>
                                     {editCommentNumber === comment.id ? (
