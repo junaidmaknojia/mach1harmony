@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Genre from "./Genre";
 import "./GenresPage.css";
 
 export default function GenresPage() {
@@ -7,7 +8,7 @@ export default function GenresPage() {
     function showSongs(e){
         // console.log(e.target.value);
         // grab the songs
-        setGenreSelected(genreSongs);
+        // setGenreSelected(genreSongs);
     }
 
     return (
@@ -24,21 +25,10 @@ export default function GenresPage() {
                     })
                 )} */}
             </div>
-            <div className="genreSongs">
-                {/* {genreSelected && (
-                    genreSelected.map(song => {
-                        return (
-                            <div>
-                                <img src={song.coverPhoto}/>
-                                <span>{song.title}</span>
-                                <span>{song.artist}</span>
-                                <span>{song.album}</span>
-                                <span>{song.numListens}</span>
-                            </div>
-                        )
-                    })
-                )} */}
-            </div>
+
+            {/* {genreSelected && (
+                <Genre songs={songs}/>
+            )} */}
         </>
     )
 }
