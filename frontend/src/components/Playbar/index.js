@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { incrementListen } from "../../store/playbar";
 import "./Playbar.css";
 
 export default function Playbar(){
 
     const audioRef = useRef()
-
+    const dispatch = useDispatch();
     const addedSong = useSelector(state => state.playBar.currSong);
 
     const [playing, setPlaying] = useState(false);
@@ -16,6 +17,7 @@ export default function Playbar(){
             setPlaying(false);
             audioRef.current.load();
             audioRef.current.play();
+            dispatch(incrementListen(addedSong.id));
             setPlaying(true);
         }
     }, [addedSong]);

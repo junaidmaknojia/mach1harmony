@@ -10,6 +10,17 @@ const initialState = {user: null};
 //     }
 // }
 
+export function incrementListen(songId) {
+    return async (dispatch) => {
+        const response = await csrfFetch(`/api/songs/listens/${songId}`);
+
+        if(response.ok){
+
+            // return await response.json();
+        }
+    }
+}
+
 export const sendSong = (song) => async (dispatch) => {
     await dispatch(setStateSong(song));
 }
