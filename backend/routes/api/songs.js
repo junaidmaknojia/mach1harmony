@@ -103,4 +103,11 @@ router.delete("/:id", asyncHandler(async (req, res) => { // delete song
     return res.json();
 }));
 
+
+router.patch("/listens/:id", asyncHandler(async (req,res) => {
+    const songId = req.params.id;
+    const song = await Song.findByPk(songId);
+    song.numListens = song.numListens + 1;
+    return res.json();
+}));
 module.exports = router;
