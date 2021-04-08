@@ -20,13 +20,13 @@ export default function Homepage({isLoaded}) {
         dispatch(getFollowInfo(sessionUser?.id));
     }, [dispatch]);
 
-    useEffect(()=> {
-        const response = dispatch(loadHomeSongs());
+    useEffect(async ()=> {
+        const response = await dispatch(loadHomeSongs());
         setLoadSongs(response);
     }, [dispatch]);
 
-    useEffect(()=> {
-        const response = dispatch(loadHomeUsers());
+    useEffect(async ()=> {
+        const response = await dispatch(loadHomeUsers());
         setLoadUsers(response);
     }, [dispatch]);
 
