@@ -11,13 +11,13 @@ export default function Playbar(){
 
     const [playing, setPlaying] = useState(false);
 
-    useEffect(() => {
+    useEffect(async () => {
         if(audioRef.current){
             audioRef.current.pause();
             setPlaying(false);
             audioRef.current.load();
             audioRef.current.play();
-            dispatch(incrementListen(addedSong.id));
+            await dispatch(incrementListen(addedSong.id));
             setPlaying(true);
         }
     }, [addedSong]);

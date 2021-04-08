@@ -14,10 +14,7 @@ export function incrementListen(songId) {
     return async (dispatch) => {
         const response = await csrfFetch(`/api/songs/listens/${songId}`);
 
-        if(response.ok){
-
-            // return await response.json();
-        }
+        if(response.ok){}
     }
 }
 
