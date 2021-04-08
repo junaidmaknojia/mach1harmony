@@ -19,6 +19,10 @@
     margin: 40px;
 }
 
+.songPhoto:hover {
+    opacity: 0.6;
+}
+
 .songInfo {
     position: absolute;
     top: 80px;

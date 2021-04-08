@@ -92,7 +92,11 @@ export default function SongPage({ isLoaded }) {
         <div className="songPage">
             {foundSong && (
                 <div className="songBanner">
-                    <img src={foundSong.coverPhoto} alt={foundSong.title} className="songPhoto" onClick={() => playSong(foundSong)}/>
+                    <img
+                        src={foundSong.coverPhoto}
+                        alt={foundSong.title}
+                        className="songPhoto"
+                        onClick={() => playSong(foundSong)}/>
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>
