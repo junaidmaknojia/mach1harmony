@@ -1,4 +1,4 @@
-
+import "./GenresPage.css";
 
 export default function Genre({songs}){
 
@@ -8,7 +8,7 @@ export default function Genre({songs}){
             {songs.map(song => {
                 return (
                     <div>
-                        <img src={song.coverPhoto}/>
+                        <img src={song.coverPhoto} style={{width: 40, height: 40}}/>
                         <span>{song.title}</span>
                         <span>{song.artist}</span>
                         <span>{song.album}</span>

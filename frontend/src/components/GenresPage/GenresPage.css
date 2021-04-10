@@ -1,0 +1,16 @@
+.genreOptions {
+    position: absolute;
+    top: 120px;
+    height: 400px;
+    width: 600px;
+}
+
+.genreOptions > p {
+    display: inline-block;
+}
+
+.genreSongs {
+    position: absolute;
+    top: 200px;
+    width: 100%;
+}

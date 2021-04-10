@@ -27,14 +27,14 @@ function App() {
           <Route exact path="/">
             <Homepage isLoaded={isLoaded}/>
           </Route>
-          <Route path="/:userId/:songId" isLoaded={isLoaded}>
+          <Route path="/:userId/:songId">
               <SongPage/>
+          </Route>
+          <Route path="/genres">
+              <GenresPage/>
           </Route>
           <Route path="/:userId">
               <UserPage isLoaded={isLoaded}/>
-          </Route>
-          <Route exact path="/genres">
-              <GenresPage/>
           </Route>
         </Switch>
       )}
