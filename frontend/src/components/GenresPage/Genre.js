@@ -1,6 +1,8 @@
 
 
 export default function Genre({songs}){
+
+
     return (
         <div className="genreSongs">
             {songs.map(song => {

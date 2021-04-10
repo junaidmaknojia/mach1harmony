@@ -1,20 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {useDispatch} from "react-redux";
+import { getGenres } from "../../store/genre";
 import Genre from "./Genre";
 import "./GenresPage.css";
 
+
 export default function GenresPage() {
+    const dispatch = useDispatch();
+    const [genreSelected, setGenreSelected] = useState([]);
     const [genreSelected, setGenreSelected] = useState([]);
 
     function showSongs(e){
-        // console.log(e.target.value);
-        // grab the songs
-        // setGenreSelected(genreSongs);
+        console.log(e.target.value);
+        setGenreSelected(genreSongs);
     }
+
+    useEffect(async ()=> {
+        const genres = await dispatch(getGenres())
+    }, [dispatch])
 
     return (
         <>
             <div className="genreOptions">
-                {/* {genres && (
+                {genres && (
                     genres.map(genre => {
                         return (
                             <p
@@ -23,12 +31,12 @@ export default function GenresPage() {
                             className="genreOptions__genre">{genre.name}</p>
                         )
                     })
-                )} */}
+                )}
             </div>
 
-            {/* {genreSelected && (
+            {genreSelected && (
                 <Genre songs={songs}/>
-            )} */}
+            )}
         </>
     )
 }
