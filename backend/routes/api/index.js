@@ -6,14 +6,14 @@ const usersRouter = require("./users");
 const sessionRouter = require("./session");
 const songsRouter = require("./songs");
 const commentsRouter = require("./comments");
-const genreRouter = require("./genre");
+const genresRouter = require("./genre");
 
 
 router.use("/users", usersRouter);
 router.use("/session", sessionRouter);
 router.use("/songs", songsRouter);
 router.use("/comments", commentsRouter);
-router.use("/genre", genreRouter);
+router.use("/genres", genresRouter);
 
 
 router.get("/songs", asyncHandler(async (req, res) => { // songs on home page
