@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Song, Follow } = require('../../db/models');
+const { User, Song, Follow, Genre } = require('../../db/models');
 const asyncHandler = require("express-async-handler");
 
 
