@@ -6,7 +6,6 @@ const asyncHandler = require("express-async-handler");
 
 
 router.get("/", asyncHandler(async (req,res) => {
-    console.log("inside api------");
     const genres = await Genre.findAll();
 
     return res.json(genres)
@@ -14,8 +13,9 @@ router.get("/", asyncHandler(async (req,res) => {
 
 router.get("/:id", asyncHandler(async (req,res) => {
     const genreId = req.params.id;
+    console.log(genreId);
     const songs = await Song.findAll({
-        where: genreId
+        where: {genreId}
     });
 
     return res.json(songs)
