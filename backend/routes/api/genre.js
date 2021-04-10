@@ -4,9 +4,9 @@ const asyncHandler = require("express-async-handler");
 
 
 
-module.exports = router;
 
 router.get("/", asyncHandler(async (req,res) => {
+    console.log("inside api------");
     const genres = await Genre.findAll();
 
     return res.json(genres)
@@ -20,3 +20,5 @@ router.get("/:id", asyncHandler(async (req,res) => {
 
     return res.json(songs)
 }));
+
+module.exports = router;
