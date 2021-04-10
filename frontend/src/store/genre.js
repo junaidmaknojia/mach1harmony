@@ -1,9 +1,10 @@
 import { csrfFetch } from "./csrf";
 
+const initialState = {user: null};
 
 export function showSongs(genreId) {
     return async (dispatch) => {
-        const response = await csrfFetch(`/${genreId}`);
+        const response = await csrfFetch(`/api/genres/${genreId}`);
 
         if(response.ok){
             return response.json();
@@ -13,7 +14,7 @@ export function showSongs(genreId) {
 
 export function getGenres() {
     return async (dispatch) => {
-        const response = await csrfFetch("/");
+        const response = await csrfFetch("/api/genres");
 
         if(response.ok){
             return response.json();

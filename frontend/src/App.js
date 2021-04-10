@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage";
 import Playbar from "./components/Playbar";
 import SongPage from "./components/SongPage";
 import UserPage from "./components/UserPage";
+import GenresPage from "./components/GenresPage";
 
 function App() {
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/:userId">
               <UserPage isLoaded={isLoaded}/>
+          </Route>
+          <Route exact path="/genres">
+              <GenresPage/>
           </Route>
         </Switch>
       )}

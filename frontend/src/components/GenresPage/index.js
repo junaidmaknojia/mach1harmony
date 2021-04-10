@@ -7,16 +7,17 @@ import "./GenresPage.css";
 
 export default function GenresPage() {
     const dispatch = useDispatch();
-    const [genreSelected, setGenreSelected] = useState([]);
+    const genres = [];
+    const songs = [];
     const [genreSelected, setGenreSelected] = useState([]);
 
     function showSongs(e){
         console.log(e.target.value);
-        setGenreSelected(genreSongs);
+        // setGenreSelected(genreSongs);
     }
 
     useEffect(async ()=> {
-        const genres = await dispatch(getGenres())
+        genres = await dispatch(getGenres())
     }, [dispatch])
 
     return (

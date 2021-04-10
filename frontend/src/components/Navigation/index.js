@@ -33,7 +33,7 @@ export default function Navigation({ isLoaded }) {
     return (
         <ul>
             <li className="siteLogo"><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Mach1Harmony</NavLink></li>
-            <li id="browse" >Browse</li>
+            <li id="browse" ><NavLink id="home" style={{textDecoration: "none"}} exact to="/genres">Browse</NavLink></li>
             <li className="search">
                 <input style={{width: 300}} type="text"/>
             </li>
