@@ -19,8 +19,16 @@
     margin: 40px;
 }
 
-.songPhoto:hover {
-    opacity: 0.6;
+.playHover {
+    display: none;
+    height: 150px;
+    width: auto;
+    /* margin: 40px; */
+    z-index: 5;
+}
+
+.playHover:hover {
+    display: block;
 }
 
 .songInfo {

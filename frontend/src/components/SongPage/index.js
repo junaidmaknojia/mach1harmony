@@ -85,7 +85,6 @@ export default function SongPage({ isLoaded }) {
 
     async function playSong(song) {
         await dispatch(sendSong(song));
-        // add to numListens
     }
 
     return (
@@ -96,7 +95,9 @@ export default function SongPage({ isLoaded }) {
                         src={foundSong.coverPhoto}
                         alt={foundSong.title}
                         className="songPhoto"
-                        onClick={() => playSong(foundSong)}/>
+                        onClick={() => playSong(foundSong)}
+                    />
+                    <img src="https://www.freeiconspng.com/uploads/play-button-icon-png-0.png" className="playHover"/>
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>
