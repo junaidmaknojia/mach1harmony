@@ -20,7 +20,7 @@ export default function UserPage({isLoaded}) {
     const [user, setUser] = useState({}); // figure this out
 
     useEffect(() => {
-        dispatch(loadSongsThunk(userId))
+        dispatch(loadSongsThunk(userId));
     }, [dispatch]);
 
     useEffect(async() => {
@@ -35,7 +35,6 @@ export default function UserPage({isLoaded}) {
 
     async function playSong(song) {
         await dispatch(sendSong(song));
-        // add to numListens
     }
 
     async function handleFollow(){

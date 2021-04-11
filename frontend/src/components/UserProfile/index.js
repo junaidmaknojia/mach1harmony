@@ -13,6 +13,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
 
     useEffect(() => {
         dispatch(loadSongsThunk(sessionUser.id))
+        // eslint-disable-next-line
     }, [dispatch]);
 
     const foundSongs = useSelector((state) => Object.values(state.song));
@@ -44,6 +45,7 @@ export default function UserProfile({sessionUser, isLoaded}) {
             </div>
             <div className="songsList">
                 <h1>Songs You've Uploaded</h1>
+                {/* eslint-disable-next-line */}
                 {isLoaded && foundSongs.map(song => {
                     if(song){
                         return (
