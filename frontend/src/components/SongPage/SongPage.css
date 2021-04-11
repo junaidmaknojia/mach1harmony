@@ -19,16 +19,22 @@
     margin: 40px;
 }
 
-.playHover {
-    display: none;
-    height: 150px;
-    width: auto;
-    /* margin: 40px; */
-    z-index: 5;
+.songPhoto:hover + .playHover {
+    display: block;
 }
 
-.playHover:hover {
+/* .playHover:hover + .playHover {
     display: block;
+} */
+
+.playHover {
+    display: none;
+    position: absolute;
+    top: 150px;
+    left: 130px;
+    height: 150px;
+    width: auto;
+    z-index: 5;
 }
 
 .songInfo {

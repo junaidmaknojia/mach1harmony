@@ -97,7 +97,9 @@ export default function SongPage({ isLoaded }) {
                         className="songPhoto"
                         onClick={() => playSong(foundSong)}
                     />
-                    <img src="https://www.freeiconspng.com/uploads/play-button-icon-png-0.png" className="playHover"/>
+                    <img src="https://alohajarren.github.io/webpage-mockup/images/songplay.png" className="playHover"/>
+
+
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>

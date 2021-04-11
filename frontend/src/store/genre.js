@@ -23,6 +23,7 @@ export function getGenres() {
 }
 
 const genreReducer = (state=initialState, action) => {
+    // eslint-disable-next-line
     let newState = {};
     switch(action.type){
         // case SET_STATE_SONG:
