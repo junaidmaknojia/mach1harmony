@@ -1,4 +1,4 @@
-.barContainer {
+/* .barContainer {
     height: 50px;
     width: 100%;
     position: fixed;
@@ -7,7 +7,7 @@
     border: rgb(156, 156, 156) solid 1px;
     justify-content: center;
     display: inline;
-}
+} */
 
 .barContainer > * {
     vertical-align: middle;
