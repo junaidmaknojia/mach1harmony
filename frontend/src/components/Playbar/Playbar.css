@@ -1,4 +1,4 @@
-/* .barContainer {
+.barContainer {
     height: 50px;
     width: 100%;
     position: fixed;
@@ -6,16 +6,35 @@
     background-color: rgb(196, 196, 196);
     border: rgb(156, 156, 156) solid 1px;
     justify-content: center;
-    display: inline;
-} */
+    display: flex;
+}
 
 .barContainer > * {
     vertical-align: middle;
     margin: 0px 10px;
 }
 
-.playPause {
+.rhap_container {
+    position: fixed;
+    bottom: 0px;
+    background-color: blue;
+    z-index: -1;
+    max-width: 500px;
+}
+
+.rhap_container > div {
+    display: inline;
+    background-color: none;
+    height: 60px;
+}
+
+.rhap_progress-section, .rhap_controls-section {
+    height: 10px;
+    padding: 5px;
+}
+
+/* .playPause {
     width: 40px;
     height: auto;
     margin: 3px;
-}
+} */
