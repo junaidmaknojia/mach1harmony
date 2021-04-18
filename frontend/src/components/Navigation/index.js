@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
@@ -8,7 +8,6 @@ import SignupFormModal from "../SignupFormModal";
 import SongUploadFormModal from "../UploadSongFormModal";
 import EditProfileModal from "../EditProfileModal";
 import { searchThunk } from "../../store/search";
-import { set } from "js-cookie";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -17,9 +16,7 @@ export default function Navigation({ isLoaded }) {
     const [searchType, setSearchType] = useState("");
 
     function handleSearch(e){
-        console.log(e.target);
-        console.log(searchType);
-        // dispatch(searchThunk(e.target.value));
+        // dispatch(searchThunk(searchType));
         history.push("/search");
     }
 
@@ -48,8 +45,8 @@ export default function Navigation({ isLoaded }) {
             <li id="browse" ><NavLink id="home" style={{textDecoration: "none"}} exact to="/genres">Browse</NavLink></li>
             <li className="search">
                 <form onSubmit={handleSearch}>
-                    <input style={{width: 300}} type="search" value={searchType} onChange={e => setSearchType(e.target.value)}/>
-                    {/* <input type="submit"/> */}
+                    <input style={{width: 300}} type="text" value={searchType} onChange={e => setSearchType(e.target.value)}/>
+                    <input type="submit"/>
                 </form>
             </li>
             {/* <li><NavLink id="home" style={{textDecoration: "none"}} exact to="/">Home</NavLink></li> */}

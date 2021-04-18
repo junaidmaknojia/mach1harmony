@@ -28,20 +28,20 @@ function App() {
           <Route exact path="/">
             <Homepage isLoaded={isLoaded}/>
           </Route>
-          <Route path="/:userId/:songId">
+          <Route exact path="/search">
+            <Search/>
+          </Route>
+          <Route path="/users/:userId/:songId">
               <SongPage/>
           </Route>
           <Route path="/genres">
               <GenresPage/>
           </Route>
-          <Route path="/:userId">
+          <Route path="/users/:userId">
               <UserPage isLoaded={isLoaded}/>
           </Route>
         </Switch>
       )}
-      <Route path="/search">
-        <Search/>
-      </Route>
       <Playbar />
     </>
   );

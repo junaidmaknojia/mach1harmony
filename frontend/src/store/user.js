@@ -14,10 +14,11 @@ const updatePeopleFollowing = (followers, following) => {
 
 export function getUserInfo(userId){
     return async (dispatch) => {
-        const response = await csrfFetch(`api/users/info/${userId}`);
+        const response = await csrfFetch(`/api/users/info/${userId}`);
 
         if(response.ok) {
             const user = await response.json();
+            console.log(user);
             return user;
         }
     }
@@ -26,7 +27,7 @@ export function getUserInfo(userId){
 export function getFollowInfo(followerId) {
     return async (dispatch) => {
         // followerId is Bob, which users is Bob following and getting followed by?
-        const response = await csrfFetch(`api/users/follow/${followerId}`);
+        const response = await csrfFetch(`/api/users/follow/${followerId}`);
 
         if(response.ok){
             const followInfo = await response.json();
@@ -43,7 +44,7 @@ export function updateFollow(userId, followerId) {
     return async (dispatch) => {
         // userId is the person who's page we're on
         // followerId is me, which users am I the follower for?
-        const response = await csrfFetch(`api/users/follow/${userId}`, {
+        const response = await csrfFetch(`/api/users/follow/${userId}`, {
             method: "PATCH",
             body: JSON.stringify({followerId}),
             headers: {"Content-Type": "application/JSON"}

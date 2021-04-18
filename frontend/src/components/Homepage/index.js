@@ -55,7 +55,7 @@ export default function Homepage({isLoaded}) {
                                 <div className="homeSong">
                                     <img src={song.coverPhoto} alt={song.title} style={{width: 120}} onClick={()=>playSong(song)}/>
                                     <div>
-                                        <Link style={{textDecoration: "none", color: "black"}} to={`/${song.userId}/${song.id}`}>{song.title}</Link>
+                                        <Link style={{textDecoration: "none", color: "black"}} to={`/users/${song.userId}/${song.id}`}>{song.title}</Link>
                                     </div>
                                     <div>{song.album}</div>
                                 </div>
@@ -73,7 +73,7 @@ export default function Homepage({isLoaded}) {
                                 <div className="homeUser">
                                     <img src={user.profilePic} alt={user.username} style={{width: 150, borderRadius: 75}}/>
                                     <div>
-                                        <Link style={{textDecoration: "none", color: "black"}} to={`/${user.id}`}>{user.username}</Link>
+                                        <Link style={{textDecoration: "none", color: "black"}} to={`/users/${user.id}`}>{user.username}</Link>
                                     </div>
                                 </div>
                             )
@@ -90,7 +90,7 @@ export default function Homepage({isLoaded}) {
                             <div className="eachFollowing">
                                 <img src={user.profilePic} alt={user.username} style={{width: 80}} className="userPic"/>
                                 <div>
-                                    <Link to={`/${user.id}`}>{user.username}</Link>
+                                    <Link to={`/users/${user.id}`}>{user.username}</Link>
                                 </div>
                             </div>
                         )})
