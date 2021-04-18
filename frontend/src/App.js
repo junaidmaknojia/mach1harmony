@@ -37,11 +37,11 @@ function App() {
           <Route path="/:userId">
               <UserPage isLoaded={isLoaded}/>
           </Route>
-          <Route path="/search">
-              <Search/>
-          </Route>
         </Switch>
       )}
+      <Route path="/search">
+        <Search/>
+      </Route>
       <Playbar />
     </>
   );
