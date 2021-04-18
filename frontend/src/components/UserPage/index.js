@@ -11,7 +11,6 @@ import UserProfile from "../UserProfile";
 export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();
     const {userId} = useParams();
-    console.log(userId);
 
 
     const foundSongs = useSelector((state) => Object.values(state.song));
@@ -27,7 +26,6 @@ export default function UserPage({isLoaded}) {
     useEffect(async() => {
         const fuser = await dispatch(getUserInfo(userId));
         setUser(fuser);
-        console.log(fuser);
     }, [dispatch]);
 
     useEffect(async ()=> {

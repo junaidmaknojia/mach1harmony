@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import SongUploadFormModal from "../UploadSongFormModal";
@@ -15,9 +15,9 @@ export default function Navigation({ isLoaded }) {
     const dispatch = useDispatch();
     const [searchType, setSearchType] = useState("");
 
-    function handleSearch(e){
-        // dispatch(searchThunk(searchType));
-        history.push("/search");
+    async function handleSearch(e){
+        await dispatch(searchThunk(searchType));
+        <Redirect to="/search"/>
     }
 
     let sessionLinks;

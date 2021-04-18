@@ -17,7 +17,9 @@ export default function Homepage({isLoaded}) {
 
 
     useEffect(()=> {
-        dispatch(getFollowInfo(sessionUser?.id));
+        if(sessionUser){
+            dispatch(getFollowInfo(sessionUser.id));
+        }
     }, [dispatch]);
 
     useEffect(async ()=> {
@@ -52,7 +54,7 @@ export default function Homepage({isLoaded}) {
                     {loadSongs && (
                         loadSongs.map(song => {
                             return (
-                                <div className="homeSong">
+                                <div className="homeSong" key={song.id}>
                                     <img src={song.coverPhoto} alt={song.title} style={{width: 120}} onClick={()=>playSong(song)}/>
                                     <div>
                                         <Link style={{textDecoration: "none", color: "black"}} to={`/users/${song.userId}/${song.id}`}>{song.title}</Link>
@@ -70,7 +72,7 @@ export default function Homepage({isLoaded}) {
                     {loadUsers && (
                         loadUsers.map(user => {
                             return (
-                                <div className="homeUser">
+                                <div className="homeUser" key={user.id}>
                                     <img src={user.profilePic} alt={user.username} style={{width: 150, borderRadius: 75}}/>
                                     <div>
                                         <Link style={{textDecoration: "none", color: "black"}} to={`/users/${user.id}`}>{user.username}</Link>
@@ -87,7 +89,7 @@ export default function Homepage({isLoaded}) {
                     <h3 style={{marginLeft: 25, marginRight: 25, textAlign: "center"}}>People You're Following</h3>
                     {peopleYoureFollowing && peopleYoureFollowing.map(user => {
                         return (
-                            <div className="eachFollowing">
+                            <div className="eachFollowing" key={user.id}>
                                 <img src={user.profilePic} alt={user.username} style={{width: 80}} className="userPic"/>
                                 <div>
                                     <Link to={`/users/${user.id}`}>{user.username}</Link>

@@ -137,7 +137,7 @@ export default function SongPage({ isLoaded }) {
                             return (
                                 <div key={comment.id} className="commentDiv">
                                     <img src={comment.User.profilePic} alt={comment.User.username} style={{width: 50}} className="userPic"/>
-                                    <div style={{marginTop: 10}}><Link to={`/${comment.User.id}`}>{comment.User.username}</Link></div>
+                                    <div style={{marginTop: 10}}><Link to={`/users/${comment.User.id}`}>{comment.User.username}</Link></div>
                                     <p>{formatDate(comment.updatedAt)}</p>
                                     {editCommentNumber === comment.id ? (
                                         <form value={comment.id} onSubmit={editSubmit}>
