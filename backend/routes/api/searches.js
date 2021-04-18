@@ -8,6 +8,7 @@ router.get("/:search", asyncHandler(async (req,res) => {
     const songs = await Song.findAll();
     const users = await User.findAll();
 
+
     const foundSongs = songs.filter(song => {
         const catches = [song.title.toLowerCase(), song.album.toLowerCase(), song.artist.toLowerCase()];
         return catches.includes(search.toLowerCase());
@@ -18,7 +19,12 @@ router.get("/:search", asyncHandler(async (req,res) => {
         return name.includes(search.toLowerCase());
     });
 
-    return res.json({foundSongs, foundUsers});
+    console.log("----number of songs", foundSongs.length);
+    console.log("----number of users", foundUsers.length);
+
+    // console.log(res.json({foundSongs, foundUsers}));
+
+    return res.json({foundSongs: foundSongs, foundUsers: foundUsers});
 
 }));
 
