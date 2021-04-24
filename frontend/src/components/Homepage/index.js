@@ -4,8 +4,8 @@ import "./Homepage.css";
 import { getFollowInfo, loadHomeSongs, loadHomeUsers } from "../../store/user";
 import { Link } from "react-router-dom";
 import { sendSong } from "../../store/playbar";
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
+import Carousel from 'react-bootstrap/Carousel';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Homepage({isLoaded}) {
 
@@ -46,12 +46,20 @@ export default function Homepage({isLoaded}) {
     return (
         <div className="homepage">
             <div className={`banner ${following}`}>
-                <AliceCarousel autoPlay autoPlayInterval="3000">
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg"/>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg"/>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg" className="sliderimg"/>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg"/>
-                </AliceCarousel>
+                <Carousel>
+                    <Carousel.Item>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                </Carousel>
             </div>
             <div className={`trending ${following}`}>
                 <h2>Trending</h2>
