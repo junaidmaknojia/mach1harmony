@@ -19,7 +19,6 @@ export default function Navigation({ isLoaded }) {
     async function handleSearch(e){
         await dispatch(searchThunk(searchType));
         history.push("/search");
-        return;
     }
 
     let sessionLinks;

@@ -4,6 +4,8 @@ import "./Homepage.css";
 import { getFollowInfo, loadHomeSongs, loadHomeUsers } from "../../store/user";
 import { Link } from "react-router-dom";
 import { sendSong } from "../../store/playbar";
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 export default function Homepage({isLoaded}) {
 
@@ -44,9 +46,12 @@ export default function Homepage({isLoaded}) {
     return (
         <div className="homepage">
             <div className={`banner ${following}`}>
-                {/* <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sunset"></img> */}
-                <div className="welcome">Welcome to Mach1Harmony</div>
-                <div className="welcomeInfo">Say hello to a new site for sharing your tracks with the world. A bit derivative of SoundCloud, but with a few more tweaks and user feedback, Mach1Harmony will soon fill the silence of the internet with its boom. Sign up to get started!</div>
+                <AliceCarousel autoPlay autoPlayInterval="3000">
+                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg"/>
+                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg"/>
+                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg" className="sliderimg"/>
+                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg"/>
+                </AliceCarousel>
             </div>
             <div className={`trending ${following}`}>
                 <h2>Trending</h2>

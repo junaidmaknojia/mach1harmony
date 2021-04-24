@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
@@ -22,23 +22,23 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded}/>
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Homepage isLoaded={isLoaded}/>
+            <Homepage isLoaded={isLoaded} />
           </Route>
           <Route exact path="/search">
-            <Search/>
+            <Search />
           </Route>
           <Route path="/users/:userId/:songId">
-              <SongPage/>
+            <SongPage />
           </Route>
           <Route path="/genres">
-              <GenresPage/>
+            <GenresPage />
           </Route>
           <Route path="/users/:userId">
-              <UserPage isLoaded={isLoaded}/>
+            <UserPage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
