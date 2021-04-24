@@ -8,6 +8,7 @@ import SignupFormModal from "../SignupFormModal";
 import SongUploadFormModal from "../UploadSongFormModal";
 import EditProfileModal from "../EditProfileModal";
 import { searchThunk } from "../../store/search";
+import Search from "../Search";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -17,7 +18,8 @@ export default function Navigation({ isLoaded }) {
 
     async function handleSearch(e){
         await dispatch(searchThunk(searchType));
-        <Redirect to="/search"/>
+        history.push("/search");
+        return;
     }
 
     let sessionLinks;

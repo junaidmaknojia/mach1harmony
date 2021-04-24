@@ -72,7 +72,7 @@ export default function UserPage({isLoaded}) {
                         return (
                             <div className="songDiv">
                                 <img src={song.coverPhoto} alt={song.title} height="100" width="100" value={song.filePath} className="appPlaySong" onClick={()=>playSong(song)}/>
-                                <Link to={`/${song.userId}/${song.id}`} className="title">
+                                <Link to={`/users/${song.userId}/${song.id}`} className="title">
                                     {song.title}
                                 </Link>
                                 <p className="artist">{song.artist}</p>
