@@ -66,9 +66,10 @@ export default function Homepage({isLoaded}) {
                         <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg" className="sliderimg d-block w-100"/>
-                    </Carousel.Item>
-                    <Carousel.Item>
+                        <div className="carousel__third carouselText">
+                            <h2>{"Ad partner goes \<here\>"}</h2>
+                            <p>That somone in the crowd will grant this application's big break and will be featured here as an ad partner. Conditions will follow</p>
+                        </div>
                         <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                 </Carousel>
@@ -108,6 +109,12 @@ export default function Homepage({isLoaded}) {
                     )}
                 </div>
             </div>
+            {/* <div className="lastInfo">
+                <h2>Last Ad</h2>
+                <p>This is the last ad talking about how you should join Mach1Harmony. Click the button below to get started!</p>
+                <SignupFormModal text="Sign Up"/>
+                <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg"/>
+            </div> */}
             <div className={`getStarted ${following}`}></div>
             {sessionUser && (
                 <div className="followingDiv">

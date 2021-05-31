@@ -1,7 +1,8 @@
 /* TODO Add site wide styles */
 
-body {
-    background-color: rgb(202, 225, 255);
+#root {
+    background-color: rgba(51, 51, 51, 0.1);
+    width: 100%;
 }
 
 .appOrange {
