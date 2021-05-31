@@ -5,6 +5,7 @@ import { getFollowInfo, loadHomeSongs, loadHomeUsers } from "../../store/user";
 import { Link } from "react-router-dom";
 import { sendSong } from "../../store/playbar";
 import Carousel from 'react-bootstrap/Carousel';
+import LoginFormModal from "../LoginFormModal";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Homepage({isLoaded}) {
@@ -48,6 +49,11 @@ export default function Homepage({isLoaded}) {
             <div className={`banner ${following}`}>
                 <Carousel>
                     <Carousel.Item>
+                        <div className="carousel__main">
+                            <h2>Discover more with this SoundCloud clone</h2>
+                            <p>Mach1Harmony allows you to get the same experience of SoundCloud, but on a whole other site. Listen solely on your desktop and connect with the limited people that know about the application!</p>
+                            <LoginFormModal/>
+                        </div>
                         <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                     <Carousel.Item>
