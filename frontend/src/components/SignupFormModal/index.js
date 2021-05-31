@@ -4,13 +4,13 @@ import SignupForm from "./SignupForm";
 import './SignupForm.css';
 
 
-export default function SignupFormModal() {
+export default function SignupFormModal({text}) {
 
     const [showModal, setShowModal] = useState(false);
 
     return (
         <>
-            <span onClick={() => setShowModal(true)}>Sign Up</span>
+            <button className="appSubmitButton" onClick={() => setShowModal(true)}>{text}</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <SignupForm setShowModal={setShowModal}/>
