@@ -1,23 +1,19 @@
 .homepage {
-    /* background-color: blue;
-    height: 400px; */
-    /* display: grid;
-    grid-template-columns: 50px repeat(2, 1fr) 200px 50px;
-    grid-template-rows: 90px repeat(4, 400px) 50px;
-    opacity: 0.8; */
+    width: 90%;
+    margin: 0px auto 100px;
+    background-color: whitesmoke;
 }
 
-div.following {
-    align-items: center;
+.carousel {
+    width: 100%;
+    z-index: 0;
+    max-height: 900px;
 }
 
 .sliderimg{
     width: 80%;
     height: 400px;
     object-fit: cover
-}
-
-.banner {
 }
 
 .welcome {
