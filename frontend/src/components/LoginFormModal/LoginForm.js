@@ -24,23 +24,27 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} className="loginForm">
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <input
-                placeholder="Username or Email"
-                type="text"
-                value={credential}
-                onChange={(e) => setCredential(e.target.value)}
-                required
-            />
-            <input
-                placeholder="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
+            <div>
+                {errors.map((error, idx) => <p key={idx}>{error}</p>)}
+            </div>
+            <div>
+                <input
+                    placeholder="Username or Email"
+                    type="text"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
+            </div>
+            <div>
+                <input
+                    placeholder="Password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </div>
             <button type="submit" className="appSubmitButton">Log In</button>
         </form>
     );

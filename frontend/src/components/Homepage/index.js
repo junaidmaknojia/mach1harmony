@@ -47,31 +47,52 @@ export default function Homepage({isLoaded}) {
 
     return (
         <div className="homepage">
-            <Carousel className="carousel">
-                <Carousel.Item>
-                    <div className="carousel__main carouselText">
-                        <h2>Discover more with this SoundCloud clone</h2>
-                        <p>Mach1Harmony allows you to get the same experience of SoundCloud, but on a whole other site. Listen solely on your desktop and connect with the limited people that know about the application!</p>
-                        <SignupFormModal text="Get Started"/>
+            <div className="carousel">
+                <div className="carousel__navbar">
+                    <h3>Have an account?</h3>
+                    <LoginFormModal/>
+                </div>
+                <Carousel>
+                    <Carousel.Item>
+                        <div className="carousel__main carouselText">
+                            <h2>Discover more with this SoundCloud clone</h2>
+                            <p>Mach1Harmony allows you to get the same experience of SoundCloud, but on a whole other site. Listen solely on your desktop and connect with the limited people that know about the application!</p>
+                            <SignupFormModal text="Get Started"/>
+                        </div>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <div className="carousel__second carouselText">
+                            <h2>Upload your hits</h2>
+                            <p>With over 20 users (yeah... that's right), your tracks will gain all kinds of traction with Mach1Harmony. Start uploading your tracks for mid-size virality!</p>
+                            <SignupFormModal text="Upload Now"/>
+                        </div>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <div className="carousel__third carouselText">
+                            <h2>{"Ad partner goes \<here\>"}</h2>
+                            <p>That somone in the crowd will grant this application's big break and will be featured here as an ad partner. Conditions will follow</p>
+                        </div>
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
+                    </Carousel.Item>
+                </Carousel>
+            </div>
+            {(sessionUser && peopleYoureFollowing) && (
+                <div className="followingDiv">
+                    <h2>People You're Following</h2>
+                    <div className="followers">
+                        {peopleYoureFollowing?.map(user => (
+                            <div className="homeUser" key={user.id}>
+                                <img src={user.profilePic} alt={user.username} style={{width: 150, borderRadius: 75}}/>
+                                <div>
+                                    <Link style={{textDecoration: "none", color: "black"}} to={`/users/${user.id}`}>{user.username}</Link>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div className="carousel__second carouselText">
-                        <h2>Upload your hits</h2>
-                        <p>With over 20 users (yeah... that's right), your tracks will gain all kinds of traction with Mach1Harmony. Start uploading your tracks for mid-size virality!</p>
-                        <SignupFormModal text="Upload Now"/>
-                    </div>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div className="carousel__third carouselText">
-                        <h2>{"Ad partner goes \<here\>"}</h2>
-                        <p>That somone in the crowd will grant this application's big break and will be featured here as an ad partner. Conditions will follow</p>
-                    </div>
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
-                </Carousel.Item>
-            </Carousel>
+                </div>
+            )}
             <div className="trending">
                 <h2>Trending</h2>
                 <div>
@@ -113,22 +134,14 @@ export default function Homepage({isLoaded}) {
                 <SignupFormModal text="Sign Up"/>
                 <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg"/>
             </div> */}
-            <div className="getStarted"></div>
-            {sessionUser && (
-                <div className="followingDiv">
-                    <h3 style={{marginLeft: 25, marginRight: 25, textAlign: "center"}}>People You're Following</h3>
-                    {peopleYoureFollowing && peopleYoureFollowing.map(user => {
-                        return (
-                            <div className="eachFollowing" key={user.id}>
-                                <img src={user.profilePic} alt={user.username} style={{width: 80}} className="userPic"/>
-                                <div>
-                                    <Link to={`/users/${user.id}`}>{user.username}</Link>
-                                </div>
-                            </div>
-                        )})
-                    }
+            <div className="getStarted">
+                <img src="https://graphicburger.com/wp-content/uploads/2014/04/Apple-Responsive-Screen-Mockups-full.jpg" className="deviceScreens"/>
+                <div className="appText">
+                    <h2>Open your ears</h2>
+                    <p>Mach1Harmony is available on Web, Android, iOS, Chromecast, TVs, JumboTrons, and the Times Square Screen</p>
+                    <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
                 </div>
-            )}
+            </div>
         </div>
     );
 }

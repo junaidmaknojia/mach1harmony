@@ -4,13 +4,29 @@
     background-color: whitesmoke;
 }
 
+.homepage > div {
+    margin-bottom: 30px;
+}
+
 .carousel {
-    width: 100%;
+    position: relative;
+    top: 0px;
+    height: 400px;
     z-index: 0;
-    max-height: 900px;
+}
+
+
+.carousel__navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.212);
+    color: whitesmoke;
 }
 
 .sliderimg{
+    position: relative;
+    top: 0px;
     width: 80%;
     height: 400px;
     object-fit: cover
@@ -35,7 +51,7 @@
 
 }
 
-.trending {
+.trending, .followingDiv {
     text-align: center;
     color: rgb(175, 79, 0);
     /* background-color: orange; */
@@ -48,26 +64,40 @@
 }
 
 .getStarted {
-    /* background-color: blue; */
+    display: flex;
+    flex-flow: row;
+}
+
+.appText {
+    display: flex;
+    flex-flow: column;
+    margin-left: 20px;
+}
+
+.deviceScreens {
+    width: 50%;
+    height: auto;
+}
+
+.appLogos {
+    width: 30%;
+    height: auto;
+}
+
+.followers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .followingDiv {
-    background-color: rgba(255, 176, 111, 0.692);
-    border-radius: 10px;
-    border: 1px orange solid;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .userPic {
     border-radius: 40px;
-}
-
-.eachFollowing {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-    margin: 40px 40px;
-
 }
 
 .homeUser {

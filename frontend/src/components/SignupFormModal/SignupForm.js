@@ -19,12 +19,16 @@ export default function SignupForm({setShowModal}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
-            setErrors([]);
-            setShowModal(false);
             return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    if (data && data.errors){
+                        setErrors(data.errors);
+                    }else {
+                        sessionActions.sessionAdd(data.user);
+                        setErrors([]);
+                        setShowModal(false);
+                    }
                 });
         }
         return setErrors(['Password and confirmed password must match']);
@@ -32,9 +36,9 @@ export default function SignupForm({setShowModal}) {
 
     return (
         <form onSubmit={handleSubmit} className="form">
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
+            <div>
+                {errors.map((error, idx) => <p key={idx}>{error}</p>)}
+            </div>
             <div>
                 <input
                     placeholder="Email"
