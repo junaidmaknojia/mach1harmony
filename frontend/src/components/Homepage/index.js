@@ -48,6 +48,10 @@ export default function Homepage({isLoaded}) {
     return (
         <div className="homepage">
             <Carousel className="carousel">
+                <div className="carousel__navbar">
+                    <h3>Have an account?</h3>
+                    <LoginFormModal/>
+                </div>
                 <Carousel.Item>
                     <div className="carousel__main carouselText">
                         <h2>Discover more with this SoundCloud clone</h2>
