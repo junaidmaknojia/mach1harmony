@@ -5,7 +5,7 @@ const SESSION_REMOVE = "session/removeUser"
 
 const initialState = {user: null};
 
-const sessionAdd = (user) => {
+export const sessionAdd = (user) => {
     return {
         type: SESSION_ADD,
         payload: user

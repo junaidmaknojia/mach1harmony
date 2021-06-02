@@ -4,6 +4,10 @@
     background-color: whitesmoke;
 }
 
+.homepage > div {
+    margin-bottom: 30px;
+}
+
 .carousel {
     width: 100%;
     z-index: 0;
