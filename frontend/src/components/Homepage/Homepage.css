@@ -9,9 +9,12 @@
 }
 
 .carousel {
-    width: 100%;
+    position: relative;
+    top: 0px;
+    height: 400px;
     z-index: 0;
 }
+
 
 .carousel__navbar {
     display: flex;
@@ -22,6 +25,8 @@
 }
 
 .sliderimg{
+    position: relative;
+    top: 0px;
     width: 80%;
     height: 400px;
     object-fit: cover
