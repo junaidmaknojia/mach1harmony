@@ -72,6 +72,21 @@ export default function Homepage({isLoaded}) {
                     <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
                 </Carousel.Item>
             </Carousel>
+            {(sessionUser && peopleYoureFollowing) && (
+                <div className="followingDiv">
+                    <h2>People You're Following</h2>
+                    <div className="followers">
+                        {peopleYoureFollowing?.map(user => (
+                            <div className="homeUser" key={user.id}>
+                                <img src={user.profilePic} alt={user.username} style={{width: 150, borderRadius: 75}}/>
+                                <div>
+                                    <Link style={{textDecoration: "none", color: "black"}} to={`/users/${user.id}`}>{user.username}</Link>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
             <div className="trending">
                 <h2>Trending</h2>
                 <div>
@@ -121,21 +136,6 @@ export default function Homepage({isLoaded}) {
                     <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
                 </div>
             </div>
-            {sessionUser && (
-                <div className="followingDiv">
-                    <h3 style={{marginLeft: 25, marginRight: 25, textAlign: "center"}}>People You're Following</h3>
-                    {peopleYoureFollowing && peopleYoureFollowing.map(user => {
-                        return (
-                            <div className="eachFollowing" key={user.id}>
-                                <img src={user.profilePic} alt={user.username} style={{width: 80}} className="userPic"/>
-                                <div>
-                                    <Link to={`/users/${user.id}`}>{user.username}</Link>
-                                </div>
-                            </div>
-                        )})
-                    }
-                </div>
-            )}
         </div>
     );
 }

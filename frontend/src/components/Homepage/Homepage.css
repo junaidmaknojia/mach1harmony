@@ -35,7 +35,7 @@
 
 }
 
-.trending {
+.trending, .followingDiv {
     text-align: center;
     color: rgb(175, 79, 0);
     /* background-color: orange; */
@@ -68,23 +68,20 @@
     height: auto;
 }
 
-.followingDiv {
-    background-color: rgba(255, 176, 111, 0.692);
-    border-radius: 10px;
-    border: 1px orange solid;
+.followers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 
+.followingDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .userPic {
     border-radius: 40px;
-}
-
-.eachFollowing {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: center;
-    margin: 40px 40px;
-
 }
 
 .homeUser {
