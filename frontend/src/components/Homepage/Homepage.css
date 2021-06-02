@@ -48,7 +48,24 @@
 }
 
 .getStarted {
-    /* background-color: blue; */
+    display: flex;
+    flex-flow: row;
+}
+
+.appText {
+    display: flex;
+    flex-flow: column;
+    margin-left: 20px;
+}
+
+.deviceScreens {
+    width: 50%;
+    height: auto;
+}
+
+.appLogos {
+    width: 30%;
+    height: auto;
 }
 
 .followingDiv {

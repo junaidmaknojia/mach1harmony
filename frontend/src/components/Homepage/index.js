@@ -114,9 +114,9 @@ export default function Homepage({isLoaded}) {
                 <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg"/>
             </div> */}
             <div className="getStarted">
-                <img src="/../../../public/images/stock/device-screens.jpg" className="deviceScreens"/>
-                <div>
-                    <h3>Open your ears</h3>
+                <img src="https://graphicburger.com/wp-content/uploads/2014/04/Apple-Responsive-Screen-Mockups-full.jpg" className="deviceScreens"/>
+                <div className="appText">
+                    <h2>Open your ears</h2>
                     <p>Mach1Harmony is available on Web, Android, iOS, Chromecast, TVs, JumboTrons, and the Times Square Screen</p>
                     <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
                 </div>
