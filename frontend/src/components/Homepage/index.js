@@ -113,7 +113,14 @@ export default function Homepage({isLoaded}) {
                 <SignupFormModal text="Sign Up"/>
                 <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/shelf-headphones.jpg"/>
             </div> */}
-            <div className="getStarted"></div>
+            <div className="getStarted">
+                <img src="/../../../public/images/stock/device-screens.jpg" className="deviceScreens"/>
+                <div>
+                    <h3>Open your ears</h3>
+                    <p>Mach1Harmony is available on Web, Android, iOS, Chromecast, TVs, JumboTrons, and the Times Square Screen</p>
+                    <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
+                </div>
+            </div>
             {sessionUser && (
                 <div className="followingDiv">
                     <h3 style={{marginLeft: 25, marginRight: 25, textAlign: "center"}}>People You're Following</h3>
