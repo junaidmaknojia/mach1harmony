@@ -22,10 +22,11 @@
 }
 
 .appSubmitButton {
-    background-color: rgb(243, 146, 111);
+    background-color: rgb(255, 106, 52);
+    color: white;
     border-radius: 3px;
-    padding: 10px;
-    font-weight: bold;
+    padding: 5px 10px;
+    font-weight: 500;
 }
 
 .appFileUpload {
@@ -35,11 +36,3 @@
 .appSubmitButton:hover {
     background-color: rgb(255, 87, 25);
 }
-
-/* .appPlaySong {
-
-}
-
-.appPlaySong:hover {
-    background: url("https://www.freeiconspng.com/uploads/video-play-icon-1.jpg") no-repeat;
-} */

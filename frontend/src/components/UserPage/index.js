@@ -63,26 +63,42 @@ export default function UserPage({isLoaded}) {
                         if(song){
                             return (
                                 <div className="songDiv">
-                                    <img src={song.coverPhoto} alt={song.title} height="100" width="100" value={song.filePath} className="appPlaySong" onClick={()=>playSong(song)}/>
-                                    <Link to={`/users/${song.userId}/${song.id}`} className="title">
-                                        {song.title}
-                                    </Link>
-                                    <p className="artist">{song.artist}</p>
-                                    <p className="album">{song.album ? song.album : ""}</p>
-                                    <p className="year">{song.year ? song.year : ""}</p>
+                                    <img src={song.coverPhoto} alt={song.title} value={song.filePath} className="songDiv__coverPhoto" onClick={() => playSong(song)}/>
+                                    <div className="songDiv__info">
+                                        {/* <p className="artist">{song.artist}</p> */}
+                                        <p className="album">{song.album ? song.album : ""}</p>
+                                        <Link to={`/users/${song.userId}/${song.id}`} className="title">{song.title}</Link>
+                                        <p className="year">{song.year ? song.year : ""}</p>
+                                        <img src="https://react-project.s3.us-east-2.amazonaws.com/wave.JPG" className="waves"/>
+                                    </div>
                                 </div>
                             );
                         }
                     })}
                 </div>
                 <div className="userInfo">
-                    <h2 className="email">{user.email}</h2>
-                    <p className="bio">{user.bio}</p>
                     {sessionUser && (
-                        <button onClick={handleFollow} className="appSubmitButton">{
-                            following ? "Unfollow" : "Follow"
-                        }</button>
+                        <button onClick={handleFollow} className="appSubmitButton">
+                            <i class="fas fa-user-plus" style={{marginRight: 5}}></i>
+                            {following ? "Unfollow" : "Follow"}
+                        </button>
                     )}
+                    <div className="userInfo__stats">
+                        <div>
+                            <p>Followers</p>
+                            <p>53,003</p>
+                        </div>
+                        <div>
+                            <p>Following</p>
+                            <p>34</p>
+                        </div>
+                        <div>
+                            <p>Songs</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <p className="bio">{user.bio}</p>
+                    <p className="email">{user.email}</p>
                     {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
                 </div>
             </div>

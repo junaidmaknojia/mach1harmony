@@ -30,7 +30,7 @@
 .username {
     position: relative;
     margin-left: 40px;
-    font-size: 110px;
+    font-size: 5em;
     color: white;
     background-color: rgba(0, 0, 0, 0.3);
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
@@ -44,49 +44,42 @@
 
 .userInfo {
     width: 30%;
+    padding: 15px;
+}
+
+.userInfo__stats > div {
+    display: inline-block;
+    color: gray;
+    padding: 10px 20px 0px;
+    border-right: rgba(128, 128, 128, 0.158) solid 1px;
+}
+
+.userInfo__stats > div:last-child {
+    border-right: none;
 }
 
 .email {
     background-color: black;
 }
 
-.bio {
-}
-
 .songsList {
     width: 70%;
+    padding: 0px 25px;
 }
 
 .songDiv {
-    width: 700px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
     border-bottom: rgb(179, 48, 0) 1px solid;
     margin: 20px 0px;
 }
 
-.title {
-    font-size: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 20px;
+.songDiv__coverPhoto {
+    width: 150px;
+    height: auto;
 }
 
-.artist {
-    margin-left: 120px;
-    font-size: 15px;
-    margin-bottom: 0px;
-    color: rgb(187, 50, 0);
-
-}
-
-.album {
-    margin-left: 120px;
-    font-size: 15px;
-    color: rgb(187, 50, 0);
-    font-style: italic;
-}
-
-.year {
-    margin-left: 120px;
-    font-size: 15px;
-    color: rgb(187, 50, 0);
+.waves {
+    width: 100%;
 }
