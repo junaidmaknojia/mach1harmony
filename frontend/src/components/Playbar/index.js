@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementListen } from "../../store/playbar";
+import {Link} from "react-router-dom";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import "./Playbar.css";
@@ -38,17 +39,14 @@ export default function Playbar(){
         <div className="barContainer">
             {addedSong && (
                 <>
-                    <div><img style={{height: 40}} alt={addedSong.title} src={addedSong.coverPhoto}/></div>
-                    <div style={{fontSize: 20, fontWeight: "bold"}}>{addedSong.title}</div>
-                    <div>{addedSong.album}</div>
-                    <AudioPlayer src={addedSong.filePath} ref={audioRef} style={{marginRight: 100}} className="audioControls"/>
-                    {/* <span style={{width: 40, border: "black"}}>
-                        {audioRef.current && (
-                            playing ? <img className="playPause" src="https://www.freeiconspng.com/thumbs/pause-button-png/pause-button-png-32.png" onClick={handlePlay}></img> : <img className="playPause" src="https://www.freeiconspng.com/uploads/play-button-icon-png-0.png" onClick={handlePlay}></img>
-                            )}
-
-                        <audio src={addedSong.filePath} ref={audioRef} className="audioControls"></audio>
-                    </span> */}
+                    <AudioPlayer src={addedSong.filePath} ref={audioRef} autoplay style={{marginRight: 100}} className="audioControls"/>
+                    <div className="barContainer__songInfo">
+                        <img alt={addedSong.title} src={addedSong.coverPhoto}/>
+                        <div>
+                            <div><Link to={`/users/${addedSong.userId}/${addedSong.id}`}>{addedSong.title}</Link></div>
+                            <div>{addedSong.album}</div>
+                        </div>
+                    </div>
                 </>
             )}
         </div>
