@@ -8,7 +8,6 @@ import SignupFormModal from "../SignupFormModal";
 import SongUploadFormModal from "../UploadSongFormModal";
 import EditProfileModal from "../EditProfileModal";
 import { searchThunk } from "../../store/search";
-import Search from "../Search";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -31,13 +30,6 @@ export default function Navigation({ isLoaded }) {
                 <li><EditProfileModal/></li>
             </>
         )
-    } else {
-        sessionLinks = (
-            <>
-                <li><LoginFormModal/></li>
-                <li><SignupFormModal/></li>
-            </>
-        );
     }
 
     return (
