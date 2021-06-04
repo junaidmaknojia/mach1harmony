@@ -3,12 +3,10 @@ import { useDispatch} from "react-redux";
 import * as sessionActions from '../../store/session';
 import {NavLink, useParams} from "react-router-dom";
 import "./Navigation.css";
+import EditProfileModal from "../EditProfileModal";
 
 
 export default function ProfileButton({ user }) {
-    // console.log(user);
-
-    // const sessionUser = useSelector(state => state.session.user);
 
     const {userId} = useParams();
     const dispatch = useDispatch();
@@ -32,31 +30,23 @@ export default function ProfileButton({ user }) {
 
     const logout = (e) => {
         e.preventDefault();
-        console.log(userId); // userId is undefined
-        // const check = userId === sessionUser.id;
         dispatch(sessionActions.logout());
-        // if(check) history.push("/");
     };
 
 
 
     return (
         <>
-            <p onClick={openMenu}><i class="fas fa-user-circle"></i>{`  ${user.username}`}</p>
+            <p onClick={openMenu}><img className="profileButton__pic" src={user.profilePic}></img>{user.username}</p>
             {showMenu && (
-                <>
-                    <p>
-                        <NavLink to={`/${user.id}`}>Profile</NavLink>
-                    </p>
-                    {/* <p>
-                        <EditProfileModal/>
-                    </p> */}
-                    <p>{user.email}</p>
+                <div className="menu">
+                    <NavLink to={`/${user.id}`}>Profile</NavLink>
+                    <EditProfileModal/>
                     <p onClick={logout}>
                         <i class="fas fa-sign-out-alt"></i>
                         Log Out
                     </p>
-                </>
+                </div>
             )}
         </>
     );

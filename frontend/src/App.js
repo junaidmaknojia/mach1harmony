@@ -8,7 +8,6 @@ import Playbar from "./components/Playbar";
 import SongPage from "./components/SongPage";
 import UserPage from "./components/UserPage";
 import GenresPage from "./components/GenresPage";
-import Search from "./components/Search";
 
 function App() {
 
@@ -30,9 +29,6 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<Homepage isLoaded={isLoaded} />
-					</Route>
-					<Route exact path="/search">
-						<Search />
 					</Route>
 					<Route path="/users/:userId/:songId">
 						<SongPage />
