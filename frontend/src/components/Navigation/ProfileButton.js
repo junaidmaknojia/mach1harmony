@@ -6,9 +6,6 @@ import "./Navigation.css";
 
 
 export default function ProfileButton({ user }) {
-    // console.log(user);
-
-    // const sessionUser = useSelector(state => state.session.user);
 
     const {userId} = useParams();
     const dispatch = useDispatch();
@@ -32,10 +29,7 @@ export default function ProfileButton({ user }) {
 
     const logout = (e) => {
         e.preventDefault();
-        console.log(userId); // userId is undefined
-        // const check = userId === sessionUser.id;
         dispatch(sessionActions.logout());
-        // if(check) history.push("/");
     };
 
 
