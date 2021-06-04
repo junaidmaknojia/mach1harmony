@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { incrementListen } from "../../store/playbar";
+import {Link} from "react-router-dom";
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import "./Playbar.css";
@@ -38,11 +39,13 @@ export default function Playbar(){
         <div className="barContainer">
             {addedSong && (
                 <>
-                    <AudioPlayer src={addedSong.filePath} ref={audioRef} style={{marginRight: 100}} className="audioControls"/>
-                    <div><img style={{height: 40}} alt={addedSong.title} src={addedSong.coverPhoto}/></div>
+                    <AudioPlayer src={addedSong.filePath} ref={audioRef} autoplay style={{marginRight: 100}} className="audioControls"/>
                     <div className="barContainer__songInfo">
-                        <div>{addedSong.title}</div>
-                        <div>{addedSong.album}</div>
+                        <img alt={addedSong.title} src={addedSong.coverPhoto}/>
+                        <div>
+                            <div><Link to={`/users/${addedSong.userId}/${addedSong.id}`}>{addedSong.title}</Link></div>
+                            <div>{addedSong.album}</div>
+                        </div>
                     </div>
                 </>
             )}
