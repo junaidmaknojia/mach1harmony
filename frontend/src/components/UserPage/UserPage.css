@@ -1,5 +1,5 @@
 .userPage {
-    margin: 0px 5%;
+    margin: 0px 5% 60px;
     padding-top: 45px;
     background-color: white;
 }
@@ -32,26 +32,29 @@
     margin-left: 40px;
     font-size: 110px;
     color: white;
+    background-color: rgba(0, 0, 0, 0.3);
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
+.userPage__content {
+    padding-top: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+.userInfo {
+    width: 30%;
+}
+
 .email {
-    position: absolute;
-    bottom: 70px;
-    left: 410px;
-    font-size: 30px;
-    color: black;
+    background-color: black;
 }
 
 .bio {
-    position: absolute;
-    bottom: 50px;
-    left: 410px;
-    font-size: 20px;
-    color: rgb(148, 195, 255);
 }
 
 .songsList {
+    width: 70%;
 }
 
 .songDiv {

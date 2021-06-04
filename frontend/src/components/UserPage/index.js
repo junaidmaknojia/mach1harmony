@@ -56,37 +56,37 @@ export default function UserPage({isLoaded}) {
                     <h1 className="username">{`@${user.username}`}</h1>
                 </div>
             )}
-            {sessionUser && (
-                <button onClick={handleFollow} className="appSubmitButton">{
-                    following ? "Unfollow" : "Follow"
-                }</button>
-            )}
-            <h2 className="email">{user.email}</h2>
-            <p className="bio">{user.bio}</p>
-            {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
-            <div className="songsList">
-                {user && (<h1>{`${user.username}'s Songs`}</h1>)}
-
-                {foundSongs && foundSongs.map(song => {
-                    if(song){
-                        return (
-                            <div className="songDiv">
-                                <img src={song.coverPhoto} alt={song.title} height="100" width="100" value={song.filePath} className="appPlaySong" onClick={()=>playSong(song)}/>
-                                <Link to={`/users/${song.userId}/${song.id}`} className="title">
-                                    {song.title}
-                                </Link>
-                                <p className="artist">{song.artist}</p>
-                                <p className="album">{song.album ? song.album : ""}</p>
-                                <p className="year">{song.year ? song.year : ""}</p>
-                            </div>
-                        );
-                    }
-                })}
+            <div className="userPage__content">
+                <div className="songsList">
+                    {user && (<h1>{`${user.username}'s Songs`}</h1>)}
+                    {foundSongs && foundSongs.map(song => {
+                        if(song){
+                            return (
+                                <div className="songDiv">
+                                    <img src={song.coverPhoto} alt={song.title} height="100" width="100" value={song.filePath} className="appPlaySong" onClick={()=>playSong(song)}/>
+                                    <Link to={`/users/${song.userId}/${song.id}`} className="title">
+                                        {song.title}
+                                    </Link>
+                                    <p className="artist">{song.artist}</p>
+                                    <p className="album">{song.album ? song.album : ""}</p>
+                                    <p className="year">{song.year ? song.year : ""}</p>
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
+                <div className="userInfo">
+                    <h2 className="email">{user.email}</h2>
+                    <p className="bio">{user.bio}</p>
+                    {sessionUser && (
+                        <button onClick={handleFollow} className="appSubmitButton">{
+                            following ? "Unfollow" : "Follow"
+                        }</button>
+                    )}
+                    {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
+                </div>
             </div>
 
-            {/* <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
-                <SongUploadFormModal/>
-            </Route> */}
         </div>
     );
 }
