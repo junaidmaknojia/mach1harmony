@@ -3,34 +3,34 @@
     width: 100%;
     position: fixed;
     bottom: 0px;
-    background-color: rgb(196, 196, 196);
+    background-color: rgb(219, 218, 218);
     border: rgb(156, 156, 156) solid 1px;
-    justify-content: center;
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.barContainer > * {
+.barContainer__songInfo {
     vertical-align: middle;
-    margin: 0px 10px;
+    height: 100%;
+    font-size: 12px;
+    color: gray;
 }
 
 .rhap_container {
-    position: fixed;
-    bottom: 0px;
-    background-color: rgba(0, 0, 0, 0);
-    z-index: -1;
-    max-width: 500px;
+    background-color: unset;
+    box-shadow: none;
+    display: inline;
+    max-width: 800px;
 }
 
 .rhap_container > div {
     display: inline;
-    background-color: none;
-    height: 60px;
 }
 
 .rhap_progress-section, .rhap_controls-section {
     height: 10px;
-    padding: 5px;
 }
 
 /* .playPause {
