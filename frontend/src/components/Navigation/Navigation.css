@@ -20,7 +20,7 @@
 }
 
 .navBar__section > div {
-    padding: 3px 20px;
+    padding: 5px 20px;
     border-right: black 1px solid;
     cursor: pointer;
 }

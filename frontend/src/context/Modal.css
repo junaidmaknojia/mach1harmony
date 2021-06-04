@@ -15,17 +15,17 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 #modal-content {
     position: fixed;
     background-color: whitesmoke;
-    top: calc(50% - 150px);
-    left: calc(50% - 200px);
-    border: 2px solid orangered;
-    border-radius: 15px;
+    top: calc(50% - 250px);
+    left: 40%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 20px;
 }
