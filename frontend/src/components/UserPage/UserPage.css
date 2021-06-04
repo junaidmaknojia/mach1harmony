@@ -1,5 +1,5 @@
 .userPage {
-    margin: 0px 50px;
+    margin: 0px 5%;
     padding-top: 45px;
     background-color: white;
 }
@@ -7,19 +7,32 @@
 .coverPhotoDiv {
     width: 100%;
     height: 300px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
 }
 
 .coverPhoto {
     object-fit: cover;
-    width: 100%;
+    width: 90%;
+    height: 300px;
+    position: absolute;
+}
+
+.profilePhoto {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-left: 50px;
 }
 
 .username {
-    position: absolute;
-    bottom: 80px;
-    left: 300px;
+    position: relative;
+    margin-left: 40px;
     font-size: 110px;
-    color: rgb(107, 45, 45);
+    color: white;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
 .email {
@@ -27,7 +40,7 @@
     bottom: 70px;
     left: 410px;
     font-size: 30px;
-    color: white;
+    color: black;
 }
 
 .bio {

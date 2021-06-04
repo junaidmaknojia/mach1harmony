@@ -52,17 +52,17 @@ export default function UserPage({isLoaded}) {
             {user && (
                 <div className="coverPhotoDiv">
                     <img className="coverPhoto" alt={user.username} src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
-                    <img className="profilePhoto" src={user.profilePic} style={{width: 200, borderRadius: 100}}/>
+                    <img className="profilePhoto" src={user.profilePic}/>
                     <h1 className="username">{`@${user.username}`}</h1>
-                    <h2 className="email">{user.email}</h2>
-                    {sessionUser && (
-                        <button onClick={handleFollow} className="appSubmitButton">{
-                            following ? "Unfollow" : "Follow"
-                        }</button>
-                    )}
-                    <p className="bio">{user.bio}</p>
                 </div>
             )}
+            {sessionUser && (
+                <button onClick={handleFollow} className="appSubmitButton">{
+                    following ? "Unfollow" : "Follow"
+                }</button>
+            )}
+            <h2 className="email">{user.email}</h2>
+            <p className="bio">{user.bio}</p>
             {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
             <div className="songsList">
                 {user && (<h1>{`${user.username}'s Songs`}</h1>)}
