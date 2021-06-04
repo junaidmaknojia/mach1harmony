@@ -109,7 +109,7 @@ export default function SongPage({ isLoaded }) {
                                 <p>{`${likes.length} Likes`}</p>
                                 {sessionUser && (
                                     <span onClick={handleLike} className="likeButton">{
-                                        likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>
+                                        likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-2x fa-heart"></i> : <i class="far fa-2x fa-heart"></i>
                                     }</span>
                                 )}
                             </>
