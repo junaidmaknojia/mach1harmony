@@ -26,10 +26,6 @@ li:last-child {
     border-right: none;
 }
 
-.search {
-    max-width: 300px;
-}
-
 .logo {
     height: 100%;
 }
@@ -38,4 +34,13 @@ li:last-child {
     background-image: linear-gradient(rgb(255, 133, 32), rgb(255, 96, 22));
     padding: 0px;
     margin: 0px;
+}
+
+.menu {
+    position: relative;
+    top: 15px;
+    z-index: 100;
+    width: 100px;
+    height: 150px;
+    background-color: black;
 }

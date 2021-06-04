@@ -3,6 +3,7 @@ import { useDispatch} from "react-redux";
 import * as sessionActions from '../../store/session';
 import {NavLink, useParams} from "react-router-dom";
 import "./Navigation.css";
+import EditProfileModal from "../EditProfileModal";
 
 
 export default function ProfileButton({ user }) {
@@ -38,19 +39,14 @@ export default function ProfileButton({ user }) {
         <>
             <p onClick={openMenu}><i class="fas fa-user-circle"></i>{`  ${user.username}`}</p>
             {showMenu && (
-                <>
-                    <p>
-                        <NavLink to={`/${user.id}`}>Profile</NavLink>
-                    </p>
-                    {/* <p>
-                        <EditProfileModal/>
-                    </p> */}
-                    <p>{user.email}</p>
+                <div className="menu">
+                    <NavLink to={`/${user.id}`}>Profile</NavLink>
+                    <EditProfileModal/>
                     <p onClick={logout}>
                         <i class="fas fa-sign-out-alt"></i>
                         Log Out
                     </p>
-                </>
+                </div>
             )}
         </>
     );
