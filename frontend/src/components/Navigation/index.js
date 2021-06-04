@@ -11,14 +11,19 @@ export default function Navigation({ isLoaded }) {
 
     return (
         <div className="navBar">
-            <div className="siteLogo">
-                <NavLink style={{textDecoration: "none"}} exact to="/">
-                    <img src="https://react-project.s3.us-east-2.amazonaws.com/new-logo.png" className="logo"/>
-                </NavLink>
+            <div className="navBar__section">
+                <div id="siteLogo">
+                    <NavLink exact to="/">
+                        <img src="https://react-project.s3.us-east-2.amazonaws.com/new-logo.png" className="logo"/>
+                    </NavLink>
+                </div>
+                <div><NavLink className="navLink" exact to="/genres">Browse</NavLink></div>
             </div>
-            <div id="browse" ><NavLink id="home" style={{textDecoration: "none"}} exact to="/genres">Browse</NavLink></div>
-            <div><SongUploadFormModal/></div>
-            <div><ProfileButton user={sessionUser}/></div>
+            <div className="navBar__section">
+                <div>Upgrade</div>
+                <div><SongUploadFormModal/></div>
+                <div><ProfileButton user={sessionUser}/></div>
+            </div>
         </div>
     );
 }

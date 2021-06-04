@@ -37,7 +37,7 @@ export default function ProfileButton({ user }) {
 
     return (
         <>
-            <p onClick={openMenu}><i class="fas fa-user-circle"></i>{`  ${user.username}`}</p>
+            <p onClick={openMenu}><img className="profileButton__pic" src={user.profilePic}></img>{user.username}</p>
             {showMenu && (
                 <div className="menu">
                     <NavLink to={`/${user.id}`}>Profile</NavLink>

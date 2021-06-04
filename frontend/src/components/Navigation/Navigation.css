@@ -3,23 +3,30 @@
     position: fixed;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: auto;
     width: 100%;
     height: 40px;
     overflow: hidden;
     background-color: rgba(51, 51, 51);
+    color: rgb(180, 180, 180);
 }
 
-li {
-    float: left;
-    display: block;
-    color: rgb(48, 0, 104);
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px 40px;
-    text-decoration: none;
-    border-right: 1px solid rgb(48, 0, 104);
+.navBar__section {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    margin: 0px;
+}
+
+.navBar__section > div {
+    padding: 3px 20px;
+    border-right: black 1px solid;
+    cursor: pointer;
+}
+
+.navBar__section > div:hover {
+    color: whitesmoke;
 }
 
 li:last-child {
@@ -30,10 +37,10 @@ li:last-child {
     height: 100%;
 }
 
-.siteLogo {
+#siteLogo {
     background-image: linear-gradient(rgb(255, 133, 32), rgb(255, 96, 22));
-    padding: 0px;
-    margin: 0px;
+    padding: 3px 8px;
+    margin: 0px 0px 0px 70px;
 }
 
 .menu {
@@ -43,4 +50,16 @@ li:last-child {
     width: 100px;
     height: 150px;
     background-color: black;
+}
+
+.navLink {
+    text-decoration: none;
+    color: rgb(180, 180, 180);
+}
+
+.profileButton__pic {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    border: 1px whitesmoke solid;
 }
