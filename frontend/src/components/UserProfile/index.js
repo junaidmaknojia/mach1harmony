@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useHistory} from "react-router-dom";
-import "./UserProfile.css";
+import "../UserPage/UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadSongsThunk, deleteSong} from "../../store/song";
 import EditSongFormModal from "../EditSongFormModal";
@@ -35,39 +35,55 @@ export default function UserProfile({sessionUser, isLoaded}) {
 
     return (
         <div className="userPage">
-            {/* <div className="coverBanner"></div> */}
             <div className="coverPhotoDiv">
-                <img className="coverPhoto" alt="" src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
-                <img className="profilePhoto" alt={sessionUser.profilePic} src={sessionUser.profilePic} style={{width: 200, borderRadius: 100}}/>
+                <img className="coverPhoto" src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
+                <img className="profilePhoto" alt={sessionUser.profilePic} src={sessionUser.profilePic}/>
                 <h1 className="username">{`@${sessionUser.username}`}</h1>
-                <h2 className="email">{sessionUser.email}</h2>
-                <p className="bio">{sessionUser.bio}</p>
             </div>
-            <div className="songsList">
-                <h1>Songs You've Uploaded</h1>
-                {/* eslint-disable-next-line */}
-                {isLoaded && foundSongs.map(song => {
-                    if(song){
-                        return (
-                            <div className="songDiv">
-                                <img src={song.coverPhoto} alt={song.title} height="100" width="100" value={song.filePath} onClick={()=>playSong(song)}/>
-                                <Link to={`/${song.userId}/${song.id}`} className="title">
-                                    {song.title}
-                                </Link>
-                                <p className="artist">{song.artist}</p>
-                                <p className="album">{song.album ? song.album : ""}</p>
-                                <p className="year">{song.year ? song.year : ""}</p>
-                                <button type="click" className="appSubmitButton delete" value={song.id} onClick={handleDelete}>Delete</button>
-                                <EditSongFormModal songId={song.id}/>
-                            </div>
-                        );
-                    }
-                })}
+            <div className="userPage__content">
+                <div className="songsList">
+                    <h1>Songs You've Uploaded</h1>
+                    {isLoaded && foundSongs.map(song => {
+                        if(song){
+                            return (
+                                <div className="songDiv">
+                                    <img src={song.coverPhoto} alt={song.title} value={song.filePath} className="songDiv__coverPhoto" onClick={() => playSong(song)}/>
+                                    <div className="songDiv__info">
+                                        <div className="appSubmitButton play" onClick={() => playSong(song)}><i class="fas fa-play"></i></div>
+                                        <div>
+                                            <Link to={`/users/${song.userId}/${song.id}`} className="title">{song.title}</Link>
+                                            <p className="album">{song.album ? song.album : ""}</p>
+                                            <p className="year">{song.year ? song.year : ""}</p>
+                                            <div><i class="fas fa-headphones" style={{marginRight: 5}}></i>{song.numListens}</div>
+                                            <img src="https://react-project.s3.us-east-2.amazonaws.com/wave.JPG" className="waves"/>
+                                        </div>
+                                        <button type="click" className="appSubmitButton delete" value={song.id} onClick={handleDelete}>Delete</button>
+                                        <EditSongFormModal songId={song.id}/>
+                                    </div>
+                                </div>
+                            );
+                        }
+                    })}
+                </div>
+                <div className="userInfo">
+                    <div className="userInfo__stats">
+                        <div>
+                            <p>Followers</p>
+                            <p>53,003</p>
+                        </div>
+                        <div>
+                            <p>Following</p>
+                            <p>34</p>
+                        </div>
+                        <div>
+                            <p>Songs</p>
+                            <p>23</p>
+                        </div>
+                    </div>
+                    <p className="bio">{sessionUser.bio}</p>
+                    <p className="email">{sessionUser.email}</p>
+                </div>
             </div>
-
-            {/* <Route path={`/${sessionUser.id}/new-song`}>Upload New Song
-                <SongUploadFormModal/>
-            </Route> */}
         </div>
     );
 }
