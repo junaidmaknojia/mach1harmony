@@ -51,8 +51,8 @@ export default function UserPage({isLoaded}) {
         <div className="userPage">
             {user && (
                 <div className="coverPhotoDiv">
-                    <img className="coverPhoto" alt={user.username} src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
-                    <img className="profilePhoto" src={user.profilePic}/>
+                    <img className="coverPhoto" src="https://images.unsplash.com/photo-1612255109949-a87fab1a43e4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1950&q=80"/>
+                    <img className="profilePhoto" alt={user.username} src={user.profilePic}/>
                     <h1 className="username">{`@${user.username}`}</h1>
                 </div>
             )}
