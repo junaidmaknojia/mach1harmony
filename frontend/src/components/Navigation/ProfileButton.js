@@ -40,12 +40,12 @@ export default function ProfileButton({ user }) {
             <div onClick={openMenu}><img className="profileButton__pic" src={user.profilePic}></img>{user.username}</div>
             {showMenu && (
                 <div className="menu">
-                    <NavLink to={`/${user.id}`}>Profile</NavLink>
-                    <EditProfileModal/>
                     <p onClick={logout}>
                         <i class="fas fa-sign-out-alt"></i>
                         Log Out
                     </p>
+                    <NavLink to={`/users/${user.id}`}>Profile</NavLink>
+                    <EditProfileModal/>
                 </div>
             )}
         </>
