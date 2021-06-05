@@ -65,11 +65,14 @@ export default function UserPage({isLoaded}) {
                                 <div className="songDiv">
                                     <img src={song.coverPhoto} alt={song.title} value={song.filePath} className="songDiv__coverPhoto" onClick={() => playSong(song)}/>
                                     <div className="songDiv__info">
-                                        {/* <p className="artist">{song.artist}</p> */}
-                                        <p className="album">{song.album ? song.album : ""}</p>
-                                        <Link to={`/users/${song.userId}/${song.id}`} className="title">{song.title}</Link>
-                                        <p className="year">{song.year ? song.year : ""}</p>
-                                        <img src="https://react-project.s3.us-east-2.amazonaws.com/wave.JPG" className="waves"/>
+                                        <div className="appSubmitButton play" onClick={() => playSong(song)}><i class="fas fa-play"></i></div>
+                                        <div>
+                                            <Link to={`/users/${song.userId}/${song.id}`} className="title">{song.title}</Link>
+                                            <p className="album">{song.album ? song.album : ""}</p>
+                                            <p className="year">{song.year ? song.year : ""}</p>
+                                            <div><i class="fas fa-headphones" style={{marginRight: 5}}></i>{song.numListens}</div>
+                                            <img src="https://react-project.s3.us-east-2.amazonaws.com/wave.JPG" className="waves"/>
+                                        </div>
                                     </div>
                                 </div>
                             );
