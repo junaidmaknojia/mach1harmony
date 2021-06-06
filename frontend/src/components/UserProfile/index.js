@@ -57,8 +57,8 @@ export default function UserProfile({sessionUser, isLoaded}) {
                                             <div><i class="fas fa-headphones" style={{marginRight: 5}}></i>{song.numListens}</div>
                                             <img src="https://react-project.s3.us-east-2.amazonaws.com/wave.JPG" className="waves"/>
                                         </div>
-                                        <button type="click" className="appSubmitButton delete" value={song.id} onClick={handleDelete}>Delete</button>
-                                        <EditSongFormModal songId={song.id}/>
+                                        <div className="delete" value={song.id} onClick={handleDelete}>Delete</div>
+                                        <div className="edit"><EditSongFormModal songId={song.id} /></div>
                                     </div>
                                 </div>
                             );

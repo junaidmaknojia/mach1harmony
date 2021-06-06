@@ -47,7 +47,7 @@ export default function Homepage({isLoaded}) {
 
     return (
         <div className="homepage">
-            {/* <div className="carousel">
+            <div className="carousel">
                 <div className="carousel__navbar">
                     <h3>Have an account?</h3>
                     <LoginFormModal/>
@@ -77,7 +77,7 @@ export default function Homepage({isLoaded}) {
                         <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                 </Carousel>
-            </div> */}
+            </div>
             {(sessionUser && peopleYoureFollowing) && (
                 <div className="followingDiv">
                     <h2>People You're Following</h2>

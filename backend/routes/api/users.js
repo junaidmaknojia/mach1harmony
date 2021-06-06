@@ -52,18 +52,10 @@ router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
     const songs = await Song.findAll({
         where: {
             userId
-        }
-    });
-
-    return res.json({songs});
-}));
-router.get("/:id", asyncHandler(async (req,res) => { // get songs for this user
-
-    const userId = req.params.id;
-    const songs = await Song.findAll({
-        where: {
-            userId
-        }
+        },
+        include: [{
+            model: User
+        }]
     });
 
     return res.json({songs});
