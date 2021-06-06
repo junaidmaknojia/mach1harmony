@@ -180,9 +180,18 @@ export default function SongPage({ isLoaded }) {
                 </div>
                 <div className="songPage__extras">
                     <div className="songPage__extras--author">
-
+                        <h3>Song Artist</h3>
+                        <img src={foundSong?.User?.profilePic} className="userPic extras"/>
+                        <h4><Link to={`/users/${foundSong?.User?.id}`}>{foundSong?.User?.username}</Link></h4>
                     </div>
-                    <div className="songPage__extras--likes"></div>
+                    <div>
+                        <p>Users who like this</p>
+                        <div className="songPage__extras--likes">
+                            {likes?.map(like => (
+                                <Link to={`/users/${like.User.id}`} className="userPic"><img alt={like.User.username} src={like.User.profilePic} className="userPic"/></Link>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

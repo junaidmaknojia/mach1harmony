@@ -61,7 +61,6 @@
     width: 70%;
     border-right: rgba(128, 128, 128, 0.473) 1px solid;
     padding: 10px 10px 10px 30px;
-
 }
 
 .commentDiv {
@@ -105,13 +104,36 @@
 }
 
 .songPage__extras {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    padding: 10px;
+    text-align: center;
 }
 
 .songPage__extras--author {
-
+    width: 70%;
+    margin: 0px auto 10px;
+    text-align: center;
+    border-bottom: rgba(128, 128, 128, 0.425) 1px solid;
+    padding-bottom: 20px;
 }
 
 .songPage__extras--likes {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
 
+.songPage__extras--likes > .userPic {
+    margin: 5px;
+}
+
+.userPic.extras {
+    width: 100px;
+    height: auto;
+    border-radius: 50px;
 }
