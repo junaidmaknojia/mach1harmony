@@ -92,16 +92,20 @@ export default function SongPage({ isLoaded }) {
             {foundSong && (
                 <div className="songBanner">
                     <div className="songInfo">
-                        <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
-                        <h2>{foundSong.artist}</h2>
-                        <span style={{marginRight: 5}}>{foundSong.numListens}<i class="fas fa-headphones"></i></span>
+                        <div className="songInfo__top">
+                            <div className="appSubmitButton play" onClick={() => playSong(foundSong)}><i class="fas fa-play"></i></div>
+                            <div className="songInfo__titles">
+                                <h3>{foundSong.artist}</h3>
+                                <h2 style={{fontSize: 50}}>{foundSong.title}</h2>
+                            </div>
+                        </div>
+                        <span style={{marginRight: 5}}><i class="fas fa-headphones"></i>{foundSong.numListens}</span>
                         {likes && likes.length>0 && (
                             <>
-                                <p>{`${likes.length} Likes`}</p>
                                 {sessionUser && (
                                     <span onClick={handleLike} className="likeButton">{
                                         likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-2x fa-heart"></i> : <i class="far fa-2x fa-heart"></i>
-                                    }</span>
+                                    }{likes.length}</span>
                                 )}
                             </>
                         )}

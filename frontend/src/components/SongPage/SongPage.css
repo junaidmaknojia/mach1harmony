@@ -6,7 +6,7 @@
 
 .songBanner {
     height: 400px;
-    background-image: linear-gradient(to right, gray,rgb(63, 63, 63));
+    background-image: linear-gradient(to right, gray,rgb(39, 39, 39));
     /* background-color: rgb(255, 123, 0); */
     margin-bottom: 20px;
     display: flex;
@@ -23,6 +23,22 @@
 
 .songInfo {
     width: 80%;
+}
+
+.songInfo__top {
+    display: flex;
+    flex-direction: row;
+}
+
+.songInfo__top > * {
+    margin: 10px;
+}
+
+.songInfo__titles {
+    background-color: rgba(0, 0, 0);
+    color: #fff;
+    width: inherit;
+    padding: 5px 10px;
 }
 
 .likeButton {
