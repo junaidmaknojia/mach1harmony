@@ -13,7 +13,10 @@ router.get("/likes/:id(\\d+)", asyncHandler(async (req, res) => { // get likes
     const songId = req.params.id;
 
     const likes = await Like.findAll({
-        where: { songId }
+        where: { songId },
+        include: [{
+            model: User
+        }]
     });
 
     return res.json(likes);
