@@ -41,10 +41,6 @@ export default function Homepage({isLoaded}) {
         // add to numListens
     }
 
-    // useEffect(() => {}, [dispatch, peopleYoureFollowing]);
-
-    let following = (sessionUser && peopleYoureFollowing) ? "following" : "";
-
     return (
         <div className="homepage">
             <div className="carousel">
@@ -95,12 +91,13 @@ export default function Homepage({isLoaded}) {
             )}
             <div className="trending">
                 <h2>Trending</h2>
+                <p>See what're the most listened to tracks</p>
                 <div>
                     {loadSongs && (
                         loadSongs.map(song => {
                             return (
                                 <div className="homeSong" key={song.id}>
-                                    <img src={song.coverPhoto} alt={song.title} style={{width: 120}} onClick={()=>playSong(song)}/>
+                                    <img src={song.coverPhoto} alt={song.title} className="homeSong__img" onClick={()=>playSong(song)}/>
                                     <div>
                                         <Link style={{textDecoration: "none", color: "black"}} to={`/users/${song.userId}/${song.id}`}>{song.title}</Link>
                                     </div>
@@ -113,6 +110,7 @@ export default function Homepage({isLoaded}) {
             </div>
             <div className="explore">
                 <h2>Explore</h2>
+                <p>Find new artists and their freshly released tracks</p>
                 <div>
                     {loadUsers && (
                         loadUsers.map(user => {

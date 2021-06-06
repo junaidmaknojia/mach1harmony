@@ -21,7 +21,7 @@ router.use("/searches", searchesRouter);
 router.get("/songs", asyncHandler(async (req, res) => { // songs on home page
 
     const songs = await Song.findAll({
-        order: [["createdAt", "DESC"]],
+        order: [["numListens", "DESC"]],
         limit: 5
     });
 
