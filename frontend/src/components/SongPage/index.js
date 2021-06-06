@@ -120,57 +120,67 @@ export default function SongPage({ isLoaded }) {
                 </div>
             )}
 
-            <div className="commentsList">
-                {sessionUser && (
-                    <form onSubmit={commentSubmit}>
-                        <textarea
-                            className="commentBox"
-                            placeholder="Add your comment..."
-                            value={commentInput}
-                            onChange={e=>setCommentInput(e.target.value)}
+            <div className="songPage__body">
+                <div className="commentsList">
+                    {sessionUser && (
+                        <form onSubmit={commentSubmit}>
+                            <textarea
+                                className="commentBox"
+                                placeholder="Add your comment..."
+                                value={commentInput}
+                                onChange={e=>setCommentInput(e.target.value)}
                             />
-                        <button type="submit" className="appSubmitButton">Comment</button>
-                    </form>
-                )}
+                            <button type="submit" className="appSubmitButton">Comment</button>
+                        </form>
+                    )}
 
-                {comments && comments.length > 0 && (
-                    <>
-                        {comments.map(comment => {
-                            return (
-                                <div key={comment.id} className="commentDiv">
-                                    <img src={comment.User.profilePic} alt={comment.User.username} style={{width: 50}} className="userPic"/>
-                                    <div style={{marginTop: 10}}><Link to={`/users/${comment.User.id}`}>{comment.User.username}</Link></div>
-                                    <p>{formatDate(comment.updatedAt)}</p>
-                                    {editCommentNumber === comment.id ? (
-                                        <form value={comment.id} onSubmit={editSubmit}>
-                                            <textarea
-                                                className="commentBox"
-                                                value={newComment}
-                                                onChange={e=>setNewComment(e.target.value)}
-                                            />
-                                            <button className="appSubmitButton" type="submit" value={comment.id}>Update</button>
-                                            <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
-                                        </form>
-                                    ) : <p className="commentText">{comment.text}</p>}
-                                    {sessionUser && (sessionUser.id === comment.userId) && (
-                                        <div style={{marginBottom: 10}}>
-                                            <p
-                                                onClick={() => {
-                                                    setNewComment(comment.text);
-                                                    setEditCommentNumber(comment.id)}
-                                                }
-                                                hidden={editCommentNumber}
-                                                style={{margin: 5, color: "orange"}}
-                                            >Edit</p>
-                                            <p style={{margin: 5, color: "orange"}} value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
+                    {comments && comments.length > 0 && (
+                        <>
+                            {comments.map(comment => {
+                                return (
+                                    <div key={comment.id} className="commentDiv">
+                                        <img src={comment.User.profilePic} alt={comment.User.username} className="userPic"/>
+                                        <div>
+                                            <div style={{marginTop: 10}}><Link to={`/users/${comment.User.id}`}>{comment.User.username}</Link></div>
+                                            {editCommentNumber === comment.id ? (
+                                                <form value={comment.id} onSubmit={editSubmit}>
+                                                    <textarea
+                                                        className="commentBox"
+                                                        value={newComment}
+                                                        onChange={e=>setNewComment(e.target.value)}
+                                                    />
+                                                    <button className="appSubmitButton" type="submit" value={comment.id}>Update</button>
+                                                    <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
+                                                </form>
+                                            ) : <p className="commentText">{comment.text}</p>}
                                         </div>
-                                    )}
-                                </div>
-                            )
-                        })}
-                    </>
-                )}
+                                        {sessionUser && (sessionUser.id === comment.userId) && (
+                                            <div style={{marginBottom: 10}}>
+                                                <p
+                                                    onClick={() => {
+                                                        setNewComment(comment.text);
+                                                        setEditCommentNumber(comment.id)}
+                                                    }
+                                                    hidden={editCommentNumber}
+                                                    style={{margin: 5, color: "orange"}}
+                                                >Edit</p>
+                                                <p style={{margin: 5, color: "orange"}} value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
+                                            </div>
+                                        )}
+                                        <p>{formatDate(comment.updatedAt)}</p>
+                                    </div>
+                                )
+                            })}
+                        </>
+                    )}
 
+                </div>
+                <div className="songPage__extras">
+                    <div className="songPage__extras--author">
+
+                    </div>
+                    <div className="songPage__extras--likes"></div>
+                </div>
             </div>
         </div>
     );
