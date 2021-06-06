@@ -100,15 +100,12 @@ export default function SongPage({ isLoaded }) {
                             </div>
                         </div>
                         <span style={{marginRight: 5}}><i class="fas fa-headphones"></i>{foundSong.numListens}</span>
-                        {likes && likes.length>0 && (
-                            <>
-                                {sessionUser && (
-                                    <span onClick={handleLike} className="likeButton">{
-                                        likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-2x fa-heart"></i> : <i class="far fa-2x fa-heart"></i>
-                                    }{likes.length}</span>
-                                )}
-                            </>
+                        {sessionUser && (
+                            <span onClick={handleLike} className="likeButton">
+                                {likes.find(like => like.userId === sessionUser.id) ? <i class="fas fa-2x fa-heart"></i> : <i class="far fa-2x fa-heart"></i>}
+                            </span>
                         )}
+                        <span>{likes.length}</span>
                         <img src="https://images.vexels.com/media/users/3/145464/isolated/preview/0842d1719ec663c3256b9f46c740bbed-audio-wave-by-vexels.png" className="songInfo__waves"/>
                     </div>
                     <img
@@ -188,7 +185,7 @@ export default function SongPage({ isLoaded }) {
                         <p>Users who like this</p>
                         <div className="songPage__extras--likes">
                             {likes?.map(like => (
-                                <Link to={`/users/${like.User.id}`} className="userPic"><img alt={like.User.username} src={like.User.profilePic} className="userPic"/></Link>
+                                <Link to={`/users/${like?.User?.id}`} className="userPic"><img alt={like?.User?.username} src={like?.User?.profilePic} className="userPic"/></Link>
                             ))}
                         </div>
                     </div>
