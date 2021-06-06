@@ -145,29 +145,34 @@ export default function SongPage({ isLoaded }) {
                                             {editCommentNumber === comment.id ? (
                                                 <form value={comment.id} onSubmit={editSubmit}>
                                                     <textarea
-                                                        className="commentBox"
+                                                        className="commentBox editBox"
                                                         value={newComment}
                                                         onChange={e=>setNewComment(e.target.value)}
                                                     />
-                                                    <button className="appSubmitButton" type="submit" value={comment.id}>Update</button>
-                                                    <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
+                                                    <div>
+                                                        <button className="appSubmitButton" type="submit" value={comment.id}>Update</button>
+                                                        <button className="appSubmitButton" onClick={() => setEditCommentNumber(0)}>Cancel</button>
+                                                    </div>
                                                 </form>
                                             ) : <p className="commentText">{comment.text}</p>}
+
                                         </div>
-                                        {sessionUser && (sessionUser.id === comment.userId) && (
-                                            <div style={{marginBottom: 10}}>
-                                                <p
-                                                    onClick={() => {
-                                                        setNewComment(comment.text);
-                                                        setEditCommentNumber(comment.id)}
-                                                    }
-                                                    hidden={editCommentNumber}
-                                                    style={{margin: 5, color: "orange"}}
-                                                >Edit</p>
-                                                <p style={{margin: 5, color: "orange"}} value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
-                                            </div>
-                                        )}
-                                        <p>{formatDate(comment.updatedAt)}</p>
+                                        <div>
+                                            <div>{formatDate(comment.updatedAt)}</div>
+                                            {sessionUser && (sessionUser.id === comment.userId) && (
+                                                <>
+                                                    <p
+                                                        onClick={() => {
+                                                            setNewComment(comment.text);
+                                                            setEditCommentNumber(comment.id)}
+                                                        }
+                                                        hidden={editCommentNumber}
+                                                        className="edit"
+                                                    >Edit</p>
+                                                    <p className="delete" value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
+                                                </>
+                                            )}
+                                        </div>
                                     </div>
                                 )
                             })}
