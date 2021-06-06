@@ -23,24 +23,23 @@ export default function GenresPage() {
         setGenres(result);
     }, [dispatch])
 
-    return (
-        <>
-            <div className="genreOptions">
-                {genres && (
-                    genres.map(genre => {
-                        return (
-                            <p
-                            onClick={handleSongs}
-                            value={genre.id}
-                            className="genreOptions__genre">{genre.name}</p>
-                        )
-                    })
-                )}
-            </div>
+    useEffect(() => {
+        const getAllSongs = async () => {
+            const songs = await fetch("/api/genres/songs");
+            const songsData = await songs.json();
+            setSongs(songsData)
+        }
+        getAllSongs();
+    }, []);
 
-            {genreSelected && (
-                <Genre songs={songs}/>
-            )}
-        </>
+    return (
+        <div className="genrePage">
+            <div className="genreOptions">
+                {genres?.map(genre => (
+                    <div onClick={handleSongs} value={genre.id} className="genreOptions__genre">{genre.name}</div>
+                ))}
+            </div>
+            <Genre songs={songs}/>
+        </div>
     )
 }
