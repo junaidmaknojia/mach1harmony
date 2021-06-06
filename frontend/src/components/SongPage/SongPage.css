@@ -1,55 +1,40 @@
 .songPage {
-    display: grid;
-    grid-template-columns: 50px repeat(4, 1fr) 50px;
-    grid-template-rows: 70px 300px 2000px 60px;
-    /* text-align: center; */
+    margin: 0px 5% 60px;
+    padding-top: 35px;
+    background-color: white;
 }
 
 .songBanner {
-    grid-column: 2 / span 4;
-    grid-row: 2/3;
-    height: 300px;
-    background-color: rgb(255, 123, 0);
+    height: 400px;
+    background-image: linear-gradient(to right, gray,rgb(63, 63, 63));
+    /* background-color: rgb(255, 123, 0); */
     margin-bottom: 20px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 20px;
 }
 
-.songPhoto {
-    width: auto;
+.songInfo__waves {
+    object-fit: cover;
     height: 200px;
-    margin: 40px;
-}
-
-.songPhoto:hover + .playHover {
-    display: block;
-}
-
-/* .playHover:hover + .playHover {
-    display: block;
-} */
-
-.playHover {
-    display: none;
-    position: absolute;
-    top: 150px;
-    left: 130px;
-    height: 150px;
-    width: auto;
-    z-index: 5;
+    width: 100%;
 }
 
 .songInfo {
-    position: absolute;
-    top: 80px;
-    margin-left: 260px;
+    width: 80%;
 }
 
 .likeButton {
     scale: 10;
 }
 
+.songPhoto {
+    width: auto;
+    height: 95%;
+}
+
 .commentsList {
-    grid-column: 2/6;
-    grid-row: 3/4;
     margin-left: 50px;
     margin-top: 20px;
 }

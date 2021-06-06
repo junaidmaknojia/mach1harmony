@@ -91,15 +91,6 @@ export default function SongPage({ isLoaded }) {
         <div className="songPage">
             {foundSong && (
                 <div className="songBanner">
-                    <img
-                        src={foundSong.coverPhoto}
-                        alt={foundSong.title}
-                        className="songPhoto"
-                        onClick={() => playSong(foundSong)}
-                    />
-                    <img src="https://alohajarren.github.io/webpage-mockup/images/songplay.png" className="playHover"/>
-
-
                     <div className="songInfo">
                         <h1 style={{fontSize: 50}}>{foundSong.title}</h1>
                         <h2>{foundSong.artist}</h2>
@@ -114,7 +105,14 @@ export default function SongPage({ isLoaded }) {
                                 )}
                             </>
                         )}
+                        <img src="https://images.vexels.com/media/users/3/145464/isolated/preview/0842d1719ec663c3256b9f46c740bbed-audio-wave-by-vexels.png" className="songInfo__waves"/>
                     </div>
+                    <img
+                        src={foundSong.coverPhoto}
+                        alt={foundSong.title}
+                        className="songPhoto"
+                        onClick={() => playSong(foundSong)}
+                    />
                 </div>
             )}
 
