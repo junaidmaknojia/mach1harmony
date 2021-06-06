@@ -51,21 +51,16 @@
 
 }
 
-.trending, .followingDiv {
-    text-align: center;
+.trending, .followingDiv, .explore {
+    margin: 30px 40px 30px;
     color: rgb(175, 79, 0);
     /* background-color: orange; */
-}
-
-.explore {
-    text-align: center;
-    color: rgb(175, 79, 0);
-    /* background-color: greenyellow; */
 }
 
 .getStarted {
     display: flex;
     flex-flow: row;
+    margin-top: 100px;
 }
 
 .appText {
@@ -108,10 +103,16 @@
 }
 
 .homeSong {
-    margin: 20px;
-    text-align: center;
-    font-size: 20px;
+    margin: 10px 10px;
     display: inline-block;
+    font-size: 0.8em;
+    color: gray;
+}
+
+.homeSong__img {
+    width: auto;
+    height: 175px;
+    cursor: pointer;
 }
 
 h2 {
