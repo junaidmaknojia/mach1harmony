@@ -157,22 +157,20 @@ export default function SongPage({ isLoaded }) {
                                             ) : <p className="commentText">{comment.text}</p>}
 
                                         </div>
-                                        <div>
-                                            <div>{formatDate(comment.updatedAt)}</div>
-                                            {sessionUser && (sessionUser.id === comment.userId) && (
-                                                <>
-                                                    <p
-                                                        onClick={() => {
-                                                            setNewComment(comment.text);
-                                                            setEditCommentNumber(comment.id)}
-                                                        }
-                                                        hidden={editCommentNumber}
-                                                        className="edit"
-                                                    >Edit</p>
-                                                    <p className="delete" value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
-                                                </>
-                                            )}
-                                        </div>
+                                        <p>{formatDate(comment.updatedAt)}</p>
+                                        {sessionUser && (sessionUser.id === comment.userId) && (
+                                            <div>
+                                                <p
+                                                    onClick={() => {
+                                                        setNewComment(comment.text);
+                                                        setEditCommentNumber(comment.id)}
+                                                    }
+                                                    hidden={editCommentNumber}
+                                                    className="comment__edit"
+                                                >Edit</p>
+                                                <p className="comment__delete" value={comment.id} onClick={(e) => handleDelete(e)}>Delete</p>
+                                            </div>
+                                        )}
                                     </div>
                                 )
                             })}

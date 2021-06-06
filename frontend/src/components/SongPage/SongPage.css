@@ -97,7 +97,9 @@
     font-size: 0.8em;
 }
 
-.edit, .delete {
+.comment__edit, .comment__delete {
     color: rgb(255, 115, 0);
     cursor: pointer;
+    display: inline-block;
+    margin: 5px;
 }
