@@ -7,6 +7,7 @@ import { sendSong } from "../../store/playbar";
 import Carousel from 'react-bootstrap/Carousel';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import Footer from "../Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Homepage({isLoaded}) {
@@ -154,6 +155,7 @@ export default function Homepage({isLoaded}) {
                     <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

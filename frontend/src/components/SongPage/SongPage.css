@@ -49,6 +49,7 @@
 .songPhoto {
     width: auto;
     height: 95%;
+    cursor: pointer;
 }
 
 .songPage__body {
