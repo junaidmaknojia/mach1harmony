@@ -19,13 +19,13 @@
     margin: 0px;
 }
 
-.navBar__section > div {
+.navBar__section > div:not(.menu) {
     padding: 5px 20px;
     border-right: black 1px solid;
     cursor: pointer;
 }
 
-.navBar__section > div:hover {
+.navBar__section > div:hover:not(.menu) {
     color: whitesmoke;
 }
 
@@ -44,12 +44,24 @@ li:last-child {
 }
 
 .menu {
-    position: absolute;
-    top: 15px;
-    z-index: 999;
-    width: 100px;
-    height: 150px;
-    background-color: black;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 15px;
+    top: 40px;
+    z-index: 10;
+    width: inherit;
+    background-color: rgb(231, 231, 231);
+    color: black;
+    border: 1px rgb(192, 192, 192) solid;
+}
+
+.menu > * {
+    width: 100%;
+    font-size: 0.8em;
+    margin: 5px 0px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 .navLink {
