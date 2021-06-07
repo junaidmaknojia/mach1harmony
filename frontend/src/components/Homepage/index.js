@@ -75,10 +75,18 @@ export default function Homepage({isLoaded}) {
                         </div>
                     </Carousel.Item>
                 </Carousel>
-                <div className="carousel__navbar">
-                    <h4>Have an account?</h4>
-                    <LoginFormModal/>
-                </div>
+                {!sessionUser && (
+                    <div className="carousel__navbar">
+                        <div className="carousel__navbar--left">
+                            <img src="https://react-project.s3.us-east-2.amazonaws.com/new-logo.png" className="logo"/>
+                            <h4>Mach1Harmony</h4>
+                        </div>
+                        <div className="carousel__navbar--right">
+                            <LoginFormModal/>
+                            <SignupFormModal text="Create Account"/>
+                        </div>
+                    </div>
+                )}
             </div>
             {(sessionUser && peopleYoureFollowing) && (
                 <div className="followingDiv">

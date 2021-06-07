@@ -1,7 +1,7 @@
 .homepage {
     width: 90%;
     margin: 0px auto 100px;
-    padding-top: 50px;
+    padding-top: 40px;
     background-color: whitesmoke;
 }
 
@@ -11,6 +11,10 @@
 
 .carousel, .sliderimg {
     height: 400px;
+}
+
+.carousel {
+    border-top: 2px orangered solid;
 }
 
 .carouselText {
@@ -28,10 +32,22 @@
     bottom: 375px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.212);
     z-index: 5;
     color: whitesmoke;
+    padding: 8px 20px;
+    height: 50px;
+}
+
+.carousel__navbar--left, .carousel__navbar--right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.carousel__navbar--left > * , .carousel__navbar--right > * {
+    margin: 0px 10px;
 }
 
 .sliderimg{
