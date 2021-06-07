@@ -15,7 +15,7 @@ export default function Playbar(){
     const [playing, setPlaying] = useState(false);
 
     useEffect(async () => {
-        await dispatch(incrementListen(addedSong.id));
+        await dispatch(incrementListen(addedSong?.id));
     }, [addedSong]);
 
     // function handlePlay(){

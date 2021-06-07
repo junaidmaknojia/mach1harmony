@@ -1,6 +1,7 @@
 .homepage {
     width: 90%;
     margin: 0px auto 100px;
+    padding-top: 50px;
     background-color: whitesmoke;
 }
 
@@ -8,19 +9,28 @@
     margin-bottom: 30px;
 }
 
-.carousel {
-    position: relative;
-    top: 0px;
+.carousel, .sliderimg {
     height: 400px;
-    z-index: 0;
 }
 
+.carouselText {
+    position: relative;
+    bottom: 300px;
+    left: 20%;
+    width: 50%;
+    color: #fff;
+    z-index: 5;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
 
 .carousel__navbar {
+    position: relative;
+    bottom: 375px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     background-color: rgba(0, 0, 0, 0.212);
+    z-index: 5;
     color: whitesmoke;
 }
 
@@ -28,7 +38,6 @@
     position: relative;
     top: 0px;
     width: 80%;
-    height: 400px;
     object-fit: cover
 }
 
@@ -117,14 +126,4 @@
 
 h2 {
     font-size: 40px;
-}
-
-
-.carouselText {
-    position: relative;
-    top: 300px;
-    left: 20%;
-    width: 50%;
-    color: #fff;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
