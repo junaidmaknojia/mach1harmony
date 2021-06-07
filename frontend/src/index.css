@@ -36,3 +36,7 @@
 .appSubmitButton:hover {
     background-color: rgb(255, 87, 25);
 }
+
+* {
+    font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;;
+}
