@@ -1,7 +1,6 @@
 .homepage {
     width: 90%;
     margin: 0px auto 100px;
-    padding-top: 40px;
     background-color: whitesmoke;
 }
 
@@ -13,9 +12,9 @@
     height: 400px;
 }
 
-.carousel {
+/* .carousel {
     border-top: 2px orangered solid;
-}
+} */
 
 .carouselText {
     position: relative;

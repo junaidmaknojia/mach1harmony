@@ -12,14 +12,24 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const loginDemo = () => {
+        dispatch(sessionActions.login({ "credential": "demouser@yahoo.com", "password": "password" }))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
         return dispatch(sessionActions.login({ credential, password }))
             .catch(async (res) => {
-                const data = await res.json(); // had errors here earlier
+                const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
-            });
+            }
+        );
     }
 
     return (
@@ -46,6 +56,7 @@ export default function LoginForm() {
                 />
             </div>
             <button type="submit" className="appSubmitButton">Log In</button>
+            <button onClick={loginDemo} className="appSubmitButton">Demo User</button>
         </form>
     );
 }
