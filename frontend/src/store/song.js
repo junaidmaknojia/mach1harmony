@@ -6,32 +6,14 @@ export const LOAD_SONGS = "song/loadSongs";
 
 const initialState = {user: null};
 
-// const createSong = (info) => {
-//     return {
-//         type: CREATE_SONG,
-//         payload: info
-//     }
-// }
-
 const load = (songs, userId) => ({
     type: LOAD_SONGS,
     songs,
     userId
 })
 
-// export const sendSong = (song) => async (dispatch) => {
-//     await dispatch(setStateSong(song));
-// }
-
-// const setStateSong = (song) => ({
-//     type: SET_STATE_SONG,
-//     song
-// });
-
 export const loadSongsThunk = (userId) => async (dispatch) => {
-    // console.log(sessionUser.id);
     const response = await csrfFetch(`/api/users/${userId}`);
-    // console.log(await response.json());
 
     if(response.ok){
         const songs = await response.json();
@@ -86,7 +68,7 @@ export function updateSong(payload, songId){
             formData.append("files", imageUpload);
         }
 
-        const response = await csrfFetch(`api/songs/${songId}`, {
+        const response = await csrfFetch(`/api/songs/${songId}`, {
             method: "PUT",
             headers: {"Content-Type": "multipart/form-data"},
             body: formData

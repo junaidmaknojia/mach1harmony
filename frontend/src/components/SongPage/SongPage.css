@@ -1,7 +1,8 @@
 .songPage {
-    margin: 0px 5% 60px;
-    padding-top: 35px;
-    background-color: white;
+    width: 90%;
+    margin: 0px auto 100px;
+    padding-top: 40px;
+    background-color: whitesmoke;
 }
 
 .songBanner {
