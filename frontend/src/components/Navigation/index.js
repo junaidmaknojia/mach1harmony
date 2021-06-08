@@ -4,7 +4,6 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { NavLink, Link, Redirect, useHistory } from "react-router-dom";
 import SongUploadFormModal from "../UploadSongFormModal";
-import EditProfileModal from "../EditProfileModal";
 
 export default function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -22,7 +21,7 @@ export default function Navigation({ isLoaded }) {
             <div className="navBar__section">
                 <div>Upgrade</div>
                 <div><SongUploadFormModal/></div>
-                <div><ProfileButton user={sessionUser}/></div>
+                <ProfileButton user={sessionUser}/>
             </div>
         </div>
     );

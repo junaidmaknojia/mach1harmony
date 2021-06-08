@@ -15,25 +15,20 @@ export default function Playbar(){
     const [playing, setPlaying] = useState(false);
 
     useEffect(async () => {
-        // if(audioRef.current){
-        //     audioRef.current.pause();
-        //     setPlaying(false);
-        //     audioRef.current.load();
-        //     audioRef.current.play();
-        //     await dispatch(incrementListen(addedSong.id));
-        //     setPlaying(true);
-        // }
+        if(addedSong){
+            await dispatch(incrementListen(addedSong?.id));
+        }
     }, [addedSong]);
 
-    function handlePlay(){
-        if(playing){
-            audioRef.current.pause();
-            setPlaying(false)
-        }else{
-            audioRef.current.play();
-            setPlaying(true);
-        }
-    }
+    // function handlePlay(){
+    //     if(playing){
+    //         audioRef.current.pause();
+    //         setPlaying(false)
+    //     }else{
+    //         audioRef.current.play();
+    //         setPlaying(true);
+    //     }
+    // }
 
     return (
         <div className="barContainer">

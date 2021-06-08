@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useDispatch} from "react-redux";
 import { getGenres, showSongs } from "../../store/genre";
+import Footer from "../Footer";
 import Genre from "./Genre";
 import "./GenresPage.css";
 
@@ -37,9 +38,10 @@ export default function GenresPage() {
             <div className="genreOptions">
                 {genres?.map(genre => (
                     <div onClick={handleSongs} value={genre.id} className="genreOptions__genre">{genre.name}</div>
-                ))}
+                    ))}
             </div>
             <Genre songs={songs}/>
+            <Footer/>
         </div>
     )
 }

@@ -1,3 +1,7 @@
 .form > * {
     margin: 20px;
 }
+
+.signup__error {
+    color: red;
+}

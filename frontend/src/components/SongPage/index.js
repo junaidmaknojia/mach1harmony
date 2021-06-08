@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import {Link} from "react-router-dom";
 import { loadSongsThunk } from "../../store/song";
 import { sendSong } from "../../store/playbar";
+import Footer from "../Footer";
 
 
 export default function SongPage({ isLoaded }) {
@@ -94,13 +95,13 @@ export default function SongPage({ isLoaded }) {
                                 <h2 style={{fontSize: 50}}>{foundSong.title}</h2>
                             </div>
                         </div>
-                        <span style={{marginRight: 5}}><i class="fas fa-headphones"></i>{foundSong.numListens}</span>
+                        <span style={{marginRight: 5}}><i class="fas fa-headphones" style={{marginRight: 5}}></i>{foundSong.numListens}</span>
                         {sessionUser && (
                             <span onClick={handleLike} className="likeButton">
                                 {likes?.find(like => like.userId === sessionUser.id) ? <i class="fas fa-2x fa-heart"></i> : <i class="far fa-2x fa-heart"></i>}
                             </span>
                         )}
-                        <span>{likes?.length}</span>
+                        <span>{`${likes?.length} ${sessionUser ? "" : "likes"}`}</span>
                         <img src="https://images.vexels.com/media/users/3/145464/isolated/preview/0842d1719ec663c3256b9f46c740bbed-audio-wave-by-vexels.png" className="songInfo__waves"/>
                     </div>
                     <img
@@ -186,6 +187,7 @@ export default function SongPage({ isLoaded }) {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

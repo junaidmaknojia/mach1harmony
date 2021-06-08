@@ -3,6 +3,7 @@
     width: 100%;
     position: fixed;
     bottom: 0px;
+    margin: 0px;
     background-color: rgb(219, 218, 218);
     border-top: rgb(156, 156, 156) solid 1px;
     display: flex;

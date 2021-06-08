@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { Redirect } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import {useHistory} from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 export default function SignupForm({setShowModal}) {
 
     const dispatch = useDispatch();
-    // const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,13 +22,16 @@ export default function SignupForm({setShowModal}) {
         if (password === confirmPassword) {
             return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
-                    const data = await res.json();
-                    if (data && data.errors){
-                        setErrors(data.errors);
-                    }else {
-                        sessionActions.sessionAdd(data.user);
+                    if(res.ok) {
                         setErrors([]);
                         setShowModal(false);
+                        history.push(`/users/${sessionUser.id}`);
+                        return;
+                    }else {
+                        const data = await res.json();
+                        if (data && data.errors){
+                            setErrors(data.errors);
+                        }
                     }
                 });
         }
@@ -37,7 +41,7 @@ export default function SignupForm({setShowModal}) {
     return (
         <form onSubmit={handleSubmit} className="form">
             <div>
-                {errors.map((error, idx) => <p key={idx}>{error}</p>)}
+                {errors.map((error, idx) => <p key={idx} className="signup__error">{error}</p>)}
             </div>
             <div>
                 <input

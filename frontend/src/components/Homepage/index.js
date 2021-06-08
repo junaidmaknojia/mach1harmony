@@ -7,6 +7,7 @@ import { sendSong } from "../../store/playbar";
 import Carousel from 'react-bootstrap/Carousel';
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import Footer from "../Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Homepage({isLoaded}) {
@@ -44,35 +45,49 @@ export default function Homepage({isLoaded}) {
     return (
         <div className="homepage">
             <div className="carousel">
-                <div className="carousel__navbar">
-                    <h3>Have an account?</h3>
-                    <LoginFormModal/>
-                </div>
                 <Carousel>
                     <Carousel.Item>
-                        <div className="carousel__main carouselText">
-                            <h2>Discover more with this SoundCloud clone</h2>
-                            <p>Mach1Harmony allows you to get the same experience of SoundCloud, but on a whole other site. Listen solely on your desktop and connect with the limited people that know about the application!</p>
-                            <SignupFormModal text="Get Started"/>
+                        <div className="carousel__item">
+                            <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
+                            <div className="carousel__main carouselText">
+                                <h2>Discover more with this SoundCloud clone</h2>
+                                <p>Mach1Harmony allows you to get the same experience of SoundCloud, but on a whole other site. Listen solely on your desktop and connect with the limited people that know about the application!</p>
+                                <SignupFormModal text="Get Started"/>
+                            </div>
                         </div>
-                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/sunset-people.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <div className="carousel__second carouselText">
-                            <h2>Upload your hits</h2>
-                            <p>With over 20 users (yeah... that's right), your tracks will gain all kinds of traction with Mach1Harmony. Start uploading your tracks for mid-size virality!</p>
-                            <SignupFormModal text="Upload Now"/>
+                        <div className="carousel__item">
+                            <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
+                            <div className="carousel__second carouselText">
+                                <h2>Upload your hits</h2>
+                                <p>With over 20 users (yeah... that's right), your tracks will gain all kinds of traction with Mach1Harmony. Start uploading your tracks for mid-size virality!</p>
+                                <SignupFormModal text="Upload Now"/>
+                            </div>
                         </div>
-                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/piano-night-club.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                     <Carousel.Item>
-                        <div className="carousel__third carouselText">
-                            <h2>{"Ad partner goes \<here\>"}</h2>
-                            <p>That somone in the crowd will grant this application's big break and will be featured here as an ad partner. Conditions will follow</p>
+                        <div className="carousel__item">
+                            <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
+                            <div className="carousel__third carouselText">
+                                <h2>{"Ad partner goes \<here\>"}</h2>
+                                <p>That somone in the crowd will grant this application's big break and will be featured here as an ad partner. Conditions will follow</p>
+                            </div>
                         </div>
-                        <img src="https://react-project.s3.us-east-2.amazonaws.com/stock/night-dj.jpg" className="sliderimg d-block w-100"/>
                     </Carousel.Item>
                 </Carousel>
+                {!sessionUser && (
+                    <div className="carousel__navbar">
+                        <div className="carousel__navbar--left">
+                            <img src="https://react-project.s3.us-east-2.amazonaws.com/new-logo.png" className="logo"/>
+                            <h4><Link to="/genres" style={{textDecoration: "none"}}>Mach1Harmony</Link></h4>
+                        </div>
+                        <div className="carousel__navbar--right">
+                            <LoginFormModal/>
+                            <SignupFormModal text="Create Account"/>
+                        </div>
+                    </div>
+                )}
             </div>
             {(sessionUser && peopleYoureFollowing) && (
                 <div className="followingDiv">
@@ -140,6 +155,7 @@ export default function Homepage({isLoaded}) {
                     <img src="https://iconape.com/wp-content/png_logo_vector/app-store-google-play-logo.png" className="appLogos"/>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

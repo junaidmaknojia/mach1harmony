@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateSong, loadSongsThunk} from "../../store/song";
+import "./EditSongForm.css";
 
 
 export default function EditSongForm({songId, setShowModal}) {
@@ -43,7 +44,7 @@ export default function EditSongForm({songId, setShowModal}) {
 
         let songUploadGood = await dispatch(updateSong(payload, songId));
         if(songUploadGood) {
-            history.push(`/songs/${songId}`);
+            history.push(`/users/${sessionUser.id}/${songId}`);
             setShowModal(false);
         }
     }
@@ -97,7 +98,7 @@ export default function EditSongForm({songId, setShowModal}) {
                     <input type="file" name='coverPhotoUpload' onChange={e => setImageUpload(e.target.files[0])}/>
                 </div>
                 <div>
-                    <button type="submit">Update</button>
+                    <button type="submit" className="appSubmitButton">Update</button>
                 </div>
             </form>
         </>

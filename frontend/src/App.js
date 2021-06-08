@@ -30,15 +30,16 @@ function App() {
 					<Route exact path="/">
 						<Homepage isLoaded={isLoaded} />
 					</Route>
-					<Route path="/users/:userId/:songId">
+					<Route path={`/users/:userId(\\d+)/:songId(\\d+)`}>
 						<SongPage />
 					</Route>
 					<Route path="/genres">
 						<GenresPage />
 					</Route>
-					<Route path="/users/:userId">
+					<Route path={`/users/:userId(\\d+)`}>
 						<UserPage isLoaded={isLoaded} />
 					</Route>
+					<Route><h1>The page you're looking for doesn't exist</h1></Route>
 				</Switch>
 			)}
 			<Playbar />
