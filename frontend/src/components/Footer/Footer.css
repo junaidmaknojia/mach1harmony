@@ -7,7 +7,7 @@
     border-top: rgba(128, 128, 128, 0.568) 1px solid;
 }
 
-p {
+.footer__disclaimer {
     font-size: 0.7em;
     color: gray;
     font-style: italic;

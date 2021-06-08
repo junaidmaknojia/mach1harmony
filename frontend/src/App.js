@@ -39,6 +39,7 @@ function App() {
 					<Route path="/users/:userId">
 						<UserPage isLoaded={isLoaded} />
 					</Route>
+					<Route><h1>The page you're looking for doesn't exist</h1></Route>
 				</Switch>
 			)}
 			<Playbar />

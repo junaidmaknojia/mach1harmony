@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import {Link} from "react-router-dom";
 import { loadSongsThunk } from "../../store/song";
 import { sendSong } from "../../store/playbar";
+import Footer from "../Footer";
 
 
 export default function SongPage({ isLoaded }) {
@@ -186,6 +187,7 @@ export default function SongPage({ isLoaded }) {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

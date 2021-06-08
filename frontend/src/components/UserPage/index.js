@@ -7,6 +7,7 @@ import { loadSongsThunk } from "../../store/song";
 import { getFollowInfo, getUserInfo, updateFollow } from "../../store/user";
 import { sendSong } from "../../store/playbar";
 import UserProfile from "../UserProfile";
+import Footer from "../Footer";
 
 export default function UserPage({isLoaded}) {
     const dispatch = useDispatch();
@@ -105,7 +106,7 @@ export default function UserPage({isLoaded}) {
                     {/* <p>{`${user.username} has ${followers.length} followers!`}</p> */}
                 </div>
             </div>
-
+            <Footer/>
         </div>
     );
 }
