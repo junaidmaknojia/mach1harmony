@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {useHistory} from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
@@ -8,7 +8,7 @@ export default function SignupForm({setShowModal}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    // const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -23,16 +23,15 @@ export default function SignupForm({setShowModal}) {
             return dispatch(sessionActions.signupUser({ email, username, password }))
                 .catch(async (res) => {
                     if(res.ok) {
-                        console.log("inside res.ok in form");
-                        sessionActions.sessionAdd(data.user);
                         setErrors([]);
                         setShowModal(false);
-                        history.push("/");
+                        history.push(`/users/${sessionUser.id}`);
                         return;
-                    }
-                    const data = await res.json();
-                    if (data && data.errors){
-                        setErrors(data.errors);
+                    }else {
+                        const data = await res.json();
+                        if (data && data.errors){
+                            setErrors(data.errors);
+                        }
                     }
                 });
         }
