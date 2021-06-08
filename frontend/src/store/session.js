@@ -45,9 +45,11 @@ export function signupUser(user) {
             method: "POST",
             body: JSON.stringify({username, email, password})
         });
-        const parsed = response.json();
-        dispatch(sessionAdd(parsed.user));
-        return parsed;
+        if(response.ok) {
+            const parsed = response.json();
+            dispatch(sessionAdd(parsed.user));
+        }
+        return response;
     }
 }
 
