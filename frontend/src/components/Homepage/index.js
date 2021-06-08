@@ -80,7 +80,7 @@ export default function Homepage({isLoaded}) {
                     <div className="carousel__navbar">
                         <div className="carousel__navbar--left">
                             <img src="https://react-project.s3.us-east-2.amazonaws.com/new-logo.png" className="logo"/>
-                            <h4>Mach1Harmony</h4>
+                            <h4><Link to="/genres" style={{textDecoration: "none"}}>Mach1Harmony</Link></h4>
                         </div>
                         <div className="carousel__navbar--right">
                             <LoginFormModal/>
