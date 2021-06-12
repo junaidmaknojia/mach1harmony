@@ -69,15 +69,15 @@ export default function UserProfile({sessionUser, isLoaded}) {
                     <div className="userInfo__stats">
                         <div>
                             <p>Followers</p>
-                            <p>53,003</p>
+                            <p>{(Math.floor(Math.random()*1000000))}</p>
                         </div>
                         <div>
                             <p>Following</p>
-                            <p>34</p>
+                            <p>{(Math.floor(Math.random()*1000000))}</p>
                         </div>
                         <div>
                             <p>Songs</p>
-                            <p>23</p>
+                            <p>{foundSongs?.length}</p>
                         </div>
                     </div>
                     <p className="bio">{sessionUser.bio}</p>
