@@ -91,11 +91,11 @@ export default function EditSongForm({songId, setShowModal}) {
                 </div>
                 <div>
                     <p>Song Upload</p>
-                    <input type="file" name='audioUpload' onChange={e => setSongUpload(e.target.files[0])}/>
+                    <input type="file" name='audioUpload' accept=".mp3" onChange={e => setSongUpload(e.target.files[0])}/>
                 </div>
                 <div>
                     <p>Cover Photo Upload</p>
-                    <input type="file" name='coverPhotoUpload' onChange={e => setImageUpload(e.target.files[0])}/>
+                    <input type="file" name='coverPhotoUpload' accept=".jpg,.jpeg,.png" onChange={e => setImageUpload(e.target.files[0])}/>
                 </div>
                 <div>
                     <button type="submit" className="appSubmitButton">Update</button>

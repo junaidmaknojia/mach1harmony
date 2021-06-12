@@ -89,7 +89,7 @@ export default function Homepage({isLoaded}) {
                     </div>
                 )}
             </div>
-            {(sessionUser && peopleYoureFollowing) && (
+            {(sessionUser && peopleYoureFollowing.length > 0) && (
                 <div className="followingDiv">
                     <h2>People You're Following</h2>
                     <div className="followers">
