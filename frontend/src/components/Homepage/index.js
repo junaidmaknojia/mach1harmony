@@ -106,8 +106,8 @@ export default function Homepage({isLoaded}) {
             )}
             <div className="trending">
                 <h2>Trending</h2>
-                <p>See what're the most listened to tracks</p>
-                <div>
+                <p>See the most listened to tracks</p>
+                <div className="trending__songs">
                     {loadSongs && (
                         loadSongs.map(song => {
                             return (
@@ -126,7 +126,7 @@ export default function Homepage({isLoaded}) {
             <div className="explore">
                 <h2>Explore</h2>
                 <p>Find new artists and their freshly released tracks</p>
-                <div>
+                <div className="explore__users">
                     {loadUsers && (
                         loadUsers.map(user => {
                             return (
