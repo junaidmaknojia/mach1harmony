@@ -34,7 +34,7 @@ export default function Playbar(){
         <div className="barContainer">
             {addedSong && (
                 <>
-                    <AudioPlayer src={addedSong.filePath} ref={audioRef} autoplay style={{marginRight: 100}} className="audioControls"/>
+                    <AudioPlayer src={addedSong.filePath} ref={audioRef} autoplay="true" style={{marginRight: 100}} className="audioControls"/>
                     <div className="barContainer__songInfo">
                         <img alt={addedSong.title} src={addedSong.coverPhoto}/>
                         <div>

@@ -118,12 +118,10 @@
     font-size: 20px;
     margin: 20px;
     text-align: center;
-    display: inline-block;
 }
 
 .homeSong {
     margin: 10px 10px;
-    display: inline-block;
     font-size: 0.8em;
     color: gray;
 }
@@ -136,4 +134,12 @@
 
 h2 {
     font-size: 40px;
+}
+
+.trending__songs, .explore__users {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

@@ -30,7 +30,7 @@ const validateSignup = [
 
 router.post("/", validateSignup, asyncHandler(async (req,res) => {
     const {email, password, username} = req.body;
-    const user = await User.signup({email, username, password});
+    const user = await User.signup({email, username, password, profilePic: "https://react-project.s3.us-east-2.amazonaws.com/profilePics/default.jpg"});
 
     await setTokenCookie(res, user);
 

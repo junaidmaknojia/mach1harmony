@@ -24,7 +24,7 @@ module.exports = {
       },
       profilePic: {
         type: Sequelize.STRING,
-        defaultValue: 'https://t4.ftcdn.net/jpg/02/15/84/43/240_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg'
+        defaultValue: 'https://react-project.s3.us-east-2.amazonaws.com/profilePics/default.jpg'
       },
       bio: {
         type: Sequelize.STRING(300),

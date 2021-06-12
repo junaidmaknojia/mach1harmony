@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import EditProfile from "./EditProfile";
 import "./EditProfile.css";
 import { Modal } from "../../context/Modal";

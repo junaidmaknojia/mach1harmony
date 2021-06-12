@@ -41,7 +41,7 @@ export default function ProfileButton({ user }) {
             {showMenu && (
                 <div className="menu">
                     <NavLink to={`/users/${user.id}`}>Profile</NavLink>
-                    <EditProfileModal/>
+                    {/* <EditProfileModal/> */}
                     <p onClick={logout}><i class="fas fa-sign-out-alt" style={{marginRight: 5}}></i>Log Out</p>
                 </div>
             )}

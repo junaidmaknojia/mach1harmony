@@ -43,7 +43,7 @@ export default function LoginForm() {
                     type="text"
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
-                    required
+                    // required
                 />
             </div>
             <div>
@@ -52,7 +52,7 @@ export default function LoginForm() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    required
+                    // required
                 />
             </div>
             <button type="submit" className="appSubmitButton">Log In</button>
