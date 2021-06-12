@@ -1,5 +1,5 @@
 .barContainer {
-    height: 50px;
+    height: 60px;
     width: 100%;
     position: fixed;
     bottom: 0px;
@@ -33,12 +33,13 @@
     box-shadow: none;
     display: inline;
     max-width: 800px;
-}
-
-.rhap_container > div {
-    display: inline;
+    transform: scale(0.75);
 }
 
 .rhap_progress-section, .rhap_controls-section {
-    height: 10px;
+    height: 15px;
+}
+
+.rhap_volume-bar {
+    background-color: #5c5b5b81;
 }
