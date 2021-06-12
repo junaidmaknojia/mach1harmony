@@ -28,7 +28,7 @@ export default function EditProfile({setShowModal}) {
         <>
             {/* <h2>Edit Profile</h2> */}
             <img className="profilePic" src={sessionUser.profilePic} alt="Current profile"/>
-            <form onSubmit={onSubmit} enctype='multipart/form-data'>
+            <form onSubmit={onSubmit} encType='multipart/form-data'>
                 <div>
                     <textarea
                         className="textarea"
