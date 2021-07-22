@@ -12,13 +12,15 @@ export default function Playbar(){
     const dispatch = useDispatch();
     const addedSong = useSelector(state => state.playBar.currSong);
 
-    const [playing, setPlaying] = useState(false);
+    // const [playing, setPlaying] = useState(false);
 
     useEffect(async () => {
         if(addedSong){
             await dispatch(incrementListen(addedSong?.id));
         }
     }, [addedSong]);
+
+    // Helper function if not using react-h5 library for player
 
     // function handlePlay(){
     //     if(playing){

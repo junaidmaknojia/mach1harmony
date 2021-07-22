@@ -38,7 +38,7 @@ export default function GenresPage() {
             <div className="genreOptions">
                 {genres?.map(genre => (
                     <div onClick={handleSongs} value={genre.id} className="genreOptions__genre">{genre.name}</div>
-                    ))}
+                ))}
             </div>
             <Genre songs={songs}/>
             <Footer/>
