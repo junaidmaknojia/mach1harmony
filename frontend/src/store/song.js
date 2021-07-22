@@ -30,6 +30,8 @@ export function createSong(payload) {
         formData.append("album", album);
         formData.append("year", year);
 
+        // frontend check on a file upload in order of how it will be unloadaed in the backend
+        // files[0] = song, files[1] = cover photo
         if (songUpload) {
             formData.append("files", songUpload);
         }

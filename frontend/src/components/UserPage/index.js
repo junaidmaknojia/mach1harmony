@@ -44,6 +44,7 @@ export default function UserPage({isLoaded}) {
         await dispatch(getFollowInfo(userId));
     }
 
+    // If viewing your own page, load the user profile component instead of other user view of it
     if(sessionUser?.id === Number(userId)){
         return <UserProfile sessionUser={sessionUser} isLoaded={isLoaded}/>
     }
